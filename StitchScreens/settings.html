@@ -1,0 +1,173 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title class="">Openify Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-container-highest": "#353534", "surface-container-high": "#2a2a2a", "secondary-container": "#454747", "surface-variant": "#353534", "surface-container-lowest": "#0e0e0e", "tertiary-fixed-dim": "#bac3ff", "secondary-fixed": "#e2e2e2", error: "#ffb4ab", primary: "#ffffff", "on-secondary-fixed-variant": "#454747", "on-secondary-container": "#b5b5b5", outline: "#8e9192", "primary-fixed-dim": "#c6c6c7", "on-error-container": "#ffdad6", "inverse-primary": "#5d5f5f", "outline-variant": "#444748", secondary: "#c6c6c6", "primary-container": "#e2e2e2", "surface-container-low": "#1c1b1b", surface: "#131313", "on-primary": "#2f3131", "inverse-on-surface": "#313030", "on-primary-container": "#636565", "tertiary-container": "#dee0ff", "secondary-fixed-dim": "#c6c6c6", "inverse-surface": "#e5e2e1", background: "#131313", "primary-fixed": "#e2e2e2", "on-tertiary-container": "#4c5db8", "on-tertiary": "#0f2581", "surface-container": "#201f1f", "on-surface": "#e5e2e1", "on-secondary-fixed": "#1a1c1c", "on-tertiary-fixed": "#00115a", "surface-bright": "#3a3939", "on-primary-fixed": "#1a1c1c", "on-surface-variant": "#c4c7c8", tertiary: "#ffffff", "tertiary-fixed": "#dee0ff", "on-tertiary-fixed-variant": "#2c3e98", "surface-tint": "#c6c6c7", "error-container": "#93000a", "surface-dim": "#131313", "on-primary-fixed-variant": "#454747", "on-background": "#e5e2e1", "on-secondary": "#2f3131", "on-error": "#690005"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}, spacing: {gutter: "20px", base: "8px", "margin-mobile": "24px", "margin-desktop": "72px", xl: "72px", sm: "16px", xs: "8px", lg: "48px", md: "28px"}, fontFamily: {"title-sm": ["Inter"], "headline-md": ["Inter"], "label-caps": ["Inter"], "display-lg-mobile": ["Inter"], "display-lg": ["Inter"], "body-sm": ["Inter"], "body-md": ["Inter"]}, fontSize: {"title-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "headline-md": ["26px", {lineHeight: "32px", letterSpacing: "-0.03em", fontWeight: "600"}], "label-caps": ["11px", {lineHeight: "14px", letterSpacing: "0.08em", fontWeight: "600"}], "display-lg-mobile": ["32px", {lineHeight: "38px", fontWeight: "700"}], "display-lg": ["36px", {lineHeight: "42px", letterSpacing: "-0.04em", fontWeight: "700"}], "body-sm": ["15px", {lineHeight: "22px", fontWeight: "400"}], "body-md": ["17px", {lineHeight: "26px", fontWeight: "400"}]}}}};</script>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Toggle Switch CSS */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: theme('colors.primary-container');
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: theme('colors.primary-container');
+            box-shadow: 0 0 15px rgba(196, 242, 102, 0.3);
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            border-color: theme('colors.primary-container');
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl bg-transparent flat no shadows flex items-center justify-between px-margin-mobile h-16">
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary-container">Openify</h1>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-margin-mobile max-w-4xl mx-auto space-y-md">
+<div class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Settings</h2>
+<p class="font-body-md text-body-md text-on-surface" style="opacity: 0;">Manage your account and preferences.</p>
+</div>
+<!-- Settings Categories Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Account Setting Item -->
+<button class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container-high transition-colors text-left group bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-white">person</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface text-white">Account</h3>
+<p class="font-body-sm text-body-sm mt-1 text-on-surface">Profile, security, and subscription</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white">chevron_right</span>
+</button>
+<!-- Playback Setting Item -->
+<button class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container-high transition-colors text-left group bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-white">play_circle</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface text-white">Playback</h3>
+<p class="font-body-sm text-body-sm mt-1 text-on-surface">Crossfade, gapless, autoplay</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white">chevron_right</span>
+</button>
+<!-- Audio Quality Setting Item -->
+<button class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container-high transition-colors text-left group bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-white">graphic_eq</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface text-white">Audio Quality</h3>
+<p class="font-body-sm text-body-sm mt-1 text-on-surface">Streaming and download quality</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white">chevron_right</span>
+</button>
+<!-- Notifications Setting Item -->
+<button class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container-high transition-colors text-left group bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-white">notifications</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface text-white">Notifications</h3>
+<p class="font-body-sm text-body-sm mt-1 text-on-surface">Push and email alerts</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white">chevron_right</span>
+</button>
+<!-- Privacy Setting Item -->
+<button class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container-high transition-colors text-left group bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-white">lock</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface text-white">Privacy</h3>
+<p class="font-body-sm text-body-sm mt-1 text-on-surface">Data sharing and visibility</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white">chevron_right</span>
+</button>
+</div>
+<!-- Toggles Section -->
+<div class="mt-xl space-y-sm">
+<h3 class="font-label-caps text-label-caps uppercase tracking-wider mb-md pl-xs text-white">Quick Toggles</h3>
+<!-- Data Saver Toggle -->
+<div class="flex items-center justify-between p-md bg-surface-container/30 backdrop-blur-md rounded-xl border border-white/5">
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface text-white">Data Saver</h4>
+<p class="font-body-sm text-body-sm mt-1 text-on-surface">Sets audio quality to low and disables canvases</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 top-0 bottom-0 m-auto right-auto left-0" id="data_saver" name="toggle" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-highest cursor-pointer" for="data_saver"></label>
+</div>
+</div>
+<!-- Offline Mode Toggle -->
+<div class="flex items-center justify-between p-md bg-surface-container/30 backdrop-blur-md rounded-xl border border-white/5">
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface text-white">Offline Mode</h4>
+<p class="font-body-sm text-body-sm mt-1 text-on-surface">Only play downloaded music and podcasts</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 top-0 bottom-0 m-auto right-auto left-0" id="offline_mode" name="toggle" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-highest cursor-pointer" for="offline_mode"></label>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 m-margin-mobile rounded-full border border-white/10 shadow-[0_0_15px_rgba(196,242,102,0.3)] bg-surface-container/20 dark:bg-surface-container/20 backdrop-blur-2xl flex justify-around items-center h-16 px-4 md:hidden z-50">
+<button class="text-on-surface-variant p-3 hover:text-primary-container transition-colors active:scale-90 transition-all duration-200 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined">home</span>
+</button>
+<button class="text-on-surface-variant p-3 hover:text-primary-container transition-colors active:scale-90 transition-all duration-200 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-on-surface-variant p-3 hover:text-primary-container transition-colors active:scale-90 transition-all duration-200 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined">library_music</span>
+</button>
+<button class="bg-primary-container text-on-primary rounded-full p-3 shadow-[0_0_10px_rgba(196,242,102,0.5)] hover:text-primary-container transition-colors active:scale-90 transition-all duration-200 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined icon-fill">settings</span>
+</button>
+</nav>
+
+
+</body></html>

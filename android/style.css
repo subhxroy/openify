@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Openify Mobile CSS - Premium Custom Animations & Visual Classes
+   ========================================================================== */
+
+/* --- Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  background-color: #0F0F0F;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Custom Scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Mesh Glow Background */
+.bg-mesh-glow {
+  background: radial-gradient(circle at 50% 25%, rgba(196, 242, 102, 0.09) 0%, transparent 65%),
+              radial-gradient(circle at 80% 75%, rgba(206, 189, 255, 0.04) 0%, transparent 45%),
+              #0F0F0F;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(30, 30, 30, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(30, 30, 30, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glowing Neon Borders/Shadows */
+.glow-lime {
+  box-shadow: 0 0 15px rgba(196, 242, 102, 0.25);
+}
+
+.active-glow {
+  box-shadow: 0 0 10px rgba(196, 242, 102, 0.4);
+}
+
+.shadow-glow {
+  filter: drop-shadow(0 0 12px rgba(196, 242, 102, 0.5));
+}
+
+/* Rotating Vinyl Animation */
+.album-art-spin {
+  animation: spin-disc 22s linear infinite;
+}
+
+@keyframes spin-disc {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sync Lyrics Text Lines Styling */
+.lyrics-line {
+  color: #c4c7c8;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.4;
+  filter: blur(0.5px);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.lyrics-line.active {
+  color: #C4F266;
+  font-size: 1.15rem;
+  font-weight: 800;
+  opacity: 1;
+  filter: none;
+  text-shadow: 0 0 10px rgba(196, 242, 102, 0.3);
+}
+
+/* Custom Seek Bar Handle Transition */
+#panel-seek-bar-wrapper:hover #panel-seek-handle {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Star Particles Canvas */
+#stars-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* --- Playlist Row Item --- */
+.playlist-row-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.playlist-row-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.playlist-row-item:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.playlist-row-art {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  color: #fff;
+  flex-shrink: 0;
+  transition: background-color 0.3s;
+}
+
+.playlist-row-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.playlist-row-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-row-count {
+  font-size: 0.75rem;
+  color: #c4c7c8;
+  opacity: 0.6;
+}
+
+/* --- Panel Slide Animations --- */
+
+/* Now Playing: slides up from bottom when .active is added */
+#now-playing-panel {
+  pointer-events: none;
+}
+#now-playing-panel.active {
+  transform: translateY(0) !important;
+  pointer-events: auto;
+}
+
+/* Playlist Detail: slides in from right when .active is added */
+#mobile-playlist-detail {
+  pointer-events: none;
+}
+#mobile-playlist-detail.active {
+  transform: translateX(0) !important;
+  pointer-events: auto;
+}
+

@@ -2,7 +2,6 @@ import json
 import math
 import os
 from datetime import datetime, timedelta, timezone
-from tempfile import NamedTemporaryFile
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -98,11 +97,9 @@ def save_tally_data(data):
     path = get_tally_path()
     directory = os.path.dirname(path)
     cleaned = cleanup_tally_data(data)
-    with NamedTemporaryFile("w", delete=False, dir=directory, encoding="utf-8") as handle:
+    with open(path, "w", encoding="utf-8") as handle:
         json.dump(cleaned, handle, indent=2, sort_keys=True)
         handle.write("\n")
-        temp_path = handle.name
-    os.replace(temp_path, path)
 
 
 def apply_decay_if_needed(data, now=None):

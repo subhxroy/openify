@@ -30,3 +30,8 @@ Server/.env
 *.log
 .env
 learn.md
+
+# === Electron Client ===
+node_modules/
+Bitsongs-Windows/node_modules/
+

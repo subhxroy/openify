@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0F0F0F;
+            color: #e5e2e1;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(196, 242, 102, 0.3);
+        }
+        .active-glow {
+            box-shadow: 0 0 10px rgba(196, 242, 102, 0.5);
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-error-container": "#ffdad6", "on-tertiary-fixed": "#00115a", "on-tertiary-fixed-variant": "#2c3e98", "inverse-on-surface": "#313030", outline: "#8e9192", "primary-fixed": "#e2e2e2", "on-primary": "#2f3131", "surface-dim": "#131313", surface: "#131313", "on-background": "#e5e2e1", "surface-container-low": "#1c1b1b", "on-secondary-fixed": "#1a1c1c", "on-primary-container": "#636565", "primary-container": "#e2e2e2", "surface-container-high": "#2a2a2a", "inverse-surface": "#e5e2e1", tertiary: "#ffffff", "secondary-container": "#454747", "on-error": "#690005", "error-container": "#93000a", "secondary-fixed-dim": "#c6c6c6", "surface-tint": "#c6c6c7", "on-secondary": "#2f3131", secondary: "#c6c6c6", "outline-variant": "#444748", "on-tertiary": "#0f2581", "on-primary-fixed": "#1a1c1c", "tertiary-fixed-dim": "#bac3ff", "surface-container-highest": "#353534", primary: "#ffffff", "on-surface": "#e5e2e1", "primary-fixed-dim": "#c6c6c7", "secondary-fixed": "#e2e2e2", "surface-bright": "#3a3939", "on-secondary-fixed-variant": "#454747", "tertiary-container": "#dee0ff", "surface-variant": "#353534", "on-secondary-container": "#b5b5b5", "inverse-primary": "#5d5f5f", "surface-container": "#201f1f", "surface-container-lowest": "#0e0e0e", "on-tertiary-container": "#4c5db8", error: "#ffb4ab", "on-primary-fixed-variant": "#454747", "tertiary-fixed": "#dee0ff", background: "#131313", "on-surface-variant": "#c4c7c8"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}, spacing: {sm: "16px", xl: "72px", "margin-mobile": "24px", md: "28px", "margin-desktop": "72px", base: "8px", xs: "8px", gutter: "20px", lg: "48px"}, fontFamily: {"display-lg": ["Inter"], "display-lg-mobile": ["Inter"], "body-sm": ["Inter"], "body-md": ["Inter"], "title-sm": ["Inter"], "headline-md": ["Inter"], "label-caps": ["Inter"]}, fontSize: {"display-lg": ["36px", {lineHeight: "42px", letterSpacing: "-0.04em", fontWeight: "700"}], "display-lg-mobile": ["32px", {lineHeight: "38px", fontWeight: "700"}], "body-sm": ["15px", {lineHeight: "22px", fontWeight: "400"}], "body-md": ["17px", {lineHeight: "26px", fontWeight: "400"}], "title-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "headline-md": ["26px", {lineHeight: "32px", letterSpacing: "-0.03em", fontWeight: "600"}], "label-caps": ["11px", {lineHeight: "14px", letterSpacing: "0.08em", fontWeight: "600"}]}}}};</script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top AppBar (from JSON) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl flex items-center justify-between px-margin-mobile h-16">
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary-container">arrow_back</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary-container">My Music</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">search</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary-container/20">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa1XY6y1R74Ge8_vcyoO8dH8upD3AOfUAyg0SKHmPSi5ZK3Kdsa3XFMQknKoY3-FniHebAAgDzcLIjL9mNAMsxqbOdQiqqlpCNvp-m1IpWUwL_x3IjKFUJ75wMJbQcJlg4uojs8LA4PVYPNVqe6laLbLr_f9tiR44WdL6DKSJztuMQS0NgQzv_pKqA12lRXrNAxHrM28rTV9qsOeq2t7XcpGhsjXnews30Eyy26YTEZ2PVdyk-Wx8c3Zti0eiVp6duiwiz_c0Hyofo"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-margin-mobile">
+<!-- Horizontal Filter Chips -->
+<div class="flex gap-3 overflow-x-auto pb-6 no-scrollbar">
+<button class="bg-primary-container text-on-primary font-label-caps text-label-caps px-6 py-2 rounded-full whitespace-nowrap active-glow transition-all duration-200">
+                All
+            </button>
+<button class="bg-surface-container-highest/40 text-on-surface-variant font-label-caps text-label-caps px-6 py-2 rounded-full whitespace-nowrap border border-white/5 hover:bg-surface-container-highest transition-colors">
+                Playlists
+            </button>
+<button class="bg-surface-container-highest/40 text-on-surface-variant font-label-caps text-label-caps px-6 py-2 rounded-full whitespace-nowrap border border-white/5 hover:bg-surface-container-highest transition-colors">
+                Liked Songs
+            </button>
+<button class="bg-surface-container-highest/40 text-on-surface-variant font-label-caps text-label-caps px-6 py-2 rounded-full whitespace-nowrap border border-white/5 hover:bg-surface-container-highest transition-colors">
+                Downloads
+            </button>
+</div>
+<!-- Featured Section (Bento Style) -->
+<section class="mb-8">
+<div class="relative w-full h-48 rounded-xl overflow-hidden glass-panel group cursor-pointer shadow-2xl">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="A moody, high-fidelity digital art representation of music streaming. Soft neon lime green and deep charcoal tones blend together, featuring abstract sound waves and glowing geometric interfaces. The lighting is cinematic and dark, evoking an intimate late-night listening experience with a futuristic, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRKHD_cUMSIIFaMyhKrZxD3e1HUg8bEdvu7lqITm18Sp0_eCU18TIJTyRXnuthZ6vHjD0c70Ao866C8mVSuLiqFsmZ5Y72po70K1oymo5MAhAYEt0fAin0TC4MwBc6PhxfZe_q6mE4BgdkAcujhLkF0quXa6Rkpn7_DWDRcb6SwumL3Vd3M6SXSG1DTIRSzpswwZ7FtnvvyQ8EmJCpOJ_c7oUfM_945FBrsVH3UhP39-5LplapYDcnqdqVHSsltgtvZHh5xPBnFBs7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="font-label-caps text-label-caps text-primary-container mb-1 block">RECENTLY PLAYED</span>
+<h2 class="font-headline-md text-headline-md text-white">Openify Pulse Mix</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">48 tracks • Updated 2h ago</p>
+</div>
+<button class="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary neon-glow active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</section>
+<!-- Vertical Song List -->
+<div class="space-y-4">
+<h3 class="font-title-sm text-title-sm text-on-surface-variant mb-2">Queue</h3>
+<!-- List Item 1 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-highest/30 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest relative">
+<img class="w-full h-full object-cover" data-alt="Minimalist album cover art featuring abstract neon circles in lime and white against a deep charcoal background. The style is sleek and digital, matching the OLED-inspired design system. High-energy lighting effects create a sense of movement and rhythm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfmAUegR1dPrbVG4w_5U8oDBGb78bHktNCim7fQOF725nZfGyG8VdhdUvUjGczAnAT3k5Gz9Yezcq8-jZixiH1ofHZgq-s8cAMPP3moj-Ngcrslgg5lc5hy5YLddNBiTreR8z1GMkRWCIaNv4bKLJw-D0tEhjhMu2Sh2SnaKxOpaYvfvZtDr00ZlhrW_Bk1nhhzv_8UCOlEBv4YGmsisJOCP13sexK41xIEWyMxkKLQU_WUI3zdJ91GpNjvo4HURuy1lsQaIuPV_wL"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container">play_arrow</span>
+</div>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-white font-semibold">Starlit Reverie</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lumina Systems</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-highest/30 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest relative">
+<img class="w-full h-full object-cover" data-alt="Sleek, futuristic album cover with a single neon lime line cutting through a pitch-black background. Cinematic lighting and soft glow effects give it a premium after-hours feel. Minimalist aesthetic with a focus on deep shadows and vibrant contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-JNCwjBCHClvG43gkNOS6Mrd71Igk4TY7owz49beEp3ev2rQXoG5QFo5-G29V_oUtKmryP0U7_ceaiy9fioQBIkYAmr2BFXk2MHzzhHoe9R_5jDPCMXcy1hrDCpnFjhB3yY6VSU8UVIBncONHAx-OQL7XoI0OikCQbnxyJtGHI_inzWuIZdeWEfuV93EqoZDIsujhMZi7NbU3yFvYIxgYu7ehPj-5IlwyZCnMJrh7epmUjp-AbbvbWaip6H_vxd64e2IOKDoP6UYQ"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container">play_arrow</span>
+</div>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-white font-semibold">Midnight Confessions</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Echo Park</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-highest/30 transition-colors group bg-surface-container/10 border border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest relative">
+<img class="w-full h-full object-cover" data-alt="Techno-inspired album artwork showing a distorted glass prism refracting lime green light into a dark, foggy environment. The style is cinematic and atmospheric, perfect for a high-end music streaming interface. Deep blacks and vibrant highlights dominate the composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlCS3zceHtMctKayqT5oMarcLk03rXqYbVWRzuYIcR7o-QmS4d9MVSXA7FVwDhomp-lKXAcbUSNPdSW0pDFt5-o9MjvVlZ1L_nuteFkhsxZsqGdWqp1_yz00qBKkMiohTQbgXeiHIHlaIldEkyL3IWw9paIkjCkAk16PA_wZzAxOXTwbWDhqvJ49IIE5u3OZ4P39d0RqZRBvDBIOdq6cfs2ttEHANg-J-MiS_uuQ-jidogWscUTrOodF2UMFw0XNWgaYmwXPL4AtJu"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-100">
+<div class="flex gap-1 items-end">
+<div class="w-1 h-3 bg-primary-container animate-pulse"></div>
+<div class="w-1 h-5 bg-primary-container animate-pulse delay-75"></div>
+<div class="w-1 h-4 bg-primary-container animate-pulse delay-150"></div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-primary-container font-bold">Lost in the Echo</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Synthetica</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+<!-- List Item 4 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-highest/30 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest relative">
+<img class="w-full h-full object-cover" data-alt="Minimalist digital landscape featuring a glowing horizon line in lime green against a deep charcoal sky. The image is clean and elegant, with a focus on light as the primary subject. Smooth gradients and soft blurs contribute to a premium, futuristic vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkXWrgU2Tcv8OKN1NXkImrQxD6K0q5k536-f4Kqeke0e9bcWitgvxzQZs5qJMZtKEId0AbKAEhjl9Gayga710-snv6G0G5f5p9HiLtxeqYCt3uGMe5GTr56rymJYMkAJsyor3T7bUSII5X__ewMF4HOoQ1-EpMK0G78DMxkYLGD29Zn75SPunyvCGya06bRwksbS_3rZMJ_snCUw1ahfH4KZwkEBQEmqMy-Zgqqk6rih-hBg8OOL9Vkk7ahEhTihVGWNkoohFzXzDa"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container">play_arrow</span>
+</div>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-white font-semibold">Neon Pulse</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Digital Native</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+<!-- List Item 5 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-highest/30 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-highest relative">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a glowing audio speaker membrane with neon lime highlights reflecting off metallic surfaces in a dark room. The atmosphere is rhythmic and sleek, utilizing high-key contrast and cinematic lighting for a futuristic music theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPw7MYS3n6jDQ0LXEvhkOtHWmV3FpuEUsi2XurdjCOXvT6iSG4cfmGI57lm7C3wozdNPRweUgve2n-mdp2MtRbl4e5hLs_LHRhwI4QxK5oE9uTC3kC2vdaf7aiS9jojYWZdKRqQzyt-ZvTgUMVmgW_seFCNY6X1Yx-T1PDT1MKgC_4qa4Zlct8-uFSXnL22yQEWxvuBaJXALqJNOsTbxflIvOFJTHCn74N0gGdtzzy3daWeEHP1M-Q2dztDNKxeHctIco3i1JlL54N"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container">play_arrow</span>
+</div>
+</div>
+<div>
+<h4 class="font-body-md text-body-md text-white font-semibold">Circuit Breaker</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Volt Rider</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">favorite</span>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Playback Control Overlay -->
+<div class="fixed bottom-24 left-margin-mobile right-margin-mobile z-40">
+<div class="glass-panel p-3 rounded-2xl flex items-center justify-between shadow-2xl border border-primary-container/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden animate-[spin_8s_linear_infinite]">
+<img class="w-full h-full object-cover" data-alt="Close up of a spinning vinyl record reflecting lime green laser lights in a dark futuristic studio setting. The lighting is cinematic with high contrast, capturing the energy of modern electronic music production." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_KEldk5tMmXrtwUf3JhjJqoQwEc2lfED_RJN9Xg9Ji5o4enCrOC9zKt5W1pxAMJVguLn0Pa7c_Zqsk_if2m1srFdw6DaLTflNWpW2OqRxq6zTD5nGXvjGCWD40Z77ClWJrezMri3kzEBnxjUUiVa6OWZb_ke4Qzh3_wlda7J7CIg8b0Z2ZeE01Br-lFoAlyhrUjqHZoBNJCBY0Qgzjp1kTjA04fHfbAB1TCqm6ejQcRMimMEJzfqDnnE2ECI90lxCI3-B8oaH6_ti"/>
+</div>
+<div>
+<h5 class="text-[14px] font-bold text-white leading-tight">Lost in the Echo</h5>
+<p class="text-[12px] text-primary-container font-semibold">Synthetica</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">shuffle</span>
+</button>
+<button class="bg-primary-container text-on-primary w-10 h-10 rounded-full flex items-center justify-center active-glow active:scale-90 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">skip_next</span>
+</button>
+</div>
+<!-- Progress Bar -->
+<div class="absolute bottom-0 left-3 right-3 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-2/3 shadow-[0_0_8px_rgba(196,242,102,0.8)]"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation (from JSON) -->
+<nav class="fixed bottom-0 left-0 right-0 m-margin-mobile rounded-full bg-surface-container/20 dark:bg-surface-container/20 backdrop-blur-2xl flex justify-around items-center h-16 px-4 border border-white/10 shadow-[0_0_15px_rgba(196,242,102,0.3)] z-50">
+<button class="text-on-surface-variant p-3 hover:text-primary-container transition-colors active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">home</span>
+</button>
+<button class="text-on-surface-variant p-3 hover:text-primary-container transition-colors active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="bg-primary-container text-on-primary rounded-full p-3 shadow-[0_0_10px_rgba(196,242,102,0.5)] active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">library_music</span>
+</button>
+<button class="text-on-surface-variant p-3 hover:text-primary-container transition-colors active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</nav>
+<script>
+        // Simple click interaction for chips
+        const chips = document.querySelectorAll('.font-label-caps');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary-container', 'text-on-primary', 'active-glow');
+                    c.classList.add('bg-surface-container-highest/40', 'text-on-surface-variant');
+                });
+                chip.classList.add('bg-primary-container', 'text-on-primary', 'active-glow');
+                chip.classList.remove('bg-surface-container-highest/40', 'text-on-surface-variant');
+            });
+        });
+
+        // Toggle play/pause for the floating bar
+        const playBtn = document.querySelector('.bg-primary-container.w-10.h-10');
+        playBtn.addEventListener('click', function() {
+            const icon = this.querySelector('span');
+            if (icon.innerText === 'pause') {
+                icon.innerText = 'play_arrow';
+            } else {
+                icon.innerText = 'pause';
+            }
+        });
+    </script>
+</body></html>

@@ -1,9 +1,11 @@
 import json
 import os
+import shutil
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.parse import quote
+
 
 import requests
 import yt_dlp
@@ -19,6 +21,16 @@ from recommendation import (
     update_transition,
     upsert_song_records,
 )
+
+def get_node_executable():
+    for name in ["node", "nodejs"]:
+        path = shutil.which(name)
+        if path:
+            return path
+    if os.path.exists("/usr/bin/node"):
+        return "/usr/bin/node"
+    return None
+
 
 
 app = FastAPI()
@@ -268,12 +280,14 @@ def download_task(song_id, artist, title):
     ydl_opts = {
         "format": "bestaudio[ext=m4a]/best",
         "outtmpl": str(filepath),
-        "cookiefile": "cookies.txt",
+        "cookiefile": str(BASE_DIR / "cookies.txt"),
         "noplaylist": True,
         "quiet": True,
-        "javascript_executable": "/usr/bin/node",
-        "extractor_args": {"youtube": {"player_client": ["web_embedded"]}},
+        "extractor_args": {"youtube": {"player_client": ["default", "-android_sdkless"]}},
     }
+    node_path = get_node_executable()
+    if node_path:
+        ydl_opts["javascript_executable"] = node_path
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([f"ytsearch1:{query}"])
@@ -322,16 +336,18 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
     query = f"{artist} - {title} audio"
     ydl_opts = {
         "format": "bestaudio[ext=m4a]/best",
-        "cookiefile": "cookies.txt",
+        "cookiefile": str(BASE_DIR / "cookies.txt"),
         "noplaylist": True,
         "quiet": False,
-        "javascript_executable": "/usr/bin/node",
         "extractor_args": {
             "youtube": {
-                "player_client": ["web_embedded"],
+                "player_client": ["default", "-android_sdkless"],
             }
         },
     }
+    node_path = get_node_executable()
+    if node_path:
+        ydl_opts["javascript_executable"] = node_path
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
             info = ydl.extract_info(f"ytsearch1:{query}", download=False)

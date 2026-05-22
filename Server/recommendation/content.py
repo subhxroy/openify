@@ -1,7 +1,6 @@
 import json
 import os
 import statistics
-from tempfile import NamedTemporaryFile
 
 try:
     import numpy as np
@@ -97,11 +96,9 @@ def _write_catalog(catalog):
     path = get_songs_path()
     directory = os.path.dirname(path)
     ordered_catalog = sorted(catalog, key=lambda song: song["id"])
-    with NamedTemporaryFile("w", delete=False, dir=directory, encoding="utf-8") as handle:
+    with open(path, "w", encoding="utf-8") as handle:
         json.dump(ordered_catalog, handle, indent=2)
         handle.write("\n")
-        temp_path = handle.name
-    os.replace(temp_path, path)
     _catalog_cache = ordered_catalog
     _catalog_cache_mtime = os.path.getmtime(path)
 
