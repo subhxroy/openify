@@ -261,6 +261,8 @@ async function loadChartSongs() {
     return;
   }
   try {
+    const res = await fetch(`${BASE_URL}/api/mobile/chart`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     state.songs = data;
     showLoading(false);
