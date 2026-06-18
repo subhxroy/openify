@@ -55,8 +55,8 @@ let state = {
   repeatMode: 'none', // 'none' | 'all' | 'one'
 
   // Social / Profile stats
-  followersCount: 12437,
-  followingCount: 842,
+  followersCount: 0,
+  followingCount: 0,
   isFollowing: false
 };
 
@@ -161,6 +161,7 @@ const settingOfflineMode = document.getElementById('setting-toggle-offlinemode')
 // Fullscreen Now Playing Overlay
 const nowPlayingPanel = document.getElementById('now-playing-panel');
 const panelCloseBtn = document.getElementById('panel-close-btn');
+const panelMenuBtn = document.getElementById('panel-menu-btn');
 const panelTitle = document.getElementById('panel-title');
 const panelArtist = document.getElementById('panel-artist');
 const panelFavBtn = document.getElementById('panel-fav-btn');
@@ -1257,6 +1258,19 @@ function setupUIEventListeners() {
     nowPlayingPanel.classList.remove('active');
   });
 
+  // Now Playing menu (three dots) opens Add to Playlist
+  if (panelMenuBtn) {
+    panelMenuBtn.addEventListener('click', () => {
+      const currentList = getCurrentList();
+      const currentSong = state.currentSongIndex !== -1 ? currentList[state.currentSongIndex] : null;
+      if (currentSong) {
+        showAddToPlaylistOverlay(currentSong);
+      } else {
+        showToast("No song currently playing");
+      }
+    });
+  }
+
   // Download button in now playing panel
   if (panelDownloadBtn) {
     panelDownloadBtn.addEventListener('click', () => {
@@ -1559,6 +1573,12 @@ function setupUIEventListeners() {
   if (headerSettingsBtn) {
     headerSettingsBtn.addEventListener('click', () => {
       switchTab('profile');
+      setTimeout(() => {
+        const settingsSection = document.getElementById('settings-section');
+        if (settingsSection) {
+          settingsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     });
   }
   const headerAvatarContainer = document.getElementById('header-user-avatar-container');
