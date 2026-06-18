@@ -13,6 +13,19 @@
     "energy": null
   },
   {
+    "id": "1018395691",
+    "title": "Love You",
+    "artist": "SiR",
+    "artist_id": 884211644,
+    "album": "Seven Sundays",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music7/v4/a9/79/5d/a9795de5-b550-6335-2939-d8c2ead0f47c/sir42.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music7/v4/a9/79/5d/a9795de5-b550-6335-2939-d8c2ead0f47c/sir42.jpg/600x600bb.jpg",
+    "duration": 186,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1019471060",
     "title": "Jodi Bolo Hya",
     "artist": "Chandrabindoo",
@@ -35,6 +48,32 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/fe/6f/08/fe6f0819-4966-aa02-f096-ba1366f9466c/889845468233.jpg/600x600bb.jpg",
     "duration": 345,
     "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1025212410",
+    "title": "Aaron Burr, Sir",
+    "artist": "Lin-Manuel Miranda, Leslie Odom, Jr., Anthony Ramos, Daveed Diggs & Okieriete Onaodowan",
+    "artist_id": 329027198,
+    "album": "Hamilton: An American Musical (Original Broadway Cast Recording)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f3/99/31/f399318c-3f0d-bfd5-7a69-0b78b22a90df/075679921338.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f3/99/31/f399318c-3f0d-bfd5-7a69-0b78b22a90df/075679921338.jpg/600x600bb.jpg",
+    "duration": 156,
+    "genre": "Musicals",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1025734195",
+    "title": "Sir Osthara (From \"Businessman\")",
+    "artist": "Suchitra & S.S. Thaman",
+    "artist_id": 117892816,
+    "album": "Barbie Girl Suchitra Telugu Hits",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/c2/0c/6a/c20c6a35-3ded-836c-e48c-e21012c94d7e/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/c2/0c/6a/c20c6a35-3ded-836c-e48c-e21012c94d7e/cover.jpg/600x600bb.jpg",
+    "duration": 231,
+    "genre": "Telugu",
     "tempo": null,
     "energy": null
   },
@@ -416,6 +455,19 @@
     "energy": null
   },
   {
+    "id": "1055074639",
+    "title": "Unstoppable",
+    "artist": "Sia",
+    "artist_id": 28721078,
+    "album": "This Is Acting",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bc/13/27/bc13275c-8b26-802d-771b-d15ae00fb530/mzm.hvpwjsvi.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bc/13/27/bc13275c-8b26-802d-771b-d15ae00fb530/mzm.hvpwjsvi.jpg/600x600bb.jpg",
+    "duration": 217,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1055074640",
     "title": "Cheap Thrills",
     "artist": "Sia",
@@ -572,6 +624,32 @@
     "energy": null
   },
   {
+    "id": "1066241620",
+    "title": "This One's for You (feat. Zara Larsson) [Official Song UEFA EURO 2016\u2122]",
+    "artist": "David Guetta",
+    "artist_id": 5557599,
+    "album": "This One's for You (feat. Zara Larsson) [Official Song UEFA EURO 2016\u2122] - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music60/v4/88/49/3f/88493f01-2977-a3a6-0b1e-20625eec247b/dj.cfwmosxs.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music60/v4/88/49/3f/88493f01-2977-a3a6-0b1e-20625eec247b/dj.cfwmosxs.jpg/600x600bb.jpg",
+    "duration": 207,
+    "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1067965458",
+    "title": "Best Friend",
+    "artist": "Young Thug",
+    "artist_id": 81886939,
+    "album": "Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Video7/v4/38/24/cf/3824cf4b-630a-65c9-05de-5084712d1ef4/USATV1501741.sca1.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video7/v4/38/24/cf/3824cf4b-630a-65c9-05de-5084712d1ef4/USATV1501741.sca1.jpg/600x600bb.jpg",
+    "duration": 213,
+    "genre": "Hip-Hop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1068412116",
     "title": "Study",
     "artist": "Study Piano",
@@ -645,6 +723,19 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/ac/67/cbac673a-9213-7118-bb4e-2440273afb03/8902894357470_cover.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/ac/67/cbac673a-9213-7118-bb4e-2440273afb03/8902894357470_cover.jpg/600x600bb.jpg",
     "duration": 341,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1071079478",
+    "title": "Ajab Si",
+    "artist": "KK & Vishal & Shekhar",
+    "artist_id": 201013231,
+    "album": "Om Shanti Om (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/16/13/4c161318-5bf1-ea55-774d-2f55e2361d10/8902894623179_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4c/16/13/4c161318-5bf1-ea55-774d-2f55e2361d10/8902894623179_cover.jpg/600x600bb.jpg",
+    "duration": 241,
     "genre": "Bollywood",
     "tempo": null,
     "energy": null
@@ -1781,6 +1872,19 @@
     "energy": null
   },
   {
+    "id": "1157913730",
+    "title": "Itni Si Baat Hain",
+    "artist": "Pritam, Arijit Singh & Antara Mitra",
+    "artist_id": 213157068,
+    "album": "Azhar (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/2f/1e/332f1e03-4cc1-85b7-c23d-1de5802b9b94/8902894358057_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/33/2f/1e/332f1e03-4cc1-85b7-c23d-1de5802b9b94/8902894358057_cover.jpg/600x600bb.jpg",
+    "duration": 294,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1158008527",
     "title": "Desi Kalakaar",
     "artist": "Yo Yo Honey Singh",
@@ -2184,6 +2288,19 @@
     "energy": null
   },
   {
+    "id": "1184827211",
+    "title": "\u015eiir",
+    "artist": "Volkan Konak",
+    "artist_id": 81695942,
+    "album": "Volkan Konak Koleksiyon",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/57/b8/ec/57b8ece7-6c2e-878f-5c69-ceed6b9666de/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/57/b8/ec/57b8ece7-6c2e-878f-5c69-ceed6b9666de/cover.jpg/600x600bb.jpg",
+    "duration": 116,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1187259951",
     "title": "The Humma Song (From \"OK Jaanu\")",
     "artist": "A.R. Rahman, Badshah, Tanishk Bagchi, Jubin Nautiyal & Shashaa Tirupati",
@@ -2327,6 +2444,19 @@
     "energy": null
   },
   {
+    "id": "1195108157",
+    "title": "Chantaje (feat. Maluma) [John-Blake Remix]",
+    "artist": "Shakira",
+    "artist_id": 889327,
+    "album": "Chantaje (feat. Maluma) [John-Blake Remix] - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/5f/ea/0d/5fea0df1-bf3d-6f12-d2b8-022513743ddd/886446320946.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/5f/ea/0d/5fea0df1-bf3d-6f12-d2b8-022513743ddd/886446320946.jpg/600x600bb.jpg",
+    "duration": 196,
+    "genre": "Pop in Spanish",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1195337785",
     "title": "I\u2019ll Be Waiting (Kabhi Jo Baadal)",
     "artist": "Arjun, Arijit Singh & Sharib Toshi",
@@ -2405,6 +2535,19 @@
     "energy": null
   },
   {
+    "id": "1201755300",
+    "title": "\u015eiir",
+    "artist": "Muhammed Ali Evci",
+    "artist_id": 1115886759,
+    "album": "Annem \u0130\u00e7in",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/99/47/14/9947149c-8a98-0f94-bc7f-a24d6fc6d7bb/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/99/47/14/9947149c-8a98-0f94-bc7f-a24d6fc6d7bb/cover.jpg/600x600bb.jpg",
+    "duration": 225,
+    "genre": "Halk",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1202889139",
     "title": "Om Shri Sainathaya Namah",
     "artist": "Pramod Medhi",
@@ -2427,6 +2570,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3f/8e/44/3f8e4469-ea05-29d7-99b9-e3aec73ecc32/886446357423.jpg/600x600bb.jpg",
     "duration": 220,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1205913429",
+    "title": "Humsafar",
+    "artist": "Akhil Sachdeva & Mansheel Gujral",
+    "artist_id": 1205913414,
+    "album": "Badrinath Ki Dulhania (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/7c/6e/e7/7c6ee7c8-c1f3-e40f-1ec7-7ff96d0776f8/8902894358804_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/7c/6e/e7/7c6ee7c8-c1f3-e40f-1ec7-7ff96d0776f8/8902894358804_cover.jpg/600x600bb.jpg",
+    "duration": 268,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -2509,6 +2665,19 @@
     "energy": null
   },
   {
+    "id": "1216302373",
+    "title": "\u015eiir",
+    "artist": "Taha G\u00fcrb\u00fcz",
+    "artist_id": 1216301520,
+    "album": "Manyak",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/97/ec/66/97ec6676-48f3-9388-e397-50b42a624031/191018960254.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/97/ec/66/97ec6676-48f3-9388-e397-50b42a624031/191018960254.jpg/600x600bb.jpg",
+    "duration": 212,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1216315403",
     "title": "Light My Body Up (feat. Nicki Minaj & Lil Wayne)",
     "artist": "David Guetta",
@@ -2531,6 +2700,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b7/55/77/b75577ec-4d55-c38f-4cd2-9a8ea26c2e1e/886446404677.jpg/600x600bb.jpg",
     "duration": 210,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1217977755",
+    "title": "Apocalypse",
+    "artist": "Cigarettes After Sex",
+    "artist_id": 1069739468,
+    "album": "Cigarettes After Sex",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b3/5e/0f/b35e0fbe-2370-fc48-0f0c-977525e93bf2/720841214601_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b3/5e/0f/b35e0fbe-2370-fc48-0f0c-977525e93bf2/720841214601_Cover.jpg/600x600bb.jpg",
+    "duration": 290,
+    "genre": "Alternative",
     "tempo": null,
     "energy": null
   },
@@ -2782,6 +2964,19 @@
     "energy": null
   },
   {
+    "id": "1266067536",
+    "title": "Nothing's Gonna Hurt You Baby",
+    "artist": "Cigarettes After Sex",
+    "artist_id": 1069739468,
+    "album": "I. - EP",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9a/eb/1c/9aeb1c86-7dd7-b31e-9a40-e26a1ae38d89/720841228202_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9a/eb/1c/9aeb1c86-7dd7-b31e-9a40-e26a1ae38d89/720841228202_Cover.jpg/600x600bb.jpg",
+    "duration": 286,
+    "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1267390213",
     "title": "Hawayein",
     "artist": "Pritam & Arijit Singh",
@@ -2960,6 +3155,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/12/33/20/12332002-ed24-620e-63a9-2b12a565dfa6/cover.jpg/600x600bb.jpg",
     "duration": 164,
     "genre": "Indian",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1299149462",
+    "title": "Sir",
+    "artist": "Jaded Juice Riders",
+    "artist_id": 744523248,
+    "album": "Bowl Cut",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/cd/8b/32/cd8b3244-d10a-5216-a879-f0e33fd4556f/5057728112916_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/cd/8b/32/cd8b3244-d10a-5216-a879-f0e33fd4556f/5057728112916_cover.jpg/600x600bb.jpg",
+    "duration": 124,
+    "genre": "Alternative",
     "tempo": null,
     "energy": null
   },
@@ -3172,6 +3380,45 @@
     "energy": null
   },
   {
+    "id": "1320099124",
+    "title": "D'Evils",
+    "artist": "SiR",
+    "artist_id": 884211644,
+    "album": "November",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/a7/99/e0a7996d-3853-07ec-281a-ad0e5067715f/859724289075_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/a7/99/e0a7996d-3853-07ec-281a-ad0e5067715f/859724289075_cover.jpg/600x600bb.jpg",
+    "duration": 171,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1320099126",
+    "title": "Something New (feat. Etta Bond)",
+    "artist": "SiR",
+    "artist_id": 884211644,
+    "album": "November",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/a7/99/e0a7996d-3853-07ec-281a-ad0e5067715f/859724289075_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/a7/99/e0a7996d-3853-07ec-281a-ad0e5067715f/859724289075_cover.jpg/600x600bb.jpg",
+    "duration": 229,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1320099554",
+    "title": "Summer in November",
+    "artist": "SiR",
+    "artist_id": 884211644,
+    "album": "November",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/a7/99/e0a7996d-3853-07ec-281a-ad0e5067715f/859724289075_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e0/a7/99/e0a7996d-3853-07ec-281a-ad0e5067715f/859724289075_cover.jpg/600x600bb.jpg",
+    "duration": 229,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1321217032",
     "title": "Havana (feat. Young Thug)",
     "artist": "Camila Cabello",
@@ -3246,6 +3493,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6f/74/df/6f74dfc3-f2c5-13c9-0d62-d9d6e55219e8/cover.jpg/600x600bb.jpg",
     "duration": 258,
     "genre": "Telugu",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1327921252",
+    "title": "Na Jane Kyon Hota Hai",
+    "artist": "Lata Mangeshkar",
+    "artist_id": 14291575,
+    "album": "Chhoti Si Baat (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/55/a7/d8/55a7d8ab-c780-eed3-c565-d13603aca601/191773216740.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/55/a7/d8/55a7d8ab-c780-eed3-c565-d13603aca601/191773216740.jpg/600x600bb.jpg",
+    "duration": 192,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -3350,6 +3610,32 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/0a/09/72/0a097219-62da-e9ae-607a-615c984e8ca3/cover.jpg/600x600bb.jpg",
     "duration": 334,
     "genre": "Asia",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1336070009",
+    "title": "It Goes On (From \"12 Strong\")",
+    "artist": "Zac Brown & Sir Rosevelt",
+    "artist_id": 1337396112,
+    "album": "It Goes On (From \"12 Strong\") - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ab/f6/61/abf66187-4843-7667-bcbb-996626b35df3/075679878496.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ab/f6/61/abf66187-4843-7667-bcbb-996626b35df3/075679878496.jpg/600x600bb.jpg",
+    "duration": 204,
+    "genre": "Country",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1337270048",
+    "title": "Meri Bheegi Bheegi Si",
+    "artist": "Kishore Kumar",
+    "artist_id": 14291581,
+    "album": "Anamika (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/10/68/d4/1068d4fe-424e-7c47-a89e-6751fecc9a06/191773203948.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/10/68/d4/1068d4fe-424e-7c47-a89e-6751fecc9a06/191773203948.jpg/600x600bb.jpg",
+    "duration": 246,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -3467,6 +3753,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/85/bd/1c/85bd1c3f-cb13-276b-427a-fc8cd4f9d196/cover.jpg/600x600bb.jpg",
     "duration": 294,
     "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1340760572",
+    "title": "Zara Zara",
+    "artist": "Bombay Jayashri",
+    "artist_id": 4274253,
+    "album": "Rehnaa Hai Terre Dil Mein (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0d/ba/de/0dbade87-5227-0960-6fa2-49f52ad0c335/191773226831.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0d/ba/de/0dbade87-5227-0960-6fa2-49f52ad0c335/191773226831.jpg/600x600bb.jpg",
+    "duration": 298,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -3740,6 +4039,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/ba/72/d8/ba72d847-bbd4-ab8b-1612-69c3ff312e3e/192562306741.jpg/600x600bb.jpg",
     "duration": 253,
     "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1361074450",
+    "title": "\u015eiir",
+    "artist": "Fatih K\u0131saparmak",
+    "artist_id": 275676886,
+    "album": "Mozaik 1",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/f6/16/80/f6168071-45b3-b334-77af-a5373810cce2/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/f6/16/80/f6168071-45b3-b334-77af-a5373810cce2/cover.jpg/600x600bb.jpg",
+    "duration": 156,
+    "genre": "Halk",
     "tempo": null,
     "energy": null
   },
@@ -4043,6 +4355,19 @@
     "energy": null
   },
   {
+    "id": "1387148515",
+    "title": "Vishnu Sahasranamamm",
+    "artist": "M. S. Subbulakshmi & Radha Viswanathan",
+    "artist_id": 18763793,
+    "album": "Bhaja Govindam - Vishnu Sahasranamam",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c6/17/b0/c617b0ab-96a8-538b-27db-afaf7a433946/191773293826.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c6/17/b0/c617b0ab-96a8-538b-27db-afaf7a433946/191773293826.jpg/600x600bb.jpg",
+    "duration": 1795,
+    "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1388719140",
     "title": "Attention (feat. Chace & Kalibwoy)",
     "artist": "Yellow Claw",
@@ -4065,6 +4390,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/0a/67/45/0a674512-32b8-8cdb-a8d5-880de4676ffb/8903431677327_cover.jpg/600x600bb.jpg",
     "duration": 246,
     "genre": "Indian Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1391638038",
+    "title": "Dra",
+    "artist": "Naod",
+    "artist_id": 994220345,
+    "album": "Dra - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ca/5b/66/ca5b6608-5fe3-8cf3-cceb-2473187bb53e/E102C6A8-0902-4B49-AF90-41C9B5BAFA76.png/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ca/5b/66/ca5b6608-5fe3-8cf3-cceb-2473187bb53e/E102C6A8-0902-4B49-AF90-41C9B5BAFA76.png/600x600bb.jpg",
+    "duration": 204,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -4117,6 +4455,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/aa/9f/21/aa9f2126-5745-4e74-b71f-e7a864c24cc8/886447159491.jpg/600x600bb.jpg",
     "duration": 216,
     "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1398477478",
+    "title": "Sir (feat. Future)",
+    "artist": "Nicki Minaj",
+    "artist_id": 278464538,
+    "album": "Queen",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/07/67/a7/0767a745-34c4-7ddb-512a-4af4ddb03db4/18UMGIM36519.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/07/67/a7/0767a745-34c4-7ddb-512a-4af4ddb03db4/18UMGIM36519.rgb.jpg/600x600bb.jpg",
+    "duration": 224,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -4273,6 +4624,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/54/34/4c/54344c00-417f-484a-0006-fc792abf3e21/cover.jpg/600x600bb.jpg",
     "duration": 149,
     "genre": "Indian Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1406109863",
+    "title": "God's Plan",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Scorpion",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/6d/8f/bb6d8f67-6d04-10b5-dd62-eb5809ac54fc/00602567879152.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bb/6d/8f/bb6d8f67-6d04-10b5-dd62-eb5809ac54fc/00602567879152.rgb.jpg/600x600bb.jpg",
+    "duration": 198,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -4472,6 +4836,32 @@
     "energy": null
   },
   {
+    "id": "1418213392",
+    "title": "Finesse",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Scorpion",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/37/43/1f374304-2e04-2be3-53ea-41dd6f0b6fb8/00602567892410.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/37/43/1f374304-2e04-2be3-53ea-41dd6f0b6fb8/00602567892410.rgb.jpg/600x600bb.jpg",
+    "duration": 182,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1418213403",
+    "title": "Don\u2019t Matter To Me",
+    "artist": "Drake & Michael Jackson",
+    "artist_id": 271256,
+    "album": "Scorpion",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/37/43/1f374304-2e04-2be3-53ea-41dd6f0b6fb8/00602567892410.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1f/37/43/1f374304-2e04-2be3-53ea-41dd6f0b6fb8/00602567892410.rgb.jpg/600x600bb.jpg",
+    "duration": 245,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1419874268",
     "title": "Mamnoo Ellames",
     "artist": "Hala Alturk",
@@ -4576,6 +4966,19 @@
     "energy": null
   },
   {
+    "id": "1426621993",
+    "title": "Sir (feat. Future)",
+    "artist": "Nicki Minaj",
+    "artist_id": 278464538,
+    "album": "Queen (Bonus Version)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7c/5c/57/7c5c5739-e34a-9cbd-ed33-e9b149f30b7f/18UMGIM36519.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/7c/5c/57/7c5c5739-e34a-9cbd-ed33-e9b149f30b7f/18UMGIM36519.rgb.jpg/600x600bb.jpg",
+    "duration": 224,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1428384017",
     "title": "She Move It Like",
     "artist": "Badshah",
@@ -4650,6 +5053,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/ab/57/7b/ab577bde-2be5-b43d-5d20-23f1184b08c2/06UMGIM25073.rgb.jpg/600x600bb.png",
     "duration": 0,
     "genre": "Soundtrack",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1434766540",
+    "title": "The Ringer",
+    "artist": "Eminem",
+    "artist_id": 111051,
+    "album": "Kamikaze",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/03/c2/54/03c2540d-b9f3-9807-b429-da23cbb854a2/00602577046421.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/03/c2/54/03c2540d-b9f3-9807-b429-da23cbb854a2/00602577046421.rgb.jpg/600x600bb.jpg",
+    "duration": 337,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -4745,6 +5161,19 @@
     "energy": null
   },
   {
+    "id": "1438892859",
+    "title": "In the Morning (feat. Drake)",
+    "artist": "J. Cole",
+    "artist_id": 73705833,
+    "album": "Cole World: The Sideline Story",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/3c/4e/6c/3c4e6c35-c1cf-49f9-8cbb-524b1db743f5/18UMGIM69899.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/3c/4e/6c/3c4e6c35-c1cf-49f9-8cbb-524b1db743f5/18UMGIM69899.rgb.jpg/600x600bb.jpg",
+    "duration": 234,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1440053111",
     "title": "Kalam Eneih",
     "artist": "Sherine",
@@ -4823,6 +5252,32 @@
     "energy": null
   },
   {
+    "id": "1440746111",
+    "title": "Crew Love (feat. The Weeknd)",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Take Care (Deluxe Version)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d2/53/62/d2536245-b94c-b3fd-7168-9512f655f6d4/00602527899091.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d2/53/62/d2536245-b94c-b3fd-7168-9512f655f6d4/00602527899091.rgb.jpg/600x600bb.jpg",
+    "duration": 208,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440746681",
+    "title": "The Real Her (feat. Lil Wayne & Andre 3000)",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Take Care (Deluxe Version)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d2/53/62/d2536245-b94c-b3fd-7168-9512f655f6d4/00602527899091.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d2/53/62/d2536245-b94c-b3fd-7168-9512f655f6d4/00602527899091.rgb.jpg/600x600bb.jpg",
+    "duration": 321,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1440772740",
     "title": "Experience",
     "artist": "I Virtuosi Italiani & Daniel Hope",
@@ -4832,6 +5287,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/13/fd/7b/13fd7bfd-125a-4493-dc85-96aef9c25562/12UMGIM65023.rgb.jpg/600x600bb.jpg",
     "duration": 315,
     "genre": "Classical Crossover",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440775890",
+    "title": "Somebody's Me",
+    "artist": "Enrique Iglesias",
+    "artist_id": 90895,
+    "album": "Greatest Hits",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/11/90/e8/1190e8de-a99a-21ab-53a4-98154dd2373a/08UMGIM24423.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/11/90/e8/1190e8de-a99a-21ab-53a4-98154dd2373a/08UMGIM24423.rgb.jpg/600x600bb.jpg",
+    "duration": 238,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -4940,6 +5408,19 @@
     "energy": null
   },
   {
+    "id": "1440829549",
+    "title": "The Nights",
+    "artist": "Avicii",
+    "artist_id": 298496035,
+    "album": "The Days / Nights - EP",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/35/4d/a0/354da058-972b-dcf9-feec-609895ba8cb2/14UMGIM56567.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/35/4d/a0/354da058-972b-dcf9-feec-609895ba8cb2/14UMGIM56567.rgb.jpg/600x600bb.jpg",
+    "duration": 176,
+    "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1440829610",
     "title": "Sorry",
     "artist": "Justin Bieber",
@@ -4975,6 +5456,58 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/1b/9b/1f/1b9b1f9c-19ba-b985-3e79-59581f6e88fa/16UMGIM28974.rgb.jpg/600x600bb.jpg",
     "duration": 230,
     "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440841384",
+    "title": "One Dance (feat. Wizkid & Kyla)",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Views",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f2/0d/8b/f20d8bff-a927-ae98-6784-20a1f51cb23e/16UMGIM27642.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f2/0d/8b/f20d8bff-a927-ae98-6784-20a1f51cb23e/16UMGIM27642.rgb.jpg/600x600bb.jpg",
+    "duration": 173,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440841730",
+    "title": "Hotline Bling",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Views",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f2/0d/8b/f20d8bff-a927-ae98-6784-20a1f51cb23e/16UMGIM27642.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f2/0d/8b/f20d8bff-a927-ae98-6784-20a1f51cb23e/16UMGIM27642.rgb.jpg/600x600bb.jpg",
+    "duration": 267,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440843496",
+    "title": "One Dance (feat. Wizkid & Kyla)",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Views",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/f5/87/95f587f7-21c3-d5f9-d81a-4350f9caa020/16UMGIM27643.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/f5/87/95f587f7-21c3-d5f9-d81a-4350f9caa020/16UMGIM27643.rgb.jpg/600x600bb.jpg",
+    "duration": 173,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440843716",
+    "title": "Too Good (feat. Rihanna)",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Views",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/f5/87/95f587f7-21c3-d5f9-d81a-4350f9caa020/16UMGIM27643.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/f5/87/95f587f7-21c3-d5f9-d81a-4350f9caa020/16UMGIM27643.rgb.jpg/600x600bb.jpg",
+    "duration": 263,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -5044,6 +5577,19 @@
     "energy": null
   },
   {
+    "id": "1440848846",
+    "title": "Jumpman",
+    "artist": "Drake & Future",
+    "artist_id": 271256,
+    "album": "What a Time To Be Alive",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/d3/74/1d/d3741d09-5c9a-461b-aba3-fa345d306d5a/00602547616678.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/d3/74/1d/d3741d09-5c9a-461b-aba3-fa345d306d5a/00602547616678.rgb.jpg/600x600bb.jpg",
+    "duration": 205,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1440851087",
     "title": "Gooey (Stripped)",
     "artist": "Glass Animals",
@@ -5053,6 +5599,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/47/61/c6/4761c669-69e2-4568-78c6-f78e6f12aa53/00602547514844.rgb.jpg/600x600bb.jpg",
     "duration": 248,
     "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440852992",
+    "title": "Love Me Harder",
+    "artist": "Ariana Grande & The Weeknd",
+    "artist_id": 412778295,
+    "album": "My Everything (Bonus Tracks Edition)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a5/39/86/a5398609-ad90-50d3-57ad-0f87a4df5ac4/14UMGIM28138.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a5/39/86/a5398609-ad90-50d3-57ad-0f87a4df5ac4/14UMGIM28138.rgb.jpg/600x600bb.jpg",
+    "duration": 236,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -5138,11 +5697,11 @@
     "id": "1440870375",
     "title": "Starboy (feat. Daft Punk)",
     "artist": "The Weeknd",
-    "artist_id": 479756766,
+    "artist_id": 0,
     "album": "Starboy",
-    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/200x200bb.jpg",
-    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/600x600bb.jpg",
-    "duration": 230,
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b5/92/bb/b592bb72-52e3-e756-9b26-9f56d08f47ab/16UMGIM67864.rgb.jpg/600x600bb.png",
+    "duration": 0,
     "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
@@ -5252,6 +5811,19 @@
     "energy": null
   },
   {
+    "id": "1440873033",
+    "title": "Hold On, We're Going Home",
+    "artist": "Drake & Majid Jordan",
+    "artist_id": 271256,
+    "album": "Nothing Was The Same (Deluxe)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/14/df/2c/14df2ca7-0056-3c7f-724d-75ee42345728/13UAAIM79861.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/14/df/2c/14df2ca7-0056-3c7f-724d-75ee42345728/13UAAIM79861.rgb.jpg/600x600bb.jpg",
+    "duration": 231,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1440875354",
     "title": "Tension (Interlude)",
     "artist": "B\u00d8RNS",
@@ -5261,6 +5833,45 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/08/ef/fe/08effecd-6bd2-9020-e3d5-c635425c8bdd/00602567174622.rgb.jpg/600x600bb.jpg",
     "duration": 94,
     "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440877067",
+    "title": "&Run",
+    "artist": "Sir Sly",
+    "artist_id": 592569057,
+    "album": "Don't You Worry, Honey",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/58/f9/6f/58f96f70-dee3-bffc-b122-408b0a42f92d/00602557715347.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/58/f9/6f/58f96f70-dee3-bffc-b122-408b0a42f92d/00602557715347.rgb.jpg/600x600bb.jpg",
+    "duration": 226,
+    "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440880860",
+    "title": "I Don\u2019t Wanna Live Forever (Fifty Shades Darker)",
+    "artist": "ZAYN & Taylor Swift",
+    "artist_id": 973181994,
+    "album": "Fifty Shades Darker (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e5/9b/1e/e59b1eaa-92d3-df4b-73f2-9bd798feb630/17UMGIM01263.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e5/9b/1e/e59b1eaa-92d3-df4b-73f2-9bd798feb630/17UMGIM01263.rgb.jpg/600x600bb.jpg",
+    "duration": 245,
+    "genre": "Soundtrack",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440892167",
+    "title": "Passionfruit",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "More Life",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/18/9d/b8/189db80b-bfa8-89d1-1514-5fcb7e5cf8f4/00602557611526.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/18/9d/b8/189db80b-bfa8-89d1-1514-5fcb7e5cf8f4/00602557611526.rgb.jpg/600x600bb.jpg",
+    "duration": 298,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -5339,6 +5950,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/77/b7/1d/77b71db5-ac5b-3ac1-0bcd-58fee82d333b/00602557931198.rgb.jpg/600x600bb.jpg",
     "duration": 207,
     "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1440924927",
+    "title": "Work (feat. Drake)",
+    "artist": "Rihanna",
+    "artist_id": 63346553,
+    "album": "ANTI (Deluxe)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/9c/da/90/9cda90c9-df1a-078b-319c-bdf2801e8d1f/16UMGIM03373.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/9c/da/90/9cda90c9-df1a-078b-319c-bdf2801e8d1f/16UMGIM03373.rgb.jpg/600x600bb.jpg",
+    "duration": 219,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -5508,6 +6132,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d2/ab/b8/d2abb8a8-2211-9fef-4214-138cd6110527/17UM1IM17577.rgb.jpg/600x600bb.jpg",
     "duration": 190,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1442964068",
+    "title": "Family Affair",
+    "artist": "Mary J. Blige",
+    "artist_id": 1392280,
+    "album": "No More Drama (Version 2)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/d2/80/cfd2802e-9369-5b3e-5232-3abb3a4363ce/15UMGIM00598.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cf/d2/80/cfd2802e-9369-5b3e-5232-3abb3a4363ce/15UMGIM00598.rgb.jpg/600x600bb.jpg",
+    "duration": 265,
+    "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
   },
@@ -5785,6 +6422,32 @@
     "energy": null
   },
   {
+    "id": "1444602637",
+    "title": "New",
+    "artist": "Daya",
+    "artist_id": 1037160430,
+    "album": "New - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/0a/b1/1f/0ab11f8e-f979-c9fb-f436-6e101a6cc251/00602567114772.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/0a/b1/1f/0ab11f8e-f979-c9fb-f436-6e101a6cc251/00602567114772.rgb.jpg/600x600bb.jpg",
+    "duration": 230,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1444620510",
+    "title": "Signs",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Signs - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/be/b5/16/beb51692-6125-f465-e1a9-d414be6c7c33/00602557821048.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/be/b5/16/beb51692-6125-f465-e1a9-d414be6c7c33/00602557821048.rgb.jpg/600x600bb.jpg",
+    "duration": 234,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1444631345",
     "title": "Fast Car (feat. Dakota) [Radio Edit]",
     "artist": "Jonas Blue",
@@ -5794,6 +6457,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/05/88/63/05886386-82bd-12e3-863e-9b8c2f4b402f/15UMGIM75466.rgb.jpg/600x600bb.jpg",
     "duration": 212,
     "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1444820586",
+    "title": "Sir (feat. Future)",
+    "artist": "Nicki Minaj",
+    "artist_id": 278464538,
+    "album": "Queen (Deluxe)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8c/50/56/8c505623-89b6-1799-65dc-d03242cfe441/18UMGIM36519.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8c/50/56/8c505623-89b6-1799-65dc-d03242cfe441/18UMGIM36519.rgb.jpg/600x600bb.jpg",
+    "duration": 224,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -5876,6 +6552,19 @@
     "energy": null
   },
   {
+    "id": "1445029814",
+    "title": "Back To Back",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Back To Back - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/b0/f5/74/b0f57436-0224-b075-7555-5e65517eea31/00602547534903.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/b0/f5/74/b0f57436-0224-b075-7555-5e65517eea31/00602547534903.rgb.jpg/600x600bb.jpg",
+    "duration": 170,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1445031072",
     "title": "By Your Side (feat. RAYE)",
     "artist": "Jonas Blue",
@@ -5898,6 +6587,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/e7/93/2b/e7932ba8-b6c0-c197-96a9-5004b1361186/00602567340683.rgb.jpg/600x600bb.jpg",
     "duration": 228,
     "genre": "Pop in Spanish",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1445039161",
+    "title": "Strip That Down (feat. Quavo)",
+    "artist": "Liam Payne",
+    "artist_id": 366710817,
+    "album": "Strip That Down (feat. Quavo) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a6/c6/e5/a6c6e579-2103-bdfe-b59c-6b4838c000cb/17UMGIM89908.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a6/c6/e5/a6c6e579-2103-bdfe-b59c-6b4838c000cb/17UMGIM89908.rgb.jpg/600x600bb.jpg",
+    "duration": 204,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -5962,6 +6664,32 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/57/5f/fe575f85-b843-e190-b043-2605d5f6ec59/14UMGIM34830.rgb.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/57/5f/fe575f85-b843-e190-b043-2605d5f6ec59/14UMGIM34830.rgb.jpg/600x600bb.jpg",
     "duration": 231,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1445882179",
+    "title": "Style",
+    "artist": "Taylor Swift",
+    "artist_id": 159260351,
+    "album": "1989 (Deluxe Edition)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/57/5f/fe575f85-b843-e190-b043-2605d5f6ec59/14UMGIM34830.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/57/5f/fe575f85-b843-e190-b043-2605d5f6ec59/14UMGIM34830.rgb.jpg/600x600bb.jpg",
+    "duration": 231,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1445882363",
+    "title": "Wildest Dreams",
+    "artist": "Taylor Swift",
+    "artist_id": 159260351,
+    "album": "1989 (Deluxe Edition)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/57/5f/fe575f85-b843-e190-b043-2605d5f6ec59/14UMGIM34830.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/fe/57/5f/fe575f85-b843-e190-b043-2605d5f6ec59/14UMGIM34830.rgb.jpg/600x600bb.jpg",
+    "duration": 220,
     "genre": "Pop",
     "tempo": null,
     "energy": null
@@ -6110,6 +6838,19 @@
     "energy": null
   },
   {
+    "id": "1447555315",
+    "title": "M\u00cdA (feat. Drake)",
+    "artist": "Bad Bunny",
+    "artist_id": 1126808565,
+    "album": "X 100PRE",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/cf/3a/db/cf3adbe6-8ea1-f60f-60fd-713eefda3962/193483317984.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/cf/3a/db/cf3adbe6-8ea1-f60f-60fd-713eefda3962/193483317984.jpg/600x600bb.jpg",
+    "duration": 210,
+    "genre": "Latin Urban",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1447899511",
     "title": "ARZ",
     "artist": "Amrinder Bobby",
@@ -6170,6 +6911,19 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg",
     "duration": 194,
+    "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1450695872",
+    "title": "when the party's over",
+    "artist": "Billie Eilish",
+    "artist_id": 1065981054,
+    "album": "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/37/d1/1a37d1b1-8508-54f2-f541-bf4e437dda76/19UMGIM05028.rgb.jpg/600x600bb.jpg",
+    "duration": 196,
     "genre": "Alternative",
     "tempo": null,
     "energy": null
@@ -6396,6 +7150,19 @@
     "energy": null
   },
   {
+    "id": "1464985621",
+    "title": "Never Really Over",
+    "artist": "Katy Perry",
+    "artist_id": 64387566,
+    "album": "Never Really Over - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/80/ba/ba/80baba63-2c11-d744-5182-5efe9d96c64b/19UMGIM45431.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/80/ba/ba/80baba63-2c11-d744-5182-5efe9d96c64b/19UMGIM45431.rgb.jpg/600x600bb.jpg",
+    "duration": 223,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1466700569",
     "title": "Loco Contigo (feat. Tyga)",
     "artist": "DJ Snake & J Balvin",
@@ -6443,6 +7210,32 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg",
     "duration": 193,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1468166326",
+    "title": "Old Town Road (feat. Billy Ray Cyrus) [Remix]",
+    "artist": "Lil Nas X",
+    "artist_id": 1400730578,
+    "album": "7",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/07/d4/c3/07d4c33e-b793-d78f-bb1b-52f1e224da88/886447788264.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/07/d4/c3/07d4c33e-b793-d78f-bb1b-52f1e224da88/886447788264.jpg/600x600bb.jpg",
+    "duration": 157,
+    "genre": "Country",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1468166328",
+    "title": "Panini",
+    "artist": "Lil Nas X",
+    "artist_id": 1400730578,
+    "album": "7",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/07/d4/c3/07d4c33e-b793-d78f-bb1b-52f1e224da88/886447788264.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/07/d4/c3/07d4c33e-b793-d78f-bb1b-52f1e224da88/886447788264.jpg/600x600bb.jpg",
+    "duration": 114,
     "genre": "Pop",
     "tempo": null,
     "energy": null
@@ -6591,6 +7384,19 @@
     "energy": null
   },
   {
+    "id": "1475179459",
+    "title": "Trust Issues",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Care Package",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/34/e5/46/34e546b6-94c9-960e-cd35-4f35ffcd6860/19UMGIM71794.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/34/e5/46/34e546b6-94c9-960e-cd35-4f35ffcd6860/19UMGIM71794.rgb.jpg/600x600bb.jpg",
+    "duration": 281,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1475227782",
     "title": "I Warned Myself",
     "artist": "Charlie Puth",
@@ -6613,6 +7419,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c6/45/74/c6457496-b054-b550-f7b6-2ab27f25b680/075679838599.jpg/600x600bb.jpg",
     "duration": 155,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1476636382",
+    "title": "Won't Be Late (feat. Drake)",
+    "artist": "Swae Lee",
+    "artist_id": 922547500,
+    "album": "Won't Be Late (feat. Drake) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/df/9c/f7/df9cf7a4-01cf-aef8-e386-aa06d1553a85/19UMGIM74864.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/df/9c/f7/df9cf7a4-01cf-aef8-e386-aa06d1553a85/19UMGIM74864.rgb.jpg/600x600bb.jpg",
+    "duration": 218,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -6656,6 +7475,32 @@
     "energy": null
   },
   {
+    "id": "1477880487",
+    "title": "Hollywood's Bleeding",
+    "artist": "Post Malone",
+    "artist_id": 966309175,
+    "album": "Hollywood's Bleeding",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/600x600bb.jpg",
+    "duration": 156,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1477880561",
+    "title": "Circles",
+    "artist": "Post Malone",
+    "artist_id": 966309175,
+    "album": "Hollywood's Bleeding",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7b/1b/1b/7b1b1b0b-7ce2-b223-f9e0-8e36abe51877/19UMGIM78325.rgb.jpg/600x600bb.jpg",
+    "duration": 215,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1477895708",
     "title": "The London (feat. J. Cole & Travis Scott)",
     "artist": "Young Thug",
@@ -6665,6 +7510,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/39/f9/4d/39f94db0-5d28-4247-9d7c-950cd33a36a0/075679837325.jpg/600x600bb.jpg",
     "duration": 200,
     "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1478499922",
+    "title": "Khairiyat (Sad)",
+    "artist": "Pritam & Arijit Singh",
+    "artist_id": 0,
+    "album": "Chhichhore (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/da/5a/14/da5a1435-fc2a-5ab9-667f-a9bf2daa46f4/8902894360937_cover.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/da/5a/14/da5a1435-fc2a-5ab9-667f-a9bf2daa46f4/8902894360937_cover.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -6795,6 +7653,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/5e/83/7e/5e837e61-e07e-9b11-7796-3e1f0cc0e296/5060726320641.png/600x600bb.jpg",
     "duration": 181,
     "genre": "Afro-Beat",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1481685076",
+    "title": "Samajavaragamana (From \"Ala Vaikunthapurramuloo\")",
+    "artist": "S.S. Thaman & Sid Sriram",
+    "artist_id": 1841842116,
+    "album": "Samajavaragamana (From \"Ala Vaikunthapurramuloo\") - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/98/c1/5398c1cf-7c16-24a6-bfa3-391dc6015376/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/98/c1/5398c1cf-7c16-24a6-bfa3-391dc6015376/cover.jpg/600x600bb.jpg",
+    "duration": 219,
+    "genre": "Telugu",
     "tempo": null,
     "energy": null
   },
@@ -7059,6 +7930,19 @@
     "energy": null
   },
   {
+    "id": "1492854573",
+    "title": "Buttabomma (From \"Ala Vaikunthapurramuloo\")",
+    "artist": "Armaan Malik & S.S. Thaman",
+    "artist_id": 258287474,
+    "album": "Buttabomma (From \"Ala Vaikunthapurramuloo\") - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/19/58/9e/19589e6d-bec0-b613-326c-dc7b72cb8f64/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/19/58/9e/19589e6d-bec0-b613-326c-dc7b72cb8f64/cover.jpg/600x600bb.jpg",
+    "duration": 198,
+    "genre": "Telugu",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1493841478",
     "title": "Tension",
     "artist": "Avenged Sevenfold",
@@ -7133,6 +8017,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/85/bc/ac/85bcac08-a1ce-d123-a4b0-41e898785e00/artwork.jpg/600x600bb.jpg",
     "duration": 138,
     "genre": "Afrobeats",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1499378607",
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "artist_id": 479756766,
+    "album": "After Hours",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6f/bc/e6/6fbce6c4-c38c-72d8-4fd0-66cfff32f679/20UMGIM12176.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6f/bc/e6/6fbce6c4-c38c-72d8-4fd0-66cfff32f679/20UMGIM12176.rgb.jpg/600x600bb.jpg",
+    "duration": 200,
+    "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
   },
@@ -7306,6 +8203,19 @@
     "energy": null
   },
   {
+    "id": "1505950456",
+    "title": "Toosie Slide",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Toosie Slide - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/df/25/29/df252970-d943-52af-206e-79424138076e/20UMGIM25452.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/df/25/29/df252970-d943-52af-206e-79424138076e/20UMGIM25452.rgb.jpg/600x600bb.jpg",
+    "duration": 247,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1508562516",
     "title": "Heat Waves",
     "artist": "Glass Animals",
@@ -7332,6 +8242,19 @@
     "energy": null
   },
   {
+    "id": "1511050015",
+    "title": "Pain 1993 (feat. Playboi Carti)",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Dark Lane Demo Tapes",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/00/70/0b/00700b6f-2b06-c986-c7ec-445d95b28e74/20UMGIM34467.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/00/70/0b/00700b6f-2b06-c986-c7ec-445d95b28e74/20UMGIM34467.rgb.jpg/600x600bb.jpg",
+    "duration": 149,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1518544616",
     "title": "Chinii Nudeer (feat. Anir)",
     "artist": "Vandebo",
@@ -7354,6 +8277,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/6c/b3/14/6cb314df-bf7e-0d6a-3316-e5c9fafac2b3/195079631139.jpg/600x600bb.jpg",
     "duration": 332,
     "genre": "Worldwide",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1519295728",
+    "title": "Khairiyat (From \"Chhichhore\")",
+    "artist": "Arijit Singh",
+    "artist_id": 484568188,
+    "album": "Musical Tribute To Sushant Singh Rajput",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4d/7c/38/4d7c38cf-278c-18bd-c41d-bede2ca6f3a5/8903431778048_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/4d/7c/38/4d7c38cf-278c-18bd-c41d-bede2ca6f3a5/8903431778048_cover.jpg/600x600bb.jpg",
+    "duration": 280,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -7722,6 +8658,19 @@
     "energy": null
   },
   {
+    "id": "1529534600",
+    "title": "Tu Kisi Rail Si",
+    "artist": "Swanand Kirkire",
+    "artist_id": 216004399,
+    "album": "Masaan (Original Motion Picture Soundtrack) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/10/3f/9a/103f9afe-7e6f-762e-daf3-56bc5443601e/8718857700159.png/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/10/3f/9a/103f9afe-7e6f-762e-daf3-56bc5443601e/8718857700159.png/600x600bb.jpg",
+    "duration": 230,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1529548158",
     "title": "Khadke Glassy",
     "artist": "Yo Yo Honey Singh, Ashok Mastie, Jyotica Tangri, Kumaar, Bonafide & Koncept",
@@ -8034,6 +8983,32 @@
     "energy": null
   },
   {
+    "id": "1533984393",
+    "title": "Cornfield Chase",
+    "artist": "Hans Zimmer",
+    "artist_id": 454295032,
+    "album": "Interstellar (Original Motion Picture Soundtrack) [Expanded Edition]",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/5b/73/f45b735a-8d7a-9713-b217-0f8e1593c28b/794043201943.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f4/5b/73/f45b735a-8d7a-9713-b217-0f8e1593c28b/794043201943.jpg/600x600bb.jpg",
+    "duration": 126,
+    "genre": "Soundtrack",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1534264268",
+    "title": "Mr. Right Now (feat. Drake)",
+    "artist": "21 Savage & Metro Boomin",
+    "artist_id": 894820464,
+    "album": "SAVAGE MODE II",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/53/ed/40/53ed4078-7d2a-076e-f9b9-ffb29e776c42/886448747703.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/53/ed/40/53ed4078-7d2a-076e-f9b9-ffb29e776c42/886448747703.jpg/600x600bb.jpg",
+    "duration": 193,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1534955145",
     "title": "Toxic",
     "artist": "AP Dhillon & Intense",
@@ -8186,6 +9161,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ab/df/fe/abdffee6-6fcd-b9c2-a90c-7d21b9d559e1/4680960873294.jpg/600x600bb.jpg",
     "duration": 109,
     "genre": "Ambient",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1537415197",
+    "title": "Chunnari Chunnari",
+    "artist": "Abhijeet & Anuradha Sriram",
+    "artist_id": 19354939,
+    "album": "Biwi No. 1 (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/34/58/7e345871-6471-2d73-d0ed-67e8c608828d/8901854009282.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7e/34/58/7e345871-6471-2d73-d0ed-67e8c608828d/8901854009282.jpg/600x600bb.jpg",
+    "duration": 335,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -9022,6 +10010,19 @@
     "energy": null
   },
   {
+    "id": "1572737688",
+    "title": "Drake",
+    "artist": "Still Woozy",
+    "artist_id": 1241048285,
+    "album": "If This Isn\u2019t Nice, I Don\u2019t Know What Is",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e7/ba/c3/e7bac380-e05a-5942-e576-cf426e4c41f2/21UMGIM55277.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e7/ba/c3/e7bac380-e05a-5942-e576-cf426e4c41f2/21UMGIM55277.rgb.jpg/600x600bb.jpg",
+    "duration": 167,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1573656144",
     "title": "Peaches (Masterkraft Remix) [feat. Alpha P & Omah Lay]",
     "artist": "Justin Bieber",
@@ -9083,6 +10084,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/3a/93/4d3a9329-653b-941c-7957-ee9fac6b24e8/859748895740_cover.jpg/600x600bb.jpg",
     "duration": 160,
     "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1576350174",
+    "title": "My Universe",
+    "artist": "Coldplay X BTS",
+    "artist_id": 471744,
+    "album": "Music of the Spheres",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/df/60/00/df600071-c5c7-24e7-e4d7-1a6b71fa44e7/190296529818.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/df/60/00/df600071-c5c7-24e7-e4d7-1a6b71fa44e7/190296529818.jpg/600x600bb.jpg",
+    "duration": 226,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -9178,6 +10192,19 @@
     "energy": null
   },
   {
+    "id": "1578986673",
+    "title": "Cold Heart (PNAU Remix)",
+    "artist": "Elton John & Dua Lipa",
+    "artist_id": 54657,
+    "album": "Cold Heart (PNAU Remix) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ec/2f/92/ec2f929f-e7ea-b291-42d7-75081bd808a1/21UMGIM68484.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ec/2f/92/ec2f929f-e7ea-b291-42d7-75081bd808a1/21UMGIM68484.rgb.jpg/600x600bb.jpg",
+    "duration": 202,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1579092514",
     "title": "Faasle",
     "artist": "Aditya Rikhari",
@@ -9200,6 +10227,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b3/45/cf/b345cf67-3f39-31e7-5e15-279db1f7e58a/886449487264.jpg/600x600bb.jpg",
     "duration": 228,
     "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1579408008",
+    "title": "Take My Breath",
+    "artist": "The Weeknd",
+    "artist_id": 479756766,
+    "album": "Take My Breath - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b1/1b/10/b11b1074-5109-7bfc-32f0-8b49eaaeb9ac/21UMGIM75290.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b1/1b/10/b11b1074-5109-7bfc-32f0-8b49eaaeb9ac/21UMGIM75290.rgb.jpg/600x600bb.jpg",
+    "duration": 220,
+    "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
   },
@@ -9278,6 +10318,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/44/2f/bd/442fbd0e-7268-7ea5-0ead-3f586571199e/8903431824912_cover.jpg/600x600bb.jpg",
     "duration": 341,
     "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1584449211",
+    "title": "Way 2 Sexy (feat. Future & Young Thug)",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Certified Lover Boy",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/6b/5f/cb6b5fc3-8d35-908a-18e6-6f8eda46ce11/21UM1IM07521.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cb/6b/5f/cb6b5fc3-8d35-908a-18e6-6f8eda46ce11/21UM1IM07521.rgb.jpg/600x600bb.jpg",
+    "duration": 257,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -9425,6 +10478,19 @@
     "energy": null
   },
   {
+    "id": "1594371605",
+    "title": "Kusu Kusu (From \"Satyameva Jayate 2\") [feat. Nora Fatehi]",
+    "artist": "Tanishk Bagchi, Zahrah S Khan & Dev Negi",
+    "artist_id": 1086921576,
+    "album": "Kusu Kusu (From \"Satyameva Jayate 2\") [feat. Nora Fatehi] - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/bb/c0/54bbc0ab-e4c6-d526-a45a-679bd52ebde3/8903431853943_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/bb/c0/54bbc0ab-e4c6-d526-a45a-679bd52ebde3/8903431853943_cover.jpg/600x600bb.jpg",
+    "duration": 195,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1594565146",
     "title": "Jodi",
     "artist": "Aamin Barodi",
@@ -9477,6 +10543,84 @@
     "energy": null
   },
   {
+    "id": "1596529071",
+    "title": "Pied Piper",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "LOVE YOURSELF \u627f 'Her'",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/34/a5/93/34a59372-3ebd-ae5f-269d-4c9506864d3f/8804775083280_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/34/a5/93/34a59372-3ebd-ae5f-269d-4c9506864d3f/8804775083280_Cover.jpg/600x600bb.jpg",
+    "duration": 245,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1596529381",
+    "title": "Spring Day",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "YOU NEVER WALK ALONE",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ce/fb/eb/cefbebd4-d53b-8d6c-33cf-2ee55408bd79/8804775077494_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ce/fb/eb/cefbebd4-d53b-8d6c-33cf-2ee55408bd79/8804775077494_Cover.jpg/600x600bb.jpg",
+    "duration": 274,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1596532189",
+    "title": "Life Goes On",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "BE",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/22/f3/8f/22f38fb9-1690-326a-d891-7aa946c2b06f/195497623273_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/22/f3/8f/22f38fb9-1690-326a-d891-7aa946c2b06f/195497623273_Cover.jpg/600x600bb.jpg",
+    "duration": 207,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1596532400",
+    "title": "Dynamite",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "BE",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/22/f3/8f/22f38fb9-1690-326a-d891-7aa946c2b06f/195497623273_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/22/f3/8f/22f38fb9-1690-326a-d891-7aa946c2b06f/195497623273_Cover.jpg/600x600bb.jpg",
+    "duration": 199,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1596532481",
+    "title": "Blood Sweat & Tears",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "Wings",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/71/43/02/714302d0-a9d6-5d03-4967-c3c2c23df962/8804775073618_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/71/43/02/714302d0-a9d6-5d03-4967-c3c2c23df962/8804775073618_Cover.jpg/600x600bb.jpg",
+    "duration": 217,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1597024424",
+    "title": "Dynamite",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "Dynamite (DayTime Version) - EP",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/03/8d/0e/038d0e52-e96d-f386-b8eb-9f77fa013543/195497146918_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/03/8d/0e/038d0e52-e96d-f386-b8eb-9f77fa013543/195497146918_Cover.jpg/600x600bb.jpg",
+    "duration": 199,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1598049987",
     "title": "Jodi Abar",
     "artist": "Gaurav Gupta",
@@ -9486,6 +10630,97 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/82/39/6d/82396d45-93e0-4832-aaf0-257c193e31ca/cover.jpg/600x600bb.jpg",
     "duration": 247,
     "genre": "Regional Indian",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1598660938",
+    "title": "FAKE LOVE",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "Love Yourself \u8f49 'Tear'",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/02/c5/18/02c518f5-ac06-3321-622e-08d9429fd968/192562556672_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/02/c5/18/02c518f5-ac06-3321-622e-08d9429fd968/192562556672_Cover.jpg/600x600bb.jpg",
+    "duration": 242,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1598666350",
+    "title": "Butter",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "Butter / Permission to Dance - EP",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/66/28/6c/66286c9f-6bea-4f99-ec15-507b0c95dc04/196006991739_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/66/28/6c/66286c9f-6bea-4f99-ec15-507b0c95dc04/196006991739_Cover.jpg/600x600bb.jpg",
+    "duration": 164,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1598730615",
+    "title": "Euphoria",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "Love Yourself \u7d50 'Answer'",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ff/00/2c/ff002c29-6da9-1a26-16b3-282a73180366/192562871591_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ff/00/2c/ff002c29-6da9-1a26-16b3-282a73180366/192562871591_Cover.jpg/600x600bb.jpg",
+    "duration": 228,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1598731068",
+    "title": "MIC Drop (Steve Aoki Remix) [Full Length Edition]",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "Love Yourself \u7d50 'Answer'",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ff/00/2c/ff002c29-6da9-1a26-16b3-282a73180366/192562871591_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ff/00/2c/ff002c29-6da9-1a26-16b3-282a73180366/192562871591_Cover.jpg/600x600bb.jpg",
+    "duration": 307,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1598907462",
+    "title": "Rait Zara Si",
+    "artist": "Arijit Singh, Shashaa Tirupati & Irshad Kamil",
+    "artist_id": 484568188,
+    "album": "Atrangi Re (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ca/f3/4f/caf34f9c-617b-5d0e-6e36-056792df20b8/8903431857224_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ca/f3/4f/caf34f9c-617b-5d0e-6e36-056792df20b8/8903431857224_cover.jpg/600x600bb.jpg",
+    "duration": 291,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1599172208",
+    "title": "Boy With Luv (feat. Halsey)",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "MAP OF THE SOUL : PERSONA",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/40/d4/93/40d493e3-ac9e-1746-8d4c-f380f27c97cb/193483706238_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/40/d4/93/40d493e3-ac9e-1746-8d4c-f380f27c97cb/193483706238_Cover.jpg/600x600bb.jpg",
+    "duration": 229,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1599172213",
+    "title": "Mikrokosmos",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "MAP OF THE SOUL : PERSONA",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/40/d4/93/40d493e3-ac9e-1746-8d4c-f380f27c97cb/193483706238_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/40/d4/93/40d493e3-ac9e-1746-8d4c-f380f27c97cb/193483706238_Cover.jpg/600x600bb.jpg",
+    "duration": 224,
+    "genre": "K-Pop",
     "tempo": null,
     "energy": null
   },
@@ -9672,6 +10907,19 @@
     "energy": null
   },
   {
+    "id": "1604645502",
+    "title": "Gangsta's Paradise (feat. L.V.)",
+    "artist": "Coolio",
+    "artist_id": 625207,
+    "album": "Gangsta's Paradise",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/f7/88/92f7884b-d115-5d5f-1eb5-85128af2d58f/081227882365.png/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/f7/88/92f7884b-d115-5d5f-1eb5-85128af2d58f/081227882365.png/600x600bb.jpg",
+    "duration": 241,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1604797171",
     "title": "Hala",
     "artist": "Valza, Kanita & Mixey",
@@ -9759,6 +11007,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7e/53/ec/7e53ecbb-faca-a037-eeda-f8067d00bd73/21UMGIM02724.rgb.jpg/600x600bb.jpg",
     "duration": 262,
     "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1606935277",
+    "title": "Headlights (feat. KIDDO)",
+    "artist": "Alok & Alan Walker",
+    "artist_id": 0,
+    "album": "Headlights (feat. KIDDO) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/48/a3/90/48a390ec-2069-e88b-cb48-21d1c4c68d4c/190296249723.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/48/a3/90/48a390ec-2069-e88b-cb48-21d1c4c68d4c/190296249723.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Dance",
     "tempo": null,
     "energy": null
   },
@@ -10045,6 +11306,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/b6/9e/dcb69e51-a819-5422-40cc-2ef295dfc6f0/artwork.jpg/600x600bb.jpg",
     "duration": 148,
     "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1615585008",
+    "title": "As It Was",
+    "artist": "Harry Styles",
+    "artist_id": 471260289,
+    "album": "Harry's House",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2a/19/fb/2a19fb85-2f70-9e44-f2a9-82abe679b88e/886449990061.jpg/600x600bb.jpg",
+    "duration": 167,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -10361,6 +11635,19 @@
     "energy": null
   },
   {
+    "id": "1623677811",
+    "title": "Last Last",
+    "artist": "Burna Boy",
+    "artist_id": 591899010,
+    "album": "Love, Damini",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/eb/31/caeb3173-eaf0-0cd5-65ea-585adfe312ba/075679745156.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/eb/31/caeb3173-eaf0-0cd5-65ea-585adfe312ba/075679745156.jpg/600x600bb.jpg",
+    "duration": 172,
+    "genre": "Afro-fusion",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1624030428",
     "title": "Kin Bairan",
     "artist": "Sniti Mishra",
@@ -10517,6 +11804,19 @@
     "energy": null
   },
   {
+    "id": "1627575780",
+    "title": "Run BTS",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "Proof",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/f7/68/9c/f7689ce3-6d41-60cd-62d2-57a91ddf5b9d/196922067341_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/f7/68/9c/f7689ce3-6d41-60cd-62d2-57a91ddf5b9d/196922067341_Cover.jpg/600x600bb.jpg",
+    "duration": 204,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1627725441",
     "title": "Bhagatt Aadmi",
     "artist": "Masoom Sharma, Anjali 99 & Pranjal Dahiya",
@@ -10582,6 +11882,19 @@
     "energy": null
   },
   {
+    "id": "1628843514",
+    "title": "\u015eiir \u015eiir Sarmak Seni",
+    "artist": "Serhad Ra\u015fa",
+    "artist_id": 319442775,
+    "album": "A\u015fk-\u0131 Tamara (Burhan \u0130\u015fiyok Besteleri)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/42/a6/85/42a6850d-2f77-3f65-27a9-5fb0ce3be764/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/42/a6/85/42a6850d-2f77-3f65-27a9-5fb0ce3be764/cover.jpg/600x600bb.jpg",
+    "duration": 263,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1630036348",
     "title": "Attention (with Justin Bieber) [Disclosure Remix] [Lyric Video]",
     "artist": "Omah Lay",
@@ -10604,6 +11917,45 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0b/d2/6b/0bd26b34-9cc6-f72c-0f79-eee08f50d754/5059449081267.png/600x600bb.jpg",
     "duration": 140,
     "genre": "Electronic",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1630230060",
+    "title": "Falling Back",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Honestly, Nevermind",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/84/2c/b4/842cb419-243c-b3f4-4da9-b6b980996062/22UMGIM67371.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/84/2c/b4/842cb419-243c-b3f4-4da9-b6b980996062/22UMGIM67371.rgb.jpg/600x600bb.jpg",
+    "duration": 266,
+    "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1630230657",
+    "title": "Massive",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Honestly, Nevermind",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/84/2c/b4/842cb419-243c-b3f4-4da9-b6b980996062/22UMGIM67371.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/84/2c/b4/842cb419-243c-b3f4-4da9-b6b980996062/22UMGIM67371.rgb.jpg/600x600bb.jpg",
+    "duration": 336,
+    "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1630230762",
+    "title": "Flight's Booked",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Honestly, Nevermind",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/84/2c/b4/842cb419-243c-b3f4-4da9-b6b980996062/22UMGIM67371.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/84/2c/b4/842cb419-243c-b3f4-4da9-b6b980996062/22UMGIM67371.rgb.jpg/600x600bb.jpg",
+    "duration": 254,
+    "genre": "Dance",
     "tempo": null,
     "energy": null
   },
@@ -10695,6 +12047,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/ea/73/72/ea7372be-9ebf-21ca-b5bc-9b38723266bc/4680961275745.jpg/600x600bb.jpg",
     "duration": 86,
     "genre": "Ambient",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1633054081",
+    "title": "Drake",
+    "artist": "Harman Hundal",
+    "artist_id": 842474576,
+    "album": "Waves",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/42/e0/3c/42e03c9d-6346-ce59-1ccd-b8df6bd26bc6/859763485926_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/42/e0/3c/42e03c9d-6346-ce59-1ccd-b8df6bd26bc6/859763485926_cover.jpg/600x600bb.jpg",
+    "duration": 181,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -11531,6 +12896,19 @@
     "energy": null
   },
   {
+    "id": "1653992088",
+    "title": "Mastaaru Mastaaru (From \"Sir\")",
+    "artist": "G.V. Prakash Kumar, Shweta Mohan & Saraswati Putra Ramajogayya Sastry",
+    "artist_id": 366286202,
+    "album": "Mastaaru Mastaaru (From \"Sir\") - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/37/4f/0b/374f0bca-819f-5aaa-7386-2d97cc4104d3/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/37/4f/0b/374f0bca-819f-5aaa-7386-2d97cc4104d3/cover.jpg/600x600bb.jpg",
+    "duration": 225,
+    "genre": "Telugu",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1655338073",
     "title": "Porata Simham",
     "artist": "Anirudh Ravichander & Ravi G",
@@ -11540,6 +12918,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video122/v4/c4/4e/e6/c44ee6cd-9d89-d14a-1d65-933188ad5a46/1965892300580101.jpg/600x600bb.jpg",
     "duration": 168,
     "genre": "Telugu",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1655441868",
+    "title": "Dreamers (Music from the FiFA World Cup Qatar 2022 Official Soundtrack)",
+    "artist": "Jung Kook & BTS",
+    "artist_id": 785052275,
+    "album": "Dreamers (Music from the FiFA World Cup Qatar 2022 Official Soundtrack) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/03/c2/c0/03c2c0d5-bb76-e143-847f-52ff6c4c808f/197089992972.png/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/03/c2/c0/03c2c0d5-bb76-e143-847f-52ff6c4c808f/197089992972.png/600x600bb.jpg",
+    "duration": 201,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },
@@ -11674,6 +13065,19 @@
     "energy": null
   },
   {
+    "id": "1660545356",
+    "title": "Siir Siiir",
+    "artist": "Hassn",
+    "artist_id": 286191963,
+    "album": "Siir Siiir - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/5c/07/79/5c077908-3f3d-efc3-a87d-bca920ca2f4e/055120200335.png/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/5c/07/79/5c077908-3f3d-efc3-a87d-bca920ca2f4e/055120200335.png/600x600bb.jpg",
+    "duration": 169,
+    "genre": "Worldwide",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1660615890",
     "title": "Six Days (feat. Mos Def) [Remix]",
     "artist": "DJ Shadow",
@@ -11713,6 +13117,32 @@
     "energy": null
   },
   {
+    "id": "1662166419",
+    "title": "Come and See Me",
+    "artist": "PARTYNEXTDOOR & Drake",
+    "artist_id": 666648192,
+    "album": "PARTYNEXTDOOR 3 (P3)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/60/38/28/603828c1-bda4-662c-2f34-69d263aee836/27261.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/60/38/28/603828c1-bda4-662c-2f34-69d263aee836/27261.jpg/600x600bb.jpg",
+    "duration": 235,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1662168007",
+    "title": "Drama (feat. Drake)",
+    "artist": "Roy Woods",
+    "artist_id": 401780269,
+    "album": "Exis - EP",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/29/10/b1/2910b1b0-c279-6a2f-d8b6-d7e84d7f7d49/27272.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/29/10/b1/2910b1b0-c279-6a2f-d8b6-d7e84d7f7d49/27272.jpg/600x600bb.jpg",
+    "duration": 251,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1662168786",
     "title": "MIA (feat. Drake)",
     "artist": "Bad Bunny",
@@ -11726,6 +13156,32 @@
     "energy": null
   },
   {
+    "id": "1662237145",
+    "title": "Stars Align (with Drake)",
+    "artist": "Majid Jordan & Drake",
+    "artist_id": 684530590,
+    "album": "Wildest Dreams",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/99/b4/d1/99b4d15d-8327-2687-9922-2c09476886d7/27317.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/99/b4/d1/99b4d15d-8327-2687-9922-2c09476886d7/27317.jpg/600x600bb.jpg",
+    "duration": 260,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1662727391",
+    "title": "We Caa Done",
+    "artist": "Popcaan & Drake",
+    "artist_id": 1098276161,
+    "album": "We Caa Done - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/68/ef/f8/68eff874-7257-a24a-96fd-12c889fbb8c5/27605.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/68/ef/f8/68eff874-7257-a24a-96fd-12c889fbb8c5/27605.jpg/600x600bb.jpg",
+    "duration": 245,
+    "genre": "Reggae",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1664256518",
     "title": "Na Na Na Na (Dhol Mix)",
     "artist": "J. Star",
@@ -11735,6 +13191,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/52/93/7a/52937a3a-5338-9269-34d7-b065273d0aba/3614593317789.jpg/600x600bb.jpg",
     "duration": 213,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1665459461",
+    "title": "Come and See Me",
+    "artist": "PARTYNEXTDOOR & Drake",
+    "artist_id": 666648192,
+    "album": "Come and See Me - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/e4/39/32/e43932ce-845a-54c6-7ff6-4f97d2f7e9ae/27200.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/e4/39/32/e43932ce-845a-54c6-7ff6-4f97d2f7e9ae/27200.jpg/600x600bb.jpg",
+    "duration": 235,
+    "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
   },
@@ -11865,6 +13334,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/a7/15/05a71564-d3e8-e93c-a72d-1afb9c305b5e/6161142033548.jpg/600x600bb.jpg",
     "duration": 164,
     "genre": "Haryanvi",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1671298899",
+    "title": "Mastaaru Mastaaru (From \"Sir\")",
+    "artist": "G.V. Prakash Kumar, Saraswati Putra Ramajogayya & Shweta Mohan",
+    "artist_id": 366286202,
+    "album": "Sir (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/44/ce/c9/44cec974-56e4-5721-855a-b4b35121ee78/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/44/ce/c9/44cec974-56e4-5721-855a-b4b35121ee78/cover.jpg/600x600bb.jpg",
+    "duration": 225,
+    "genre": "Telugu",
     "tempo": null,
     "energy": null
   },
@@ -12168,6 +13650,19 @@
     "energy": null
   },
   {
+    "id": "1681412480",
+    "title": "LOYAL (feat. Drake)",
+    "artist": "PARTYNEXTDOOR",
+    "artist_id": 666648192,
+    "album": "PARTYMOBILE (Chopped Not Slopped)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ae/43/72/ae4372da-a218-ce92-4e85-dcd761b4795f/29249.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ae/43/72/ae4372da-a218-ce92-4e85-dcd761b4795f/29249.jpg/600x600bb.jpg",
+    "duration": 197,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1681997803",
     "title": "Heat Waves",
     "artist": "Glass Animals",
@@ -12441,6 +13936,19 @@
     "energy": null
   },
   {
+    "id": "1691921506",
+    "title": "Popular (feat. Playboi Carti) [Music from the HBO Original Series The Idol]",
+    "artist": "The Weeknd & Madonna",
+    "artist_id": 479756766,
+    "album": "Popular (feat. Playboi Carti) [Music from the HBO Original Series The Idol] - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b8/5f/1a/b85f1add-8ef0-9d13-42f4-3303710fa238/23UMGIM66788.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b8/5f/1a/b85f1add-8ef0-9d13-42f4-3303710fa238/23UMGIM66788.rgb.jpg/600x600bb.jpg",
+    "duration": 215,
+    "genre": "Soundtrack",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1692203876",
     "title": "Attention",
     "artist": "Doja Cat",
@@ -12623,6 +14131,19 @@
     "energy": null
   },
   {
+    "id": "1695989537",
+    "title": "Koi Si",
+    "artist": "Afsana Khan & Nirmaan",
+    "artist_id": 1330561289,
+    "album": "Koi Si - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/db/d9/96/dbd9961b-e2f0-24d0-054b-9d65079d0d5f/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/db/d9/96/dbd9961b-e2f0-24d0-054b-9d65079d0d5f/cover.jpg/600x600bb.jpg",
+    "duration": 199,
+    "genre": "Regional Indian",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1696088562",
     "title": "Baarishein (Acoustic)",
     "artist": "Anuv Jain",
@@ -12683,6 +14204,19 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/08/bc/d308bc6a-20e1-6532-d933-35d1b429210e/5054197755538.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/08/bc/d308bc6a-20e1-6532-d933-35d1b429210e/5054197755538.jpg/600x600bb.jpg",
     "duration": 139,
+    "genre": "Indian Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1697533817",
+    "title": "Champion's Anthem",
+    "artist": "Karan Aujla & Ikky",
+    "artist_id": 914892130,
+    "album": "Making Memories",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/08/bc/d308bc6a-20e1-6532-d933-35d1b429210e/5054197755538.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d3/08/bc/d308bc6a-20e1-6532-d933-35d1b429210e/5054197755538.jpg/600x600bb.jpg",
+    "duration": 204,
     "genre": "Indian Pop",
     "tempo": null,
     "energy": null
@@ -13000,6 +14534,19 @@
     "energy": null
   },
   {
+    "id": "1705727743",
+    "title": "Krishnaya Vasudevaya - Shri Krishna Mantra",
+    "artist": "Siddharth Amit Bhavsar & Prateeksha Srivastava",
+    "artist_id": 0,
+    "album": "Krishnaya Vasudevaya - Shri Krishna Mantra - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/e6/e2/8be6e290-939a-34b6-9fff-10c06262f466/197338386897.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8b/e6/e2/8be6e290-939a-34b6-9fff-10c06262f466/197338386897.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1705945418",
     "title": "Varaha Roopam Daiva Va Rishtam",
     "artist": "B. Ajaneesh Loknath & Sai Vignesh",
@@ -13087,6 +14634,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7a/4a/f7/7a4af7ac-fc6c-7c8c-83fd-ff3d6fbd08a5/23UM1IM11084.rgb.jpg/600x600bb.jpg",
     "duration": 217,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1708274783",
+    "title": "FE!N (feat. Playboi Carti)",
+    "artist": "Travis Scott",
+    "artist_id": 549236696,
+    "album": "UTOPIA",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7d/4f/94/7d4f9468-56e1-3a2d-7186-c8088170ef58/196871341899.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7d/4f/94/7d4f9468-56e1-3a2d-7186-c8088170ef58/196871341899.jpg/600x600bb.jpg",
+    "duration": 191,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -13351,6 +14911,19 @@
     "energy": null
   },
   {
+    "id": "1711807070",
+    "title": "Sir",
+    "artist": "Cooper Alan",
+    "artist_id": 1163031759,
+    "album": "Take Forever - EP",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/d7/e2/6d/d7e26d34-047a-1371-aae4-ec2b8abfb72d/859779266427_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/d7/e2/6d/d7e26d34-047a-1371-aae4-ec2b8abfb72d/859779266427_cover.jpg/600x600bb.jpg",
+    "duration": 179,
+    "genre": "Country",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1712313305",
     "title": "Devad Gavan Halad Tejas & Rakhi Taichi",
     "artist": "Akshay S Mhatre",
@@ -13468,6 +15041,19 @@
     "energy": null
   },
   {
+    "id": "1714908981",
+    "title": "What You Need",
+    "artist": "The Weeknd",
+    "artist_id": 479756766,
+    "album": "Trilogy",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/66/d5/13/66d513dd-3cb0-b86b-4d11-1fbab2e6a639/12UMGIM54989.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/66/d5/13/66d513dd-3cb0-b86b-4d11-1fbab2e6a639/12UMGIM54989.rgb.jpg/600x600bb.jpg",
+    "duration": 206,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1715856440",
     "title": "Ratata (From \"Leo\")",
     "artist": "Anirudh Ravichander",
@@ -13477,6 +15063,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a5/92/25/a5922515-312a-93f7-524a-51b2733fdafb/196871571036.jpg/600x600bb.jpg",
     "duration": 131,
     "genre": "Tamil",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1715905016",
+    "title": "A\u011fz\u0131m A\u011fl\u0131yor (\u015eiir)",
+    "artist": "Ahmet Kaya",
+    "artist_id": 266357656,
+    "album": "A\u011fz\u0131m A\u011fl\u0131yor (\u015eiir) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/74/4d/fd/744dfddc-4878-809d-2a79-48563c5b3dce/197190377675.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/74/4d/fd/744dfddc-4878-809d-2a79-48563c5b3dce/197190377675.jpg/600x600bb.jpg",
+    "duration": 86,
+    "genre": "Folk",
     "tempo": null,
     "energy": null
   },
@@ -13546,6 +15145,19 @@
     "energy": null
   },
   {
+    "id": "1719940610",
+    "title": "Abrar\u2019s Entry Jamal Kudu (From \"Animal\")",
+    "artist": "Harshavardhan Rameshwar",
+    "artist_id": 1379797836,
+    "album": "Abrar\u2019s Entry  Jamal Kudu (From \"ANIMAL\") - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4a/1f/ad/4a1fad83-d6ec-cc9d-ac0a-6fcce88a09ac/8903431974624_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4a/1f/ad/4a1fad83-d6ec-cc9d-ac0a-6fcce88a09ac/8903431974624_cover.jpg/600x600bb.jpg",
+    "duration": 134,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1721302571",
     "title": "Naukar Rakhlo Lakhdatar",
     "artist": "Vimal Dixit",
@@ -13607,6 +15219,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5b/f9/e0/5bf9e02e-d5d0-715d-0397-13d277a5c54f/c97d2aab-17a1-4a38-b77f-5d6cfe821f5f.jpg/600x600bb.jpg",
     "duration": 132,
     "genre": "Indie Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1723602835",
+    "title": "Kurchi Madathapetti (From \"Guntur Kaaram\")",
+    "artist": "S.S. Thaman, Sri Krishna, Sahithi Chaganti & Saraswati Putra Ramajogayya Sastry",
+    "artist_id": 1841842116,
+    "album": "Kurchi Madathapetti (From \"Guntur Kaaram\") - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ff/e9/12/ffe9126b-d040-f90c-2df7-6baf1d00d1e6/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ff/e9/12/ffe9126b-d040-f90c-2df7-6baf1d00d1e6/cover.jpg/600x600bb.jpg",
+    "duration": 216,
+    "genre": "Telugu",
     "tempo": null,
     "energy": null
   },
@@ -13698,6 +15323,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2b/50/a1/2b50a14a-3f60-ccf2-5f7e-7997aaa7e869/artwork.jpg/600x600bb.jpg",
     "duration": 161,
     "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1727173441",
+    "title": "Popular (feat. Playboi Carti)",
+    "artist": "The Weeknd & Madonna",
+    "artist_id": 479756766,
+    "album": "Popular (feat. Playboi Carti) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/97/fc/a0/97fca070-b1de-930d-15c9-81267120b100/23UMGIM66788.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/97/fc/a0/97fca070-b1de-930d-15c9-81267120b100/23UMGIM66788.rgb.jpg/600x600bb.jpg",
+    "duration": 215,
+    "genre": "Soundtrack",
     "tempo": null,
     "energy": null
   },
@@ -14170,6 +15808,19 @@
     "energy": null
   },
   {
+    "id": "1735801256",
+    "title": "FRI(END)S",
+    "artist": "V",
+    "artist_id": 1191852113,
+    "album": "Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/42/35/26/4235261c-8f9a-be77-22e2-854b1bf4f530/Jobfaebf0be-2ec6-4fd4-9458-1207e8552cf8-164566490-PreviewImage_preview_image_66200_video_sdr-Time1710368669858.png/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/42/35/26/4235261c-8f9a-be77-22e2-854b1bf4f530/Jobfaebf0be-2ec6-4fd4-9458-1207e8552cf8-164566490-PreviewImage_preview_image_66200_video_sdr-Time1710368669858.png/600x600bb.jpg",
+    "duration": 236,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1736449719",
     "title": "God Damn",
     "artist": "Badshah, Karan Aujla & Hiten",
@@ -14274,6 +15925,19 @@
     "energy": null
   },
   {
+    "id": "1737320968",
+    "title": "Type Shit",
+    "artist": "Future, Metro Boomin, Travis Scott & Playboi Carti",
+    "artist_id": 128050210,
+    "album": "WE DON'T TRUST YOU",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/b6/46/feb64670-4fe7-bbc0-1101-c5f11bfb6905/196871937399.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/b6/46/feb64670-4fe7-bbc0-1101-c5f11bfb6905/196871937399.jpg/600x600bb.jpg",
+    "duration": 228,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1737415456",
     "title": "Lalkaare (From \"Honsla Rakh\")",
     "artist": "Diljit Dosanjh, Avvy Sra & Happy Raikoti",
@@ -14309,6 +15973,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f0/79/1d/f0791dcd-5415-61b1-cd67-94660c46e189/5021732271709.jpg/600x600bb.jpg",
     "duration": 154,
     "genre": "Indian Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1738603902",
+    "title": "Classique",
+    "artist": "Adieu Aru",
+    "artist_id": 0,
+    "album": "Classique - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/58/ed/ec/58edec97-1e57-922f-9be9-2dd70a896249/3788ea5e-6edd-4ae2-b6b5-03d8aabdcfe3.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/58/ed/ec/58edec97-1e57-922f-9be9-2dd70a896249/3788ea5e-6edd-4ae2-b6b5-03d8aabdcfe3.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Electronic",
     "tempo": null,
     "energy": null
   },
@@ -14430,6 +16107,19 @@
     "energy": null
   },
   {
+    "id": "1741411033",
+    "title": "Madam Sir Madam Anthe (Original Motion Picture Soundtrack) [From Maruthi Nagar Subramanyam]",
+    "artist": "Sid Sriram & Kalyan Nayak",
+    "artist_id": 401698843,
+    "album": "Madam Sir Madam Anthe (Original Motion Picture Soundtrack) [From Maruthi Nagar Subramanyam] - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/51/30/485130b7-fdd6-448f-eec6-6d9091086986/196922937552_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/51/30/485130b7-fdd6-448f-eec6-6d9091086986/196922937552_Cover.jpg/600x600bb.jpg",
+    "duration": 199,
+    "genre": "Soundtrack",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1742731312",
     "title": "Study Focus",
     "artist": "Kuplo",
@@ -14517,6 +16207,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9e/7e/5e/9e7e5e44-c782-ec85-8013-f35c85f7fd66/196922964169_Cover.jpg/600x600bb.jpg",
     "duration": 151,
     "genre": "Worldwide",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1744684558",
+    "title": "Family Matters",
+    "artist": "Drake",
+    "artist_id": 271256,
+    "album": "Family Matters - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3f/c5/9c/3fc59cb5-c6a5-e992-f391-86f2fbb37ce8/24UMGIM51916.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3f/c5/9c/3fc59cb5-c6a5-e992-f391-86f2fbb37ce8/24UMGIM51916.rgb.jpg/600x600bb.jpg",
+    "duration": 456,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -15496,6 +17199,19 @@
     "energy": null
   },
   {
+    "id": "1768918764",
+    "title": "ALL RED",
+    "artist": "Playboi Carti",
+    "artist_id": 982372505,
+    "album": "ALL RED - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c1/f6/a1/c1f6a1ab-7a7b-a727-2330-aa76a929800a/24UM1IM01668.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c1/f6/a1/c1f6a1ab-7a7b-a727-2330-aa76a929800a/24UM1IM01668.rgb.jpg/600x600bb.jpg",
+    "duration": 148,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1769142429",
     "title": "\u0913\u092e \u092e\u0902\u0924\u094d\u0930",
     "artist": "Sai Mantra",
@@ -15622,6 +17338,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/fb/bc/a6fbbc8f-cea1-f042-9eae-26b33a974ffd/198846470436.jpg/600x600bb.png",
     "duration": 0,
     "genre": "Tamil",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1771533314",
+    "title": "Timeless",
+    "artist": "The Weeknd & Playboi Carti",
+    "artist_id": 479756766,
+    "album": "Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/9e/6d/17/9e6d1703-8e27-0d3c-957e-8ac2ebf73e68/24UM1IM06876.crop.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video211/v4/9e/6d/17/9e6d1703-8e27-0d3c-957e-8ac2ebf73e68/24UM1IM06876.crop.jpg/600x600bb.jpg",
+    "duration": 256,
+    "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
   },
@@ -15860,6 +17589,19 @@
     "energy": null
   },
   {
+    "id": "1777829839",
+    "title": "\u015eiir",
+    "artist": "Anjelika Akbar",
+    "artist_id": 583403750,
+    "album": "Beni Unutma (Orijinal Film M\u00fczikleri)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/0b/20/480b20b8-7862-cfdf-ee29-b15fa69860c3/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/0b/20/480b20b8-7862-cfdf-ee29-b15fa69860c3/cover.jpg/600x600bb.jpg",
+    "duration": 82,
+    "genre": "Worldwide",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1779023960",
     "title": "Paro",
     "artist": "Aditya Rikhari & UNPLG'd",
@@ -16003,6 +17745,19 @@
     "energy": null
   },
   {
+    "id": "1782160104",
+    "title": "In The Morning (feat. Drake)",
+    "artist": "J. Cole",
+    "artist_id": 73705833,
+    "album": "Friday Night Lights",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0e/b7/ee/0eb7eebf-6c7c-72b6-f522-2039c8f68723/24UM1IM32292.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0e/b7/ee/0eb7eebf-6c7c-72b6-f522-2039c8f68723/24UM1IM32292.rgb.jpg/600x600bb.jpg",
+    "duration": 234,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1782268662",
     "title": "Hath Jod Vinti Karu",
     "artist": "Anup Jalota",
@@ -16064,6 +17819,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fc/63/ec/fc63ec69-76d7-6ec4-ec44-3ac98bdb2d69/24UM1IM35430.rgb.jpg/600x600bb.jpg",
     "duration": 251,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1783825180",
+    "title": "New releases",
+    "artist": "Jazz in Coffeehouse",
+    "artist_id": 1776465499,
+    "album": "[Slow] Bookstore",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/31/47/44/3147445a-52ae-d0d7-b0fb-4d7e1f395ab1/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/31/47/44/3147445a-52ae-d0d7-b0fb-4d7e1f395ab1/artwork.jpg/600x600bb.jpg",
+    "duration": 202,
+    "genre": "Jazz",
     "tempo": null,
     "energy": null
   },
@@ -16419,6 +18187,19 @@
     "energy": null
   },
   {
+    "id": "1793702853",
+    "title": "Timeless",
+    "artist": "The Weeknd & Playboi Carti",
+    "artist_id": 479756766,
+    "album": "Hurry Up Tomorrow",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/13/fd/a3/13fda38d-fc63-ddc3-1cf2-c09251adc532/25UMGIM09489.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/13/fd/a3/13fda38d-fc63-ddc3-1cf2-c09251adc532/25UMGIM09489.rgb.jpg/600x600bb.jpg",
+    "duration": 256,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1793727209",
     "title": "Att",
     "artist": "Jaura Phagwara",
@@ -16445,6 +18226,71 @@
     "energy": null
   },
   {
+    "id": "1794146586",
+    "title": "We Good",
+    "artist": "Tyson Sidhu & Sir Manny",
+    "artist_id": 1222519663,
+    "album": "We Good - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/f9/67/caf9673f-f65b-d476-6e20-362629417e1e/199203402848_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/f9/67/caf9673f-f65b-d476-6e20-362629417e1e/199203402848_cover.jpg/600x600bb.jpg",
+    "duration": 147,
+    "genre": "Punjabi",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1794287684",
+    "title": "Prende La Fiesta",
+    "artist": "Dj Dasten & Fumaratto",
+    "artist_id": 0,
+    "album": "Prende La Fiesta - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/69/f2/ca/69f2ca63-66eb-c7ca-2810-b169ffefa1b0/c1fdfda9-5474-4663-b8d6-15f59d54e710.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/69/f2/ca/69f2ca63-66eb-c7ca-2810-b169ffefa1b0/c1fdfda9-5474-4663-b8d6-15f59d54e710.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Electronic",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1794865609",
+    "title": "Old Age (feat. SiR)",
+    "artist": "Masego",
+    "artist_id": 659203770,
+    "album": "Lady Lady",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/e3/8a/5de38af4-52e3-993d-213b-7bdfcf8a055f/842812109249.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5d/e3/8a/5de38af4-52e3-993d-213b-7bdfcf8a055f/842812109249.jpg/600x600bb.jpg",
+    "duration": 141,
+    "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1794879508",
+    "title": "New Releases",
+    "artist": "1LaNe",
+    "artist_id": 1506553583,
+    "album": "New Releases - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7b/24/b6/7b24b64f-71f1-4f23-4b6b-7d233be810f2/198937781991_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7b/24/b6/7b24b64f-71f1-4f23-4b6b-7d233be810f2/198937781991_cover.jpg/600x600bb.jpg",
+    "duration": 60,
+    "genre": "Instrumental",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1795603975",
+    "title": "O Sanam",
+    "artist": "Akhil Sachdeva",
+    "artist_id": 0,
+    "album": "O Sanam - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8f/98/04/8f980487-452e-2c50-4aba-d6feabd2fa45/cover.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8f/98/04/8f980487-452e-2c50-4aba-d6feabd2fa45/cover.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Indian",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1795678099",
     "title": "RAKHLO",
     "artist": "Dabzee & Rishi Roy",
@@ -16454,6 +18300,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/54/6a/8c/546a8c3f-fb90-d63e-31e2-1337c6b11ecd/199066771907.jpg/600x600bb.jpg",
     "duration": 194,
     "genre": "Indie Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1795692888",
+    "title": "Timeless",
+    "artist": "Playboi Carti & The Weeknd",
+    "artist_id": 982372505,
+    "album": "Hurry Up Tomorrow (Video Album)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/42/ee/d0/42eed06e-0516-7949-2a9d-05c05ddfe1dd/24UM1IM06876.crop.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video221/v4/42/ee/d0/42eed06e-0516-7949-2a9d-05c05ddfe1dd/24UM1IM06876.crop.jpg/600x600bb.jpg",
+    "duration": 0,
+    "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
   },
@@ -16766,6 +18625,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9b/49/d7/9b49d787-1828-abbd-e6d2-0ebcf7ac0ccb/199350133138.jpg/600x600bb.jpg",
     "duration": 194,
     "genre": "Contemporary R&B",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1804127250",
+    "title": "\u015eiir (\u015eiir)",
+    "artist": "Kenan I\u015f\u0131k",
+    "artist_id": 998555858,
+    "album": "Kenan I\u015f\u0131k",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d6/f6/83/d6f683e5-6765-f974-3ee2-389943bb827c/3617226946806.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d6/f6/83/d6f683e5-6765-f974-3ee2-389943bb827c/3617226946806.jpg/600x600bb.jpg",
+    "duration": 23,
+    "genre": "Sanat",
     "tempo": null,
     "energy": null
   },
@@ -17147,6 +19019,136 @@
     "energy": null
   },
   {
+    "id": "1813934314",
+    "title": "Gel \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 224,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934532",
+    "title": "Sensiz \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 278,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934535",
+    "title": "Olmuyor \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 222,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934537",
+    "title": "D\u00f6n \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 265,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934547",
+    "title": "Hal\u0131ma \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 249,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934671",
+    "title": "Bilmiyor ki \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 184,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934672",
+    "title": "Ol \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 252,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934673",
+    "title": "Yarim \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 206,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934679",
+    "title": "Ho\u015fgeldin \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 246,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1813934865",
+    "title": "Hep Ayn\u0131 Mevsim \u015eiir (\u015eiir)",
+    "artist": "Y\u0131lmaz Murat \u0130nce",
+    "artist_id": 930241310,
+    "album": "\u0130nceden \u015eiirler (\u015eiir)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9a/85/38/9a853825-3853-8acb-2421-21181a721bf5/cover.jpg/600x600bb.jpg",
+    "duration": 224,
+    "genre": "\u00d6zg\u00fcn",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1814189920",
     "title": "PERVERSA",
     "artist": "PEDRO SAMPAIO, J Balvin & Take A Daytrip",
@@ -17225,6 +19227,19 @@
     "energy": null
   },
   {
+    "id": "1815620835",
+    "title": "TaTaTa (feat. Travis Scott)",
+    "artist": "Burna Boy",
+    "artist_id": 591899010,
+    "album": "No Sign of Weakness",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/a5/b6/25a5b6bf-c1ef-81de-4ddf-e5a8bfd1383d/075679623539.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/a5/b6/25a5b6bf-c1ef-81de-4ddf-e5a8bfd1383d/075679623539.jpg/600x600bb.jpg",
+    "duration": 150,
+    "genre": "Afro-fusion",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1815724818",
     "title": "Ramayan Ka Saar",
     "artist": "Masoom Sharma",
@@ -17234,6 +19249,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7e/29/8a/7e298ac8-f316-7bb7-ac7e-215b26d0da16/199350769931.jpg/600x600bb.jpg",
     "duration": 187,
     "genre": "Indian Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1815742916",
+    "title": "Yalla Siir",
+    "artist": "Ahlam Bakkali",
+    "artist_id": 1547720801,
+    "album": "Yalla Siir - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0c/ed/1b/0ced1b81-cfa1-abda-fa8f-a0ec339fef05/5283024043238_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0c/ed/1b/0ced1b81-cfa1-abda-fa8f-a0ec339fef05/5283024043238_Cover.jpg/600x600bb.jpg",
+    "duration": 198,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -17589,6 +19617,19 @@
     "energy": null
   },
   {
+    "id": "1823627863",
+    "title": "Dynamite (Live)",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "PERMISSION TO DANCE ON STAGE (LIVE)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2b/f6/82/2bf682ab-f6c5-a82e-d204-306faede272e/198704579318_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2b/f6/82/2bf682ab-f6c5-a82e-d204-306faede272e/198704579318_Cover.jpg/600x600bb.jpg",
+    "duration": 196,
+    "genre": "K-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1823799771",
     "title": "Goldberg Variations, BWV 988: Variation XXI. Canone alla settima (Arr. Garcia & Morini\u00e8re for Two Guitars)",
     "artist": "Antoine Morini\u00e8re & Thibaut Garcia",
@@ -17706,6 +19747,32 @@
     "energy": null
   },
   {
+    "id": "1825611594",
+    "title": "Si Ai (Marshmello & Ukay Remix)",
+    "artist": "Tayna, Marshmello & UKAY",
+    "artist_id": 1451722387,
+    "album": "Si Ai (Marshmello & Ukay Remix) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/21/db/3b/21db3b33-e993-4c0e-aa0d-7e00784cc0b6/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/21/db/3b/21db3b33-e993-4c0e-aa0d-7e00784cc0b6/cover.jpg/600x600bb.jpg",
+    "duration": 184,
+    "genre": "African",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1825994649",
+    "title": "DAISIES",
+    "artist": "Justin Bieber",
+    "artist_id": 0,
+    "album": "SWAG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f9/09/36/f9093663-c05f-7f95-0a60-4e95d52fbb22/25UMGIM93915.rgb.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f9/09/36/f9093663-c05f-7f95-0a60-4e95d52fbb22/25UMGIM93915.rgb.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1826025330",
     "title": "Monica (From \"Coolie\") (Tamil)",
     "artist": "Anirudh Ravichander, Sublahshini, Asal Kolaar & Vishnu Edavan",
@@ -17732,6 +19799,71 @@
     "energy": null
   },
   {
+    "id": "1826770400",
+    "title": "Legend",
+    "artist": "Sidhu Moose Wala",
+    "artist_id": 1257856923,
+    "album": "Legend - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/29/3f/0e/293f0e85-9d9b-f61a-6d41-bf96b26d8774/810059349759_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/29/3f/0e/293f0e85-9d9b-f61a-6d41-bf96b26d8774/810059349759_cover.jpg/600x600bb.jpg",
+    "duration": 278,
+    "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1826770924",
+    "title": "Boot Cut",
+    "artist": "Prem Dhillon",
+    "artist_id": 1362328913,
+    "album": "Boot Cut - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/34/a8/a034a833-16de-cee1-4a6c-e1566d8c1fc2/810059349735_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/34/a8/a034a833-16de-cee1-4a6c-e1566d8c1fc2/810059349735_cover.jpg/600x600bb.jpg",
+    "duration": 182,
+    "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1826772286",
+    "title": "Jatt Hunde Aa",
+    "artist": "Prem Dhillon",
+    "artist_id": 1362328913,
+    "album": "Jatt Hunde Aa - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d3/cf/d9/d3cfd947-2e46-7a42-cf0c-899844552386/810059349698_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d3/cf/d9/d3cfd947-2e46-7a42-cf0c-899844552386/810059349698_cover.jpg/600x600bb.jpg",
+    "duration": 180,
+    "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1826784426",
+    "title": "Majha Block",
+    "artist": "Prem Dhillon",
+    "artist_id": 1362328913,
+    "album": "Majha Block - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/76/59/9d/76599dc5-8910-015a-da0d-1985087bc561/810063884536_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/76/59/9d/76599dc5-8910-015a-da0d-1985087bc561/810063884536_cover.jpg/600x600bb.jpg",
+    "duration": 248,
+    "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1826785702",
+    "title": "The Last Ride",
+    "artist": "Sidhu Moose Wala",
+    "artist_id": 1257856923,
+    "album": "The Last Ride - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/db/2c/84/db2c84f2-f42f-af93-2709-6158995f9f72/810105712582_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/db/2c/84/db2c84f2-f42f-af93-2709-6158995f9f72/810105712582_cover.jpg/600x600bb.jpg",
+    "duration": 262,
+    "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1826785706",
     "title": "Drippy",
     "artist": "Sidhu Moose Wala, MXRCI & AR Paisley",
@@ -17753,6 +19885,32 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f1/57/9d/f1579d5f-4e4f-1235-e97c-fa725602c839/810105711448_cover.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f1/57/9d/f1579d5f-4e4f-1235-e97c-fa725602c839/810105711448_cover.jpg/600x600bb.jpg",
     "duration": 180,
+    "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1826786467",
+    "title": "Everybody Hurts",
+    "artist": "Sidhu Moose Wala",
+    "artist_id": 1257856923,
+    "album": "No Name - EP",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f1/57/9d/f1579d5f-4e4f-1235-e97c-fa725602c839/810105711448_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f1/57/9d/f1579d5f-4e4f-1235-e97c-fa725602c839/810105711448_cover.jpg/600x600bb.jpg",
+    "duration": 170,
+    "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1826848687",
+    "title": "These Days (feat. Bohemia)",
+    "artist": "Sidhu Moose Wala & Bohemia",
+    "artist_id": 1257856923,
+    "album": "Moosetape",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/69/58/976958ae-725e-bd41-6755-f0921c697840/810063889609_cover.jpg/600x600bb.jpg",
+    "duration": 209,
     "genre": "New Age",
     "tempo": null,
     "energy": null
@@ -18486,6 +20644,19 @@
     "energy": null
   },
   {
+    "id": "1838737598",
+    "title": "WHERE IS MY HUSBAND!",
+    "artist": "RAYE",
+    "artist_id": 0,
+    "album": "WHERE IS MY HUSBAND! - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/10/8a/69108a18-55ec-d774-a653-90b2242733db/199538765458.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/10/8a/69108a18-55ec-d774-a653-90b2242733db/199538765458.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1838902601",
     "title": "Panwadi (From \"Sunny Sanskari Ki Tulsi Kumari\")",
     "artist": "Khesari Lal Yadav, Masoom Sharma, Dev Negi, Pritam, Nikhita Gandhi & Akasa",
@@ -18638,6 +20809,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/24/d7/37/24d737a0-9ad8-0da6-8548-434ce91faa0e/25UM1IM46059.rgb.jpg/600x600bb.jpg",
     "duration": 148,
     "genre": "R&B/Soul",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1840152142",
+    "title": "Badli Si Hawa Hai",
+    "artist": "Anirudh Ravichander, Arijit Singh, Amira Gill & Kumaar",
+    "artist_id": 480976476,
+    "album": "The Ba***ds Of Bollywood (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/88/b1/a9/88b1a972-9555-8ba2-6382-f0d7daaa03b5/8903431116369_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/88/b1/a9/88b1a972-9555-8ba2-6382-f0d7daaa03b5/8903431116369_cover.jpg/600x600bb.jpg",
+    "duration": 241,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -18876,6 +21060,19 @@
     "energy": null
   },
   {
+    "id": "1843228738",
+    "title": "Siir",
+    "artist": "Arovane",
+    "artist_id": 17508603,
+    "album": "Gestalt",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cd/c7/5b/cdc75bc6-3c51-5440-59fb-a4312735d7ce/195163397569_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cd/c7/5b/cdc75bc6-3c51-5440-59fb-a4312735d7ce/195163397569_cover.jpg/600x600bb.jpg",
+    "duration": 164,
+    "genre": "Electronica",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1843504506",
     "title": "Balega Tagilavey Bangaram",
     "artist": "Anirudh Ravichander",
@@ -18898,6 +21095,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/26/c8/ca26c8b2-a11c-ade5-cc68-88288075dbc2/cover.jpg/600x600bb.jpg",
     "duration": 208,
     "genre": "Tamil",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1845050625",
+    "title": "\u015eiir",
+    "artist": "Kazanc\u0131 Bedih",
+    "artist_id": 257939844,
+    "album": "Kazanc\u0131 Bedih An\u0131s\u0131na Urfal\u0131 Kaz\u0131m E\u015fli\u011finde \u015eanl\u0131urfa S\u0131ra Geceleri, Vol. 8",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/56/b2/fe56b208-2432-8a9a-e20c-c4fc467519b3/1406031002454_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fe/56/b2/fe56b208-2432-8a9a-e20c-c4fc467519b3/1406031002454_Cover.jpg/600x600bb.jpg",
+    "duration": 323,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },
@@ -19344,6 +21554,19 @@
     "energy": null
   },
   {
+    "id": "1854089447",
+    "title": "As\u0131rl\u0131k \u015eiir - Enstr\u00fcmantal",
+    "artist": "Dursun Ali Erzincanl\u0131 & Umut M\u00fcrare",
+    "artist_id": 598267957,
+    "album": "En Sevgiliye M\u00fczikleri 3 (Enstr\u00fcmantal)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cd/9d/a8/cd9da873-29f6-0fe6-ce5a-f0a173996302/199084673764_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cd/9d/a8/cd9da873-29f6-0fe6-ce5a-f0a173996302/199084673764_cover.jpg/600x600bb.jpg",
+    "duration": 317,
+    "genre": "Worldwide",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1854430626",
     "title": "Jajimalli Teegamalli",
     "artist": "Jangi Reddy",
@@ -19396,6 +21619,19 @@
     "energy": null
   },
   {
+    "id": "1855987522",
+    "title": "SIIR SIIR",
+    "artist": "BARAKA ON",
+    "artist_id": 1855231113,
+    "album": "SIIR SIIR - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/73/f3/3c/73f33c9f-bb1c-dba2-491e-a8c19bb8f8a0/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/73/f3/3c/73f33c9f-bb1c-dba2-491e-a8c19bb8f8a0/artwork.jpg/600x600bb.jpg",
+    "duration": 139,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1856547753",
     "title": "Gehra Hua (From \"Dhurandhar\")",
     "artist": "Shashwat Sachdev, Arijit Singh, Irshad Kamil & Armaan Khan",
@@ -19405,6 +21641,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/87/0b/a8/870ba8fd-4d3c-2127-1653-39396b132445/199806576946.jpg/600x600bb.png",
     "duration": 0,
     "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1857286585",
+    "title": "SIIR SIIR (LIONS OF AFRICA)",
+    "artist": "Music For Change",
+    "artist_id": 1847386762,
+    "album": "SIIR SIIR (LIONS OF AFRICA) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/25/d0/ad25d0e7-658f-f241-38b4-bc522e657274/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ad/25/d0/ad25d0e7-658f-f241-38b4-bc522e657274/artwork.jpg/600x600bb.jpg",
+    "duration": 289,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },
@@ -19500,6 +21749,19 @@
     "energy": null
   },
   {
+    "id": "1858025856",
+    "title": "Oorum blood Nadhaswaram Interval",
+    "artist": "Sai Abhyankkar",
+    "artist_id": 1652280551,
+    "album": "Dude - Side B (Original Score)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/0e/19/4c0e1996-238b-1aac-9071-ce38da74c516/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/0e/19/4c0e1996-238b-1aac-9071-ce38da74c516/cover.jpg/600x600bb.jpg",
+    "duration": 45,
+    "genre": "Tamil",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1858427542",
     "title": "Tulasi (feat. Sumant Shridhar)",
     "artist": "Sumedh K",
@@ -19574,6 +21836,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c3/8c/79/c38c794e-bc01-431d-90ba-022cc130a3c6/859761929279_cover.jpg/600x600bb.jpg",
     "duration": 154,
     "genre": "New Age",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1859473777",
+    "title": "RISE AS ONE \u2013 SIIR! SIIR!",
+    "artist": "Music For Change",
+    "artist_id": 1847386762,
+    "album": "RISE AS ONE \u2013 SIIR! SIIR! - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/46/7c/ca467ccc-45bf-2974-00ae-a4fe08ecb154/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/46/7c/ca467ccc-45bf-2974-00ae-a4fe08ecb154/artwork.jpg/600x600bb.jpg",
+    "duration": 246,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },
@@ -19730,6 +22005,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/29/9e/38/299e38c9-2c54-f563-7bd7-68fc6ba3671e/artwork.jpg/600x600bb.jpg",
     "duration": 258,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1861905096",
+    "title": "SIR SIIR SIIIR AFCON MOROCCO \u0633\u064a\u0631 \u0633\u064a\u0631 \u0633\u064a\u0631",
+    "artist": "Jihad Shakur",
+    "artist_id": 1659275697,
+    "album": "SIR SIIR SIIIR AFCON MOROCCO \u0633\u064a\u0631 \u0633\u064a\u0631 \u0633\u064a\u0631 - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8f/9d/1f/8f9d1fc4-f8b8-2299-7180-851cf2df2eaa/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8f/9d/1f/8f9d1fc4-f8b8-2299-7180-851cf2df2eaa/artwork.jpg/600x600bb.jpg",
+    "duration": 194,
+    "genre": "Hip-Hop/Rap",
     "tempo": null,
     "energy": null
   },
@@ -20033,6 +22321,19 @@
     "energy": null
   },
   {
+    "id": "1868482073",
+    "title": "SWIM",
+    "artist": "BTS",
+    "artist_id": 0,
+    "album": "ARIRANG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e0/a2/b4/e0a2b443-7969-b57a-a591-cb6172c10aa7/198704943959_Cover.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e0/a2/b4/e0a2b443-7969-b57a-a591-cb6172c10aa7/198704943959_Cover.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1868781554",
     "title": "Love Me",
     "artist": "Annie Sollange & Jonny Koch",
@@ -20042,6 +22343,58 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e1/f5/ab/e1f5abf8-14b0-f8ef-9876-696cde78fced/8721465234350.png/600x600bb.jpg",
     "duration": 205,
     "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1868862376",
+    "title": "Body to Body",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "ARIRANG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/600x600bb.jpg",
+    "duration": 189,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1868862377",
+    "title": "Hooligan",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "ARIRANG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/600x600bb.jpg",
+    "duration": 182,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1868862384",
+    "title": "SWIM",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "ARIRANG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/600x600bb.jpg",
+    "duration": 159,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1868862389",
+    "title": "they don\u2019t know \u2019bout us",
+    "artist": "BTS",
+    "artist_id": 883131348,
+    "album": "ARIRANG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/cb/bc/83cbbc49-cfad-aeaf-3292-0dd428290d81/198704942365_Cover.jpg/600x600bb.jpg",
+    "duration": 164,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -20107,6 +22460,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b4/57/47/b4574701-e806-c692-77c4-0111635aa261/8909483792087.jpg/600x600bb.jpg",
     "duration": 289,
     "genre": "Jazz",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1869988304",
+    "title": "\u0633\u064a\u064a\u0631 \u0633\u064a\u064a\u0631 Siir Siir",
+    "artist": "\u0627\u0644\u0641\u0646\u0627\u0646 \u0627\u062f\u0631\u064a\u0633 \u0627\u0644\u062e\u0627\u0648\u0629",
+    "artist_id": 1840814900,
+    "album": "\u0633\u064a\u064a\u0631 \u0633\u064a\u064a\u0631 Siir Siir - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7e/b4/0b/7eb40bc5-5625-e7e7-b8f4-325b12df8239/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7e/b4/0b/7eb40bc5-5625-e7e7-b8f4-325b12df8239/artwork.jpg/600x600bb.jpg",
+    "duration": 65,
+    "genre": "Singer/Songwriter",
     "tempo": null,
     "energy": null
   },
@@ -20241,6 +22607,19 @@
     "energy": null
   },
   {
+    "id": "1874536833",
+    "title": "new releases",
+    "artist": "Utopic.Dreamer",
+    "artist_id": 1792326701,
+    "album": "B A C K T O 1 9 9 4",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/da/68/04/da68041d-1859-6416-55dc-0593b0f74646/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/da/68/04/da68041d-1859-6416-55dc-0593b0f74646/artwork.jpg/600x600bb.jpg",
+    "duration": 132,
+    "genre": "Electronica",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1874660107",
     "title": "Mahakal Shiv Tandav",
     "artist": "Ketan Kumar",
@@ -20315,6 +22694,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5f/a6/77/5fa677b2-6190-e0a2-2845-bedceaaa02d2/859730685137_cover.jpg/600x600bb.jpg",
     "duration": 224,
     "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1875907951",
+    "title": "5-7",
+    "artist": "Karan Aujla & MXRCI",
+    "artist_id": 914892130,
+    "album": "5-7 - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d0/8e/79/d08e797b-06b0-83bb-77a7-d836caf28d9f/5063904877791_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d0/8e/79/d08e797b-06b0-83bb-77a7-d836caf28d9f/5063904877791_cover.jpg/600x600bb.jpg",
+    "duration": 154,
+    "genre": "New Age",
     "tempo": null,
     "energy": null
   },
@@ -20839,6 +23231,19 @@
     "energy": null
   },
   {
+    "id": "188261029",
+    "title": "Whenever, Wherever",
+    "artist": "Shakira",
+    "artist_id": 889327,
+    "album": "Laundry Service",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c5/4b/ff/c54bffa0-2333-1a55-e67e-a9c640e06f6f/mzi.hwxgzhsl.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c5/4b/ff/c54bffa0-2333-1a55-e67e-a9c640e06f6f/mzi.hwxgzhsl.jpg/600x600bb.jpg",
+    "duration": 196,
+    "genre": "Pop in Spanish",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1882789766",
     "title": "Kaise Manaye",
     "artist": "Arpit Bala, Adil, Karan Kanchan & A.O.D.",
@@ -20939,6 +23344,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/2b/ec/c82becd4-6c06-2330-a126-40c28bb3bf6f/cover.jpg/600x600bb.jpg",
     "duration": 227,
     "genre": "Halk",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1883428308",
+    "title": "Dealer",
+    "artist": "Diljit Dosanjh",
+    "artist_id": 423087540,
+    "album": "Dealer - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/34/2e/84/342e8467-23ad-5338-95a6-13cfb3db50d7/859733419234_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/34/2e/84/342e8467-23ad-5338-95a6-13cfb3db50d7/859733419234_cover.jpg/600x600bb.jpg",
+    "duration": 110,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },
@@ -21047,6 +23465,19 @@
     "energy": null
   },
   {
+    "id": "1884403093",
+    "title": "Boston",
+    "artist": "STELLA LEFTY",
+    "artist_id": 0,
+    "album": "Boston - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7c/de/5e/7cde5e7a-612d-9714-d34c-1eb234c85ebb/810129961546.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7c/de/5e/7cde5e7a-612d-9714-d34c-1eb234c85ebb/810129961546.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Country",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "1884696601",
     "title": "Bairan",
     "artist": "Bhavesh Vidhani",
@@ -21121,6 +23552,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c4/f9/ae/c4f9aed1-1e09-eca5-d4cb-3f43f9db4002/8903431190284_cover.jpg/600x600bb.jpg",
     "duration": 47,
     "genre": "Telugu",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "1885907879",
+    "title": "Jaan Se Guzarte Hain",
+    "artist": "Shashwat Sachdev & Khan Saab",
+    "artist_id": 0,
+    "album": "Dhurandhar The Revenge (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/74/08/897408d1-39d9-5d32-06a8-256ea77e4158/8902894362900_cover.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/74/08/897408d1-39d9-5d32-06a8-256ea77e4158/8902894362900_cover.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Bollywood",
     "tempo": null,
     "energy": null
   },
@@ -21463,6 +23907,19 @@
     "energy": null
   },
   {
+    "id": "300388929",
+    "title": "It's the Time to Disco",
+    "artist": "Shankar Ehsaan Loy, KK, Vasundhara Das, Loy Mendonsa & Shaan",
+    "artist_id": 280171893,
+    "album": "Kal Ho Naa Ho (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fb/82/da/fb82dab1-d0cd-714c-000c-6450774fd5d4/888880945587.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/fb/82/da/fb82dab1-d0cd-714c-000c-6450774fd5d4/888880945587.jpg/600x600bb.jpg",
+    "duration": 333,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "305071639",
     "title": "Kaho Na Kaho\u00a0",
     "artist": "Amir Jamal",
@@ -21489,6 +23946,32 @@
     "energy": null
   },
   {
+    "id": "316981880",
+    "title": "Rang De Basanti",
+    "artist": "A.R. Rahman, Daler Mehndi & K.S. Chithra",
+    "artist_id": 3249567,
+    "album": "Rang De Basanti (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/2c/6c/912c6c29-bbec-e560-0088-0cdd4201359a/888880944825.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/2c/6c/912c6c29-bbec-e560-0088-0cdd4201359a/888880944825.jpg/600x600bb.jpg",
+    "duration": 363,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "325339202",
+    "title": "Sir Kadhve",
+    "artist": "K.S. Makhan & Aman Hayer",
+    "artist_id": 187286501,
+    "album": "Yaar Mastane",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/fe/ab/df/mzi.ecjrripq.tif/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/fe/ab/df/mzi.ecjrripq.tif/600x600bb.jpg",
+    "duration": 206,
+    "genre": "Punjabi Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "327458459",
     "title": "Iktara",
     "artist": "Amit Trivedi, Kavita Seth & Amitabh Bhattacharya",
@@ -21498,6 +23981,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5c/c8/f8/5cc8f804-a9d6-7a11-57f6-840e1e2c9419/884977322910.jpg/600x600bb.jpg",
     "duration": 253,
     "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "328449248",
+    "title": "I Invented Sex (feat. Drake)",
+    "artist": "Trey Songz",
+    "artist_id": 31733124,
+    "album": "Ready (Deluxe)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fc/c5/eb/fcc5ebfa-2d10-8257-1c46-62e558385a08/mzi.lypsoapj.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fc/c5/eb/fcc5ebfa-2d10-8257-1c46-62e558385a08/mzi.lypsoapj.jpg/600x600bb.jpg",
+    "duration": 247,
+    "genre": "R&B/Soul",
     "tempo": null,
     "energy": null
   },
@@ -21524,6 +24020,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/73/13/d1/mzi.cxtvatin.jpg/600x600bb.jpg",
     "duration": 230,
     "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "359966562",
+    "title": "Eenie Meenie",
+    "artist": "Sean Kingston & Justin Bieber",
+    "artist_id": 259760619,
+    "album": "Eenie Meenie - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f7/95/b3/f795b313-0788-da18-36c4-7c30220691a8/mzi.edakdecd.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f7/95/b3/f795b313-0788-da18-36c4-7c30220691a8/mzi.edakdecd.jpg/600x600bb.jpg",
+    "duration": 201,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -21619,6 +24128,32 @@
     "energy": null
   },
   {
+    "id": "370711731",
+    "title": "Waka Waka (Esto es Africa) [feat. Freshlyground]",
+    "artist": "Shakira",
+    "artist_id": 889327,
+    "album": "Waka Waka (Esto es Africa) [feat. Freshlyground] - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/c4/6e/63/c46e6321-2a8a-dfaa-2c0f-21d4b62450b3/884977620108.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/c4/6e/63/c46e6321-2a8a-dfaa-2c0f-21d4b62450b3/884977620108.jpg/600x600bb.jpg",
+    "duration": 202,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "372673438",
+    "title": "Bheegi Si Bhaagi Si",
+    "artist": "Pritam, Mohit Chauhan & Antara Mitra",
+    "artist_id": 213157068,
+    "album": "Raajneeti (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/eb/e1/da/ebe1da1c-a07a-43b6-d64d-3c1bedde43e8/884977611403.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/eb/e1/da/ebe1da1c-a07a-43b6-d64d-3c1bedde43e8/884977611403.jpg/600x600bb.jpg",
+    "duration": 278,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "373224252",
     "title": "Vidnayaan Roop",
     "artist": "Sanjeev Abhyankar & Sunudhi Chauhan",
@@ -21628,6 +24163,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/55/65/0d/mzi.fevvillo.jpg/600x600bb.jpg",
     "duration": 274,
     "genre": "Worldwide",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "376383425",
+    "title": "Waka Waka (This Time for Africa) [English Version] [The Official 2010 FIFA World Cup (TM) Song] [feat. Freshlyground]",
+    "artist": "Shakira",
+    "artist_id": 889327,
+    "album": "Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Video/90/db/27/dj.svxjlvbh.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video/90/db/27/dj.svxjlvbh.jpg/600x600bb.jpg",
+    "duration": 213,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -21679,6 +24227,32 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/0a/c8/5b/0ac85b90-e8b8-5fa3-09fc-bd7ed80fbd7d/884977027815.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/0a/c8/5b/0ac85b90-e8b8-5fa3-09fc-bd7ed80fbd7d/884977027815.jpg/600x600bb.jpg",
     "duration": 315,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "402012360",
+    "title": "Ayyayo",
+    "artist": "G.V. Prakash Kumar, Prashanthini, S.P. Charan & S.P. Balasubrahmanyam",
+    "artist_id": 366286202,
+    "album": "Aadukalam (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/50/27/0b/50270b4c-5ef2-2ab8-78af-9ad9c86145f6/884977799682.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/50/27/0b/50270b4c-5ef2-2ab8-78af-9ad9c86145f6/884977799682.jpg/600x600bb.jpg",
+    "duration": 324,
+    "genre": "Tamil",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "403037877",
+    "title": "Rolling In the Deep",
+    "artist": "Adele",
+    "artist_id": 262836961,
+    "album": "21",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f8/df/0a/f8df0ac9-ae76-9dae-86d3-4e913fc54fb1/634904152062.png/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f8/df/0a/f8df0ac9-ae76-9dae-86d3-4e913fc54fb1/634904152062.png/600x600bb.jpg",
+    "duration": 228,
     "genre": "Pop",
     "tempo": null,
     "energy": null
@@ -21918,6 +24492,19 @@
     "energy": null
   },
   {
+    "id": "56208270",
+    "title": "Ooh La La",
+    "artist": "Faces",
+    "artist_id": 187955,
+    "album": "The Best of Faces: Good Boys... When They're Asleep",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c6/e6/e5/c6e6e59f-27b6-ba1f-c850-54461effaa96/s06.juqxwzlm.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c6/e6/e5/c6e6e59f-27b6-ba1f-c850-54461effaa96/s06.juqxwzlm.jpg/600x600bb.jpg",
+    "duration": 214,
+    "genre": "Rock",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "571977598",
     "title": "Weightless",
     "artist": "Marconi Union",
@@ -21927,6 +24514,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c3/3a/d6/c33ad6a3-ec91-62e4-0912-d4a873d4fed0/cover.jpg/600x600bb.jpg",
     "duration": 480,
     "genre": "Electronic",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "572989356",
+    "title": "Baby Got Back",
+    "artist": "Sir Mix-A-Lot",
+    "artist_id": 1268817,
+    "album": "The Ultimate Collection",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/bd/1a/75/bd1a757e-b3fc-273c-66b8-fd3aae6ca64b/887396587465.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/bd/1a/75/bd1a757e-b3fc-273c-66b8-fd3aae6ca64b/887396587465.jpg/600x600bb.jpg",
+    "duration": 262,
+    "genre": "Hip-Hop",
     "tempo": null,
     "energy": null
   },
@@ -21979,6 +24579,58 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ab/d5/7a/abd57a87-b845-7cef-add9-752f84432b4f/886443653900.jpg/600x600bb.jpg",
     "duration": 1311,
     "genre": "Indian",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "587001062",
+    "title": "Yeh Haseen Vadiyan Yeh Khula Aasman",
+    "artist": "S.P. Balasubrahmanyam & K.S. Chithra",
+    "artist_id": 18261330,
+    "album": "Roja (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ee/ab/7e/eeab7ea6-7e1e-b1b7-f28d-b4f5faa5a868/886443571136.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ee/ab/7e/eeab7ea6-7e1e-b1b7-f28d-b4f5faa5a868/886443571136.jpg/600x600bb.jpg",
+    "duration": 320,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "587261731",
+    "title": "\u015eiir (Sen Rengiysen \u00c7i\u00e7eklerin)",
+    "artist": "Bilal Ercan",
+    "artist_id": 302457194,
+    "album": "Yaz\u0131k Ettiniz",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/b3/ec/d9/b3ecd99c-9950-de22-0878-92fe16c51ee1/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/b3/ec/d9/b3ecd99c-9950-de22-0878-92fe16c51ee1/cover.jpg/600x600bb.jpg",
+    "duration": 220,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "589294614",
+    "title": "\u015eiir",
+    "artist": "Sava\u015f Ay",
+    "artist_id": 587266684,
+    "album": "\u015eiir Mektebi",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/20/d8/7d/20d87d5f-8c11-ed25-908a-f1668abc2ca1/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/20/d8/7d/20d87d5f-8c11-ed25-908a-f1668abc2ca1/cover.jpg/600x600bb.jpg",
+    "duration": 121,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "590314109",
+    "title": "\u015eiir (Bir \u00d6mre Bedel)",
+    "artist": "H\u00fcseyin Karaku\u015f",
+    "artist_id": 421721765,
+    "album": "Evrenin Kahyalar\u0131",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/f4/e0/ef/f4e0efdb-becf-e892-8fb8-8963ea2f1971/887845241337.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/f4/e0/ef/f4e0efdb-becf-e892-8fb8-8963ea2f1971/887845241337.jpg/600x600bb.jpg",
+    "duration": 170,
+    "genre": "Halk",
     "tempo": null,
     "energy": null
   },
@@ -22191,6 +24843,19 @@
     "energy": null
   },
   {
+    "id": "6686397",
+    "title": "New Releases",
+    "artist": "Renee Anderson",
+    "artist_id": 6686390,
+    "album": "New Releases",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Features/69/bf/48/dj.cyebdcou.tif/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Features/69/bf/48/dj.cyebdcou.tif/600x600bb.jpg",
+    "duration": 283,
+    "genre": "Country",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "671020450",
     "title": "Love Me",
     "artist": "Elvis Presley",
@@ -22212,6 +24877,19 @@
     "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/19/ff/d3/19ffd3a4-f7ae-2f88-3270-aaff169b20ec/849486005853_cover.jpg/200x200bb.jpg",
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/19/ff/d3/19ffd3a4-f7ae-2f88-3270-aaff169b20ec/849486005853_cover.jpg/600x600bb.jpg",
     "duration": 315,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "673575198",
+    "title": "Bholi Si Surat",
+    "artist": "Lata Mangeshkar & Udit Narayan",
+    "artist_id": 14291575,
+    "album": "Dil To Pagal Hai (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/bd/76/33/bd76333b-c994-6bb7-f83e-201c1392f8c3/849486005907_cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/bd/76/33/bd76333b-c994-6bb7-f83e-201c1392f8c3/849486005907_cover.jpg/600x600bb.jpg",
+    "duration": 255,
     "genre": "Bollywood",
     "tempo": null,
     "energy": null
@@ -22269,6 +24947,19 @@
     "energy": null
   },
   {
+    "id": "6762077460",
+    "title": "SIIR SIIR-N66",
+    "artist": "BARAKA ON",
+    "artist_id": 1855231113,
+    "album": "SIIR SIIR-N66 - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2e/b9/96/2eb99615-40ec-9609-5375-25cd64fc8e79/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2e/b9/96/2eb99615-40ec-9609-5375-25cd64fc8e79/artwork.jpg/600x600bb.jpg",
+    "duration": 159,
+    "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "6763472747",
     "title": "Prem Ki Leela [From \"Krishnavataram - Part 1: The Heart (Hridayam)\"]",
     "artist": "Shreya Ghoshal, Javed Ali, Suvarna Tiwari, Prasad S, SWARADISH DR BHARAT BALVALLI & Irshad Kamil",
@@ -22304,6 +24995,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9b/14/60/9b146098-a3b0-397b-cd23-cba0f1474e5e/cover.jpg/600x600bb.png",
     "duration": 0,
     "genre": "Telugu",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6764784981",
+    "title": "Crimson Nights",
+    "artist": "Ginan Indi",
+    "artist_id": 0,
+    "album": "Crimson Nights - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/37/86/273786b6-a915-830e-ae2a-4e1e589f8693/859737098053_cover.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/37/86/273786b6-a915-830e-ae2a-4e1e589f8693/859737098053_cover.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Electronic",
     "tempo": null,
     "energy": null
   },
@@ -22464,6 +25168,19 @@
     "energy": null
   },
   {
+    "id": "6767326119",
+    "title": "Alakh Niranjan",
+    "artist": "Aditya",
+    "artist_id": 0,
+    "album": "Alakh Niranjan - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/a7/e9/cba7e9d0-542e-3dc0-bf06-65dac8100c03/8447721422407.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/a7/e9/cba7e9d0-542e-3dc0-bf06-65dac8100c03/8447721422407.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "6768135763",
     "title": "Trending",
     "artist": "Babbu Thind",
@@ -22473,6 +25190,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c1/09/4a/c1094a8a-49f6-6708-d94a-313d924255a5/artwork.jpg/600x600bb.jpg",
     "duration": 169,
     "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6768469976",
+    "title": "Dai Dai",
+    "artist": "Shakira & Burna Boy",
+    "artist_id": 889327,
+    "album": "Dai Dai - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/61/49/8d/61498ded-f0dc-227d-cd1d-2051b5d9f195/196874328590.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/61/49/8d/61498ded-f0dc-227d-cd1d-2051b5d9f195/196874328590.jpg/600x600bb.jpg",
+    "duration": 223,
+    "genre": "Pop",
     "tempo": null,
     "energy": null
   },
@@ -22516,6 +25246,19 @@
     "energy": null
   },
   {
+    "id": "6769450011",
+    "title": "Shambhu Stuti (Trance Edition)",
+    "artist": "Vaayu",
+    "artist_id": 0,
+    "album": "Shambhu Stuti (Trance Edition) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/47/cc/ca47cca7-f594-cb28-cfe1-00935ab8e402/8447721449978.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ca/47/cc/ca47cca7-f594-cb28-cfe1-00935ab8e402/8447721449978.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Hip-Hop/Rap",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "6769824836",
     "title": "Raga of Revenge (From \"DC\")",
     "artist": "Anirudh Ravichander",
@@ -22525,6 +25268,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/83/b3/69/83b3694e-974a-d50b-3eb9-2efd4e66143e/820233486484.jpg/600x600bb.png",
     "duration": 0,
     "genre": "Tamil",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6770062013",
+    "title": "Catwoman (Instrumental)",
+    "artist": "LeoKarlo",
+    "artist_id": 0,
+    "album": "Catwoman (Instrumental) - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5a/c7/52/5ac75203-8ac8-c6d0-0427-9332606e82e4/artwork.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5a/c7/52/5ac75203-8ac8-c6d0-0427-9332606e82e4/artwork.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },
@@ -22659,6 +25415,162 @@
     "energy": null
   },
   {
+    "id": "6773013478",
+    "title": "God Mode Begins",
+    "artist": "Sai Abhyankkar, Gana Muthu & Vishnu Edavan",
+    "artist_id": 1652280551,
+    "album": "Karuppu (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d4/c4/38/d4c43885-7866-3ac4-e323-b9ca6a7621ec/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/d4/c4/38/d4c43885-7866-3ac4-e323-b9ca6a7621ec/cover.jpg/600x600bb.jpg",
+    "duration": 55,
+    "genre": "Tamil",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6774651642",
+    "title": "Boogie's in My Soul",
+    "artist": "Chaka Khan & Snoop Dogg",
+    "artist_id": 17402,
+    "album": "Chakzilla",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/93/31/97/9331973a-0136-0baa-d668-22d60811d2d8/4099964257809.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/93/31/97/9331973a-0136-0baa-d668-22d60811d2d8/4099964257809.jpg/600x600bb.jpg",
+    "duration": 222,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6776010737",
+    "title": "Siir Siir",
+    "artist": "Nora Fatehi, Vegedream, Sanjoy & FIFA Sound",
+    "artist_id": 1216628645,
+    "album": "Official FIFA World Cup 2026\u2122 Album",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/68/4a/84/684a84c9-f6e3-ca17-d516-ee01a88c32ca/26UMGIM68511.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/68/4a/84/684a84c9-f6e3-ca17-d516-ee01a88c32ca/26UMGIM68511.rgb.jpg/600x600bb.jpg",
+    "duration": 185,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6776010744",
+    "title": "Dai Dai",
+    "artist": "Shakira & Burna Boy",
+    "artist_id": 889327,
+    "album": "Official FIFA World Cup 2026\u2122 Album",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/68/4a/84/684a84c9-f6e3-ca17-d516-ee01a88c32ca/26UMGIM68511.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/68/4a/84/684a84c9-f6e3-ca17-d516-ee01a88c32ca/26UMGIM68511.rgb.jpg/600x600bb.jpg",
+    "duration": 223,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6778672599",
+    "title": "Siir Siir",
+    "artist": "Nora Fatehi, Vegedream, Sanjoy & FIFA Sound",
+    "artist_id": 1216628645,
+    "album": "Official FIFA World Cup 2026\u2122 Album (Opening Ceremony Edition)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/44/f6/45/44f6451a-5fdb-486f-471d-3eff382fc001/26UMGIM74699.rgb.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/44/f6/45/44f6451a-5fdb-486f-471d-3eff382fc001/26UMGIM74699.rgb.jpg/600x600bb.jpg",
+    "duration": 185,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6778672603",
+    "title": "Dai Dai",
+    "artist": "Shakira & Burna Boy",
+    "artist_id": 0,
+    "album": "Official FIFA World Cup 2026\u2122 Album (Opening Ceremony Edition)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/44/f6/45/44f6451a-5fdb-486f-471d-3eff382fc001/26UMGIM74699.rgb.jpg/200x200bb.png",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/44/f6/45/44f6451a-5fdb-486f-471d-3eff382fc001/26UMGIM74699.rgb.jpg/600x600bb.png",
+    "duration": 0,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6778938535",
+    "title": "Dai Dai",
+    "artist": "Shakira & Burna Boy",
+    "artist_id": 889327,
+    "album": "Dai Dai - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2d/0d/ba/2d0dba76-f798-b4fb-600a-a59b85f3440e/196874505526.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2d/0d/ba/2d0dba76-f798-b4fb-600a-a59b85f3440e/196874505526.jpg/600x600bb.jpg",
+    "duration": 223,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6778938536",
+    "title": "Dai Dai (Clean Bandit Remix)",
+    "artist": "Shakira & Burna Boy",
+    "artist_id": 889327,
+    "album": "Dai Dai - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2d/0d/ba/2d0dba76-f798-b4fb-600a-a59b85f3440e/196874505526.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2d/0d/ba/2d0dba76-f798-b4fb-600a-a59b85f3440e/196874505526.jpg/600x600bb.jpg",
+    "duration": 181,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6780071992",
+    "title": "KLAS\u0130K \u015e\u0130\u0130R",
+    "artist": "DEM\u0130LY",
+    "artist_id": 6777924428,
+    "album": "KLAS\u0130K \u015e\u0130\u0130R - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/f8/6f/4cf86fa4-902c-61be-f733-8d1e1d83a948/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4c/f8/6f/4cf86fa4-902c-61be-f733-8d1e1d83a948/artwork.jpg/600x600bb.jpg",
+    "duration": 106,
+    "genre": "Singer/Songwriter",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6780146613",
+    "title": "Ya Maghreb Siir Siir",
+    "artist": "DJ-Maghreb Beats",
+    "artist_id": 1896144099,
+    "album": "Ya Maghreb Siir Siir - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/52/7a/9c/527a9cf5-5c05-f999-e9a6-dcf6fbd0b58b/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/52/7a/9c/527a9cf5-5c05-f999-e9a6-dcf6fbd0b58b/artwork.jpg/600x600bb.jpg",
+    "duration": 242,
+    "genre": "Afro-Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6780571624",
+    "title": "Siir Siir The Best World Cup Song",
+    "artist": "Mima Denise",
+    "artist_id": 6775177476,
+    "album": "Siir Siir The Best World Cup Song - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/df/c9/45/dfc945b5-ab7c-f0dc-6786-46d2aaedd396/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/df/c9/45/dfc945b5-ab7c-f0dc-6786-46d2aaedd396/artwork.jpg/600x600bb.jpg",
+    "duration": 201,
+    "genre": "Blues",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "6780633261",
+    "title": "B\u0130\u015eE",
+    "artist": "Ke\u015ffi \u015eiir",
+    "artist_id": 1896488095,
+    "album": "B\u0130\u015eE - Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/04/5e/fa/045efa9c-e751-5247-2175-d7022e9f6bc5/artwork.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/04/5e/fa/045efa9c-e751-5247-2175-d7022e9f6bc5/artwork.jpg/600x600bb.jpg",
+    "duration": 110,
+    "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "6804161",
     "title": "N-Gej",
     "artist": "Vieux Diop",
@@ -22785,6 +25697,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1e/45/bd/1e45bdc7-54fb-1b2c-e401-b30ce8e08442/13UABIM51319.rgb.jpg/600x600bb.jpg",
     "duration": 197,
     "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "713464221",
+    "title": "\u015eiir",
+    "artist": "Aydilge",
+    "artist_id": 152795823,
+    "album": "K\u00fc\u00e7\u00fck \u015eark\u0131 Evreni",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/c5/b1/fc/c5b1fc71-f986-0674-4f5f-fc6d5927ad34/00094636586151.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/c5/b1/fc/c5b1fc71-f986-0674-4f5f-fc6d5927ad34/00094636586151.jpg/600x600bb.jpg",
+    "duration": 238,
+    "genre": "Turkish Pop",
     "tempo": null,
     "energy": null
   },
@@ -23218,6 +26143,32 @@
     "energy": null
   },
   {
+    "id": "824496379",
+    "title": "Bholi Si Surat (From \"Dil To Pagal Hai\")",
+    "artist": "Lata Mangeshkar & Udit Narayan",
+    "artist_id": 14291575,
+    "album": "Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Video3/v4/fc/7b/7a/fc7b7a3d-5cec-faa3-1f93-809d08c30867/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video3/v4/fc/7b/7a/fc7b7a3d-5cec-faa3-1f93-809d08c30867/cover.jpg/600x600bb.jpg",
+    "duration": 240,
+    "genre": "Bollywood",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "829910927",
+    "title": "A Sky Full of Stars",
+    "artist": "Coldplay",
+    "artist_id": 471744,
+    "album": "Ghost Stories",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/60/90/ad/6090adc3-8863-861d-afcc-23c55c6fe5da/dj.vmtulfyu.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/60/90/ad/6090adc3-8863-861d-afcc-23c55c6fe5da/dj.vmtulfyu.jpg/600x600bb.jpg",
+    "duration": 268,
+    "genre": "Alternative",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "845928028",
     "title": "Aarti Sai Baba Dhoop",
     "artist": "Pramod Medhi",
@@ -23374,6 +26325,19 @@
     "energy": null
   },
   {
+    "id": "880761366",
+    "title": "La La La (Brazil 2014) [feat. Carlinhos Brown]",
+    "artist": "Shakira",
+    "artist_id": 889327,
+    "album": "The 2014 FIFA World Cup\u2122 Official Album: One Love, One Rhythm",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/f1/0c/c3/f10cc366-059c-6676-0d25-0220677175fd/886444584371.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/f1/0c/c3/f10cc366-059c-6676-0d25-0220677175fd/886444584371.jpg/600x600bb.jpg",
+    "duration": 197,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "880940097",
     "title": "Tamly Maak",
     "artist": "Amr Diab",
@@ -23409,6 +26373,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/07/d9/58/07d95859-4d1a-ebca-6675-5a7cec2b9a86/8903284795810_cover.jpg/600x600bb.jpg",
     "duration": 351,
     "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "899899156",
+    "title": "\u015eiir",
+    "artist": "\u0130brahim Erkal",
+    "artist_id": 275208857,
+    "album": "S\u0131ra Bende  / Akl\u0131mdas\u0131n",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/11/4b/5d/114b5d67-2ab6-2204-3d2d-02591d2d0824/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/11/4b/5d/114b5d67-2ab6-2204-3d2d-02591d2d0824/cover.jpg/600x600bb.jpg",
+    "duration": 305,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },
@@ -23452,6 +26429,19 @@
     "energy": null
   },
   {
+    "id": "909767585",
+    "title": "Worth It (feat. Kid Ink)",
+    "artist": "Fifth Harmony",
+    "artist_id": 577354628,
+    "album": "Reflection (Deluxe)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/98/e0/57/98e0573f-52c5-b8bf-f2cf-6246d055c60d/dj.kmbgqmzy.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/98/e0/57/98e0573f-52c5-b8bf-f2cf-6246d055c60d/dj.kmbgqmzy.jpg/600x600bb.jpg",
+    "duration": 224,
+    "genre": "Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "912151821",
     "title": "Sundar Te Dhyan",
     "artist": "Sai Mohan Khadpe, Rupesh Pawar, Suresh Maikar & Ajay Khandvilkar",
@@ -23461,6 +26451,32 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/eb/a1/00/eba100ce-1892-d3f0-c627-827e97bd3712/cover.jpg/600x600bb.jpg",
     "duration": 366,
     "genre": "Devotional & Spiritual",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "912447203",
+    "title": "\u015eiir",
+    "artist": "Kahtal\u0131 M\u0131\u00e7\u0131",
+    "artist_id": 350660999,
+    "album": "Tan\u0131maz Olayd\u0131m / Son G\u00fcnlerde",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/8c/0d/6a/8c0d6a04-18c5-0535-0e50-bb45d1935041/888831738848.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/8c/0d/6a/8c0d6a04-18c5-0535-0e50-bb45d1935041/888831738848.jpg/600x600bb.jpg",
+    "duration": 377,
+    "genre": "Folk",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "914471055",
+    "title": "Naan Pogiren (From \"Naanayam\")\u00a0\u00a0\u00a0\u00a0",
+    "artist": "James Vasanthan, S.P. Balasubrahmanyam & K.S. Chithra",
+    "artist_id": 339974186,
+    "album": "Single",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Video118/v4/a9/98/c4/a998c446-b226-ab68-5fc4-d69cd1784d0b/SonyBMG.914471055.00000000000029534028.CROPPED.8864447587960101VIC.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Video118/v4/a9/98/c4/a998c446-b226-ab68-5fc4-d69cd1784d0b/SonyBMG.914471055.00000000000029534028.CROPPED.8864447587960101VIC.jpg/600x600bb.jpg",
+    "duration": 372,
+    "genre": "Tamil",
     "tempo": null,
     "energy": null
   },
@@ -23686,6 +26702,19 @@
     "energy": null
   },
   {
+    "id": "924035441",
+    "title": "Hey Mama (feat. Nicki Minaj, Bebe Rexha & Afrojack)",
+    "artist": "David Guetta",
+    "artist_id": 5557599,
+    "album": "Listen",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/38/32/4d383283-8a12-0b41-f0f8-151e32ac9533/dj.rivvwkds.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/4d/38/32/4d383283-8a12-0b41-f0f8-151e32ac9533/dj.rivvwkds.jpg/600x600bb.jpg",
+    "duration": 192,
+    "genre": "Dance",
+    "tempo": null,
+    "energy": null
+  },
+  {
     "id": "924427574",
     "title": "Amma Ani Kothaga",
     "artist": "Shashikiran & Shravana Bhargavi",
@@ -23708,6 +26737,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/cd/0e/eb/cd0eebf3-c5a5-e0a1-2bae-b3cd59f81b8b/cover.jpg/600x600bb.jpg",
     "duration": 281,
     "genre": "Telugu",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "925483943",
+    "title": "Sir Osthara",
+    "artist": "Suchitra & S.S. Thaman",
+    "artist_id": 117892816,
+    "album": "Businessman (Original Motion Picture Soundtrack)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7c/79/6d/7c796d70-d6f8-cf2c-8522-f0863cbec866/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/7c/79/6d/7c796d70-d6f8-cf2c-8522-f0863cbec866/cover.jpg/600x600bb.jpg",
+    "duration": 231,
+    "genre": "Soundtrack",
     "tempo": null,
     "energy": null
   },
@@ -23747,6 +26789,19 @@
     "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/85/1b/13/851b136e-735d-72b4-2538-ad4136b1f46b/886445003376.jpg/600x600bb.jpg",
     "duration": 271,
     "genre": "Turkish Pop",
+    "tempo": null,
+    "energy": null
+  },
+  {
+    "id": "950841368",
+    "title": "\u015eiir",
+    "artist": "Ayhan Alptekin",
+    "artist_id": 319076769,
+    "album": "Karadeniz Tavernas\u0131, Vol. 2",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/35/58/eb/3558eb25-0ce6-10da-9850-50f12f5b08f2/cover.jpg/200x200bb.jpg",
+    "cover_xl": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/35/58/eb/3558eb25-0ce6-10da-9850-50f12f5b08f2/cover.jpg/600x600bb.jpg",
+    "duration": 57,
+    "genre": "Worldwide",
     "tempo": null,
     "energy": null
   },

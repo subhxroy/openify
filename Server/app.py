@@ -1,10 +1,14 @@
 import json
+import logging
 import os
 import shutil
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.parse import quote
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("openify_server")
 
 
 import requests
@@ -22,14 +26,7 @@ from recommendation import (
     upsert_song_records,
 )
 
-def get_node_executable():
-    for name in ["node", "nodejs"]:
-        path = shutil.which(name)
-        if path:
-            return path
-    if os.path.exists("/usr/bin/node"):
-        return "/usr/bin/node"
-    return None
+
 
 
 
@@ -109,6 +106,57 @@ def _itunes_to_song(item):
     }
 
 
+def search_local_catalog(query):
+    import difflib
+    from recommendation.content import _read_catalog
+    
+    query_clean = query.strip().lower()
+    if not query_clean:
+        return []
+    
+    catalog = _read_catalog()
+    results = []
+    
+    query_words = query_clean.split()
+    
+    for song in catalog:
+        title = (song.get("title") or "").lower()
+        artist = (song.get("artist") or "").lower()
+        album = (song.get("album") or "").lower()
+        
+        matched = False
+        score = 0.0
+        
+        if query_clean in title or query_clean in artist or query_clean in album:
+            score = 1.0
+            matched = True
+        else:
+            word_matches = 0
+            for word in query_words:
+                if word in title or word in artist or word in album:
+                    word_matches += 1
+            
+            if len(query_words) > 0 and word_matches == len(query_words):
+                score = 0.95
+                matched = True
+            elif len(query_words) > 1 and word_matches >= len(query_words) - 1:
+                score = 0.8
+                matched = True
+            else:
+                title_ratio = difflib.SequenceMatcher(None, query_clean, title).ratio()
+                artist_ratio = difflib.SequenceMatcher(None, query_clean, artist).ratio()
+                ratio = max(title_ratio, artist_ratio)
+                if ratio > 0.55:
+                    score = ratio * 0.75
+                    matched = True
+        
+        if matched:
+            results.append((song, score))
+            
+    results.sort(key=lambda x: -x[1])
+    return [r[0] for r in results[:25]]
+
+
 def search_songs(query):
     if not query:
         return []
@@ -121,9 +169,26 @@ def search_songs(query):
         data = response.json()
         songs = [_itunes_to_song(item) for item in data.get("results", []) if item.get("trackName")]
         upsert_song_records(songs)
-        return inject_cache_status(songs)
-    except Exception:
-        return []
+        
+        # Merge with local catalog search for fuzzy matches
+        try:
+            local_results = search_local_catalog(query)
+            seen_ids = {song["id"] for song in songs}
+            for song in local_results:
+                if song["id"] not in seen_ids:
+                    songs.append(song)
+                    seen_ids.add(song["id"])
+        except Exception as local_err:
+            logger.warning("Local fuzzy search failed: %s", local_err)
+            
+        return inject_cache_status(songs[:25])
+    except Exception as e:
+        logger.exception("Search songs error for query: %s", query)
+        try:
+            local_results = search_local_catalog(query)
+            return inject_cache_status(local_results)
+        except Exception:
+            return []
 
 
 def get_chart():
@@ -143,8 +208,8 @@ def get_chart():
                 if "/id" in artist_link:
                     try:
                         artist_id = int(artist_link.split("/id")[-1].split("?")[0])
-                    except Exception:
-                        pass
+                    except Exception as e:
+                        logger.warning("Failed to parse artist ID: %s", e)
                 track_id = str(entry.get("id", {}).get("attributes", {}).get("im:id", "0") or "0")
                 genre = entry.get("category", {}).get("attributes", {}).get("label", "Music")
                 songs.append(
@@ -160,11 +225,13 @@ def get_chart():
                         "genre": genre,
                     }
                 )
-            except Exception:
+            except Exception as e:
+                logger.warning("Failed to parse entry: %s", e)
                 continue
         upsert_song_records(songs)
         return inject_cache_status(songs)
-    except Exception:
+    except Exception as e:
+        logger.exception("Get chart error")
         return []
 
 
@@ -185,7 +252,8 @@ def fetch_lyrics(artist, title):
                 if item.get("plainLyrics"):
                     return {"type": "plain", "text": item["plainLyrics"]}
         return {"type": "error", "text": "No lyrics found."}
-    except Exception:
+    except Exception as e:
+        logger.exception("Fetch lyrics error for artist: %s, title: %s", artist, title)
         return {"type": "error", "text": "Lyrics unavailable."}
 
 
@@ -204,7 +272,8 @@ def fetch_artist_tracks(artist_id, limit=20):
         if songs:
             upsert_song_records(songs)
         return songs
-    except Exception:
+    except Exception as e:
+        logger.exception("Fetch artist tracks error for artist_id: %s", artist_id)
         return []
 
 
@@ -231,7 +300,8 @@ def fetch_artist_search_results(artist_name, limit=25):
         if songs:
             upsert_song_records(songs)
         return songs
-    except Exception:
+    except Exception as e:
+        logger.exception("Fetch artist search results error for artist: %s", artist_name)
         return []
 
 
@@ -285,22 +355,20 @@ def download_task(song_id, artist, title):
         "quiet": True,
         "extractor_args": {"youtube": {"player_client": ["default", "-android_sdkless"]}},
     }
-    node_path = get_node_executable()
-    if node_path:
-        ydl_opts["javascript_executable"] = node_path
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([f"ytsearch1:{query}"])
         clear_cache_if_needed()
-    except Exception:
-        pass
+    except Exception as e:
+        logger.exception("Download task exception for song: %s (%s - %s)", song_id, artist, title)
 
 
 def build_proxy_response(url: str, incoming_headers, headers_json: str):
     try:
         try:
             yt_headers = json.loads(headers_json or "{}")
-        except Exception:
+        except Exception as e:
+            logger.warning("Failed to parse headers JSON: %s", e)
             yt_headers = {}
 
         headers = {
@@ -323,6 +391,7 @@ def build_proxy_response(url: str, incoming_headers, headers_json: str):
             headers=response_headers,
         )
     except Exception as exc:
+        logger.exception("Proxy stream error for URL %s", url)
         return PlainTextResponse(f"Stream error: {exc}", status_code=500)
 
 
@@ -345,9 +414,6 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             }
         },
     }
-    node_path = get_node_executable()
-    if node_path:
-        ydl_opts["javascript_executable"] = node_path
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
             info = ydl.extract_info(f"ytsearch1:{query}", download=False)
@@ -357,6 +423,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(video['url'])}&headers={quote(json.dumps(http_headers))}"
             return JSONResponse({"source": "youtube", "url": proxy_url, "direct_url": video["url"], "headers": http_headers})
         except Exception as exc:
+            logger.exception("Render play extract error for query: %s", query)
             return JSONResponse({"error": f"Song not found: {exc}"}, status_code=404)
 
 

@@ -228,6 +228,7 @@ button {
 
 /* List Row */
 .song-row {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -756,9 +757,6 @@ button {
   outline: none;
 }
 
-.volume-slider::-webkit-slider-value {
-  background: rgba(255, 255, 255, 0.7);
-}
 
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -1088,9 +1086,6 @@ button {
 }
 
 /* Song Row Add to Playlist Button & Remove Trigger */
-.song-row {
-  position: relative;
-}
 
 .song-row-actions {
   display: flex;
@@ -1248,4 +1243,55 @@ button {
   background-color: rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
+
+/* Control Button Active State */
+.control-btn.active {
+  color: var(--accent-color);
+}
+.control-btn.active:hover {
+  color: var(--accent-color);
+  filter: brightness(1.2);
+}
+
+/* Toast Notification */
+#toast-container {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  width: 100%;
+  max-w: 300px;
+  padding: 0 16px;
+}
+
+.toast {
+  background-color: rgba(33, 40, 66, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(8px);
+  text-align: center;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 

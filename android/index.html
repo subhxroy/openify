@@ -18,19 +18,19 @@
       theme: {
         extend: {
           colors: {
-            "primary-container": "#C4F266", // Lime Neon
-            "on-primary": "#0F0F0F",
-            surface: "#131313",
-            "surface-container": "#1E1E1E",
-            "surface-container-high": "#2A2A2A",
-            "surface-container-highest": "#353534",
-            background: "#0F0F0F",
-            "on-surface": "#E5E2E1",
-            "on-surface-variant": "#C4C7C8",
-            "outline-variant": "#444748",
+            "primary-container": "#0066cc", // Apple Action Blue
+            "on-primary": "#ffffff",
+            surface: "#1c1c1e", // Near-Black
+            "surface-container": "#252527",
+            "surface-container-high": "#2c2c2e",
+            "surface-container-highest": "#3a3a3c",
+            background: "#000000", // True Black
+            "on-surface": "#ffffff",
+            "on-surface-variant": "#cccccc",
+            "outline-variant": "#3a3a3c",
           },
           fontFamily: {
-            sans: ["Plus Jakarta Sans", "Inter", "sans-serif"]
+            sans: ["SF Pro Text", "Inter", "system-ui", "-apple-system", "sans-serif"]
           }
         }
       }
@@ -45,7 +45,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
-<body class="bg-background text-on-surface antialiased min-h-screen overflow-hidden select-none">
+<body class="bg-background text-on-surface antialiased min-h-dvh overflow-hidden select-none">
   
   <!-- Mesh Glow Background Layer -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-mesh-glow">
@@ -53,7 +53,7 @@
   </div>
 
   <!-- Main Container -->
-  <div class="relative z-10 w-full h-screen flex flex-col justify-between overflow-hidden">
+  <div class="relative z-10 w-full h-dvh flex flex-col justify-between overflow-hidden">
     
     <!-- Top App Header -->
     <header class="w-full flex items-center justify-between px-6 h-16 bg-background/60 backdrop-blur-xl border-b border-white/5 shrink-0 z-30">
@@ -68,11 +68,14 @@
         <button class="hover:opacity-80 active:scale-95 transition-transform" id="header-notifications-btn">
           <span class="material-symbols-outlined text-on-surface text-xl">notifications</span>
         </button>
+        <button class="hover:opacity-80 active:scale-95 transition-transform" id="header-settings-btn">
+          <span class="material-symbols-outlined text-on-surface text-xl">settings</span>
+        </button>
       </div>
     </header>
 
     <!-- Scrollable Content Area -->
-    <main class="flex-1 overflow-y-auto no-scrollbar relative z-20">
+    <main class="flex-1 overflow-y-auto no-scrollbar relative z-20 pb-44">
       
       <!-- HOME TAB CONTENT -->
       <section id="tab-content-home" class="tab-content px-6 py-6 space-y-8">
@@ -172,7 +175,7 @@
               <span class="font-bold text-lg text-white">Lofi</span>
               <span class="material-symbols-outlined absolute bottom-3 right-3 text-white/20 text-4xl group-hover:scale-110 transition-transform">bedtime</span>
             </div>
-            <div class="relative h-28 rounded-2xl overflow-hidden cursor-pointer group bg-gradient-to-br from-rose-500/80 to-pink-850/80 border border-white/5 p-4 category-card" data-query="Chill">
+            <div class="relative h-28 rounded-2xl overflow-hidden cursor-pointer group bg-gradient-to-br from-rose-500/80 to-pink-900/80 border border-white/5 p-4 category-card" data-query="Chill">
               <span class="font-bold text-lg text-white">Chill</span>
               <span class="material-symbols-outlined absolute bottom-3 right-3 text-white/20 text-4xl group-hover:scale-110 transition-transform">spa</span>
             </div>
@@ -328,27 +331,30 @@
             </div>
             <h2 id="profile-user-name" class="text-xl font-bold text-white tracking-tight text-center">Guest</h2>
             <p id="profile-user-email" class="text-xs text-on-surface-variant mt-0.5 text-center">guest@openify.com</p>
-            
-            <div class="mt-3 bg-surface-container-high px-4 py-1.5 rounded-full border border-primary-container/20 flex items-center gap-1.5 shadow-md">
-              <span class="material-symbols-outlined text-[13px] text-primary-container">verified</span>
-              <span class="text-[9px] uppercase font-bold tracking-widest text-primary-container">Premium Cloud Account</span>
+            <div class="flex gap-2.5 mt-3">
+              <div class="bg-surface-container-high px-4 py-1.5 rounded-full border border-primary-container/20 flex items-center gap-1.5 shadow-md">
+                <span class="material-symbols-outlined text-[13px] text-primary-container">verified</span>
+                <span class="text-[9px] uppercase font-bold tracking-widest text-primary-container">Premium Cloud Account</span>
+              </div>
+              <button id="profile-follow-btn" class="px-5 py-1.5 bg-primary-container text-on-primary font-bold text-[10px] uppercase tracking-wider rounded-full hover:bg-white active:scale-95 transition-all shadow-md">Follow</button>
             </div>
           </div>
 
           <!-- Statistics Grid -->
           <div class="grid grid-cols-3 gap-3">
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col items-center justify-center border border-white/5 cursor-pointer">
-              <span class="text-lg font-bold text-white">12.4k</span>
+            <div class="glass-panel rounded-xl p-3.5 flex flex-col items-center justify-center border border-white/5 cursor-pointer" id="profile-followers-card">
+              <span class="text-lg font-bold text-white" id="profile-followers-count">12.4k</span>
               <span class="text-[9px] text-on-surface-variant font-semibold tracking-wider uppercase mt-0.5">Followers</span>
             </div>
-            <div class="glass-panel rounded-xl p-3.5 flex flex-col items-center justify-center border border-white/5 cursor-pointer">
-              <span class="text-lg font-bold text-white">842</span>
+            <div class="glass-panel rounded-xl p-3.5 flex flex-col items-center justify-center border border-white/5 cursor-pointer" id="profile-following-card">
+              <span class="text-lg font-bold text-white" id="profile-following-count">842</span>
               <span class="text-[9px] text-on-surface-variant font-semibold tracking-wider uppercase mt-0.5">Following</span>
             </div>
             <div class="glass-panel rounded-xl p-3.5 flex flex-col items-center justify-center border border-white/5 cursor-pointer" id="profile-playlists-count-card">
               <span id="profile-playlists-count" class="text-lg font-bold text-white">0</span>
               <span class="text-[9px] text-on-surface-variant font-semibold tracking-wider uppercase mt-0.5">Playlists</span>
             </div>
+          </div>
           </div>
 
           <!-- Cloud Sync Dashboard Card -->
@@ -433,7 +439,7 @@
       </div>
       
       <!-- Global Error Indicator -->
-      <div id="global-error" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/95 px-6 space-y-6 hidden">
+      <div id="global-error" class="absolute inset-0 bg-background/95 flex flex-col items-center justify-center px-6 space-y-6 z-25 hidden">
         <span class="material-symbols-outlined text-red-400 text-6xl shadow-inner">error</span>
         <div class="text-center space-y-1.5 max-w-xs">
           <h3 class="text-lg font-bold text-white">Connection Error</h3>
@@ -445,7 +451,7 @@
     </main>
 
     <!-- Floating Mini Player (Slides up/shows dynamically) -->
-    <div id="mini-player" class="mx-6 mb-4 bg-surface-container-high/60 backdrop-blur-2xl rounded-2xl p-3 flex flex-col border border-white/5 shadow-2xl z-30 shrink-0 hidden relative overflow-hidden transition-all duration-300">
+    <div id="mini-player" class="fixed bottom-20 left-0 right-0 mx-6 mb-4 bg-surface-container-high/60 backdrop-blur-2xl rounded-2xl p-3 flex flex-col border border-white/5 shadow-2xl z-30 hidden overflow-hidden transition-all duration-300">
       <!-- Mini Progress Line -->
       <div class="absolute top-0 left-0 w-full h-[2px] bg-white/10">
         <div id="mini-progress-fill" class="h-full bg-primary-container w-0 shadow-[0_0_8px_rgba(196,242,102,0.8)]"></div>
@@ -482,20 +488,20 @@
     </div>
 
     <!-- Bottom Glassmorphic Navigation Bar -->
-    <nav class="w-full bg-background/80 backdrop-blur-xl border-t border-white/5 px-8 h-20 flex justify-around items-center shrink-0 z-30">
-      <button class="flex flex-col items-center gap-1 text-primary-container font-semibold tracking-wide hover:text-primary-container active:scale-95 transition-all nav-tab-btn" data-tab="home">
-        <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">home</span>
+    <nav class="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-white/5 px-8 h-20 flex justify-around items-center z-30">
+      <button class="nav-tab-btn active" data-tab="home">
+        <span class="material-symbols-outlined text-xl">home</span>
         <span class="text-[9px] uppercase tracking-wider">Home</span>
       </button>
-      <button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary-container active:scale-95 transition-all nav-tab-btn" data-tab="search">
+      <button class="nav-tab-btn" data-tab="search">
         <span class="material-symbols-outlined text-xl">search</span>
         <span class="text-[9px] uppercase tracking-wider">Search</span>
       </button>
-      <button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary-container active:scale-95 transition-all nav-tab-btn" data-tab="library">
+      <button class="nav-tab-btn" data-tab="library">
         <span class="material-symbols-outlined text-xl">library_music</span>
         <span class="text-[9px] uppercase tracking-wider">Library</span>
       </button>
-      <button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary-container active:scale-95 transition-all nav-tab-btn" data-tab="profile">
+      <button class="nav-tab-btn" data-tab="profile">
         <span class="material-symbols-outlined text-xl">settings_accessibility</span>
         <span class="text-[9px] uppercase tracking-wider">Account</span>
       </button>

@@ -48,13 +48,22 @@ let state = {
   // Lyrics state
   lyricsType: 'none',
   parsedLyrics: [],
-  activeLyricIndex: -1
+  activeLyricIndex: -1,
+
+  // Shuffle & Repeat
+  isShuffle: false,
+  repeatMode: 'none', // 'none' | 'all' | 'one'
+
+  // Social / Profile stats
+  followersCount: 12437,
+  followingCount: 842,
+  isFollowing: false
 };
 
 let currentObjectURL = null;
 
 // --- HTML5 Audio Setup ---
-const audio = new Audio();
+let audio = new Audio();
 audio.crossOrigin = "anonymous";
 let isDraggingSeek = false;
 let fadeInterval = null;
@@ -252,9 +261,7 @@ async function loadChartSongs() {
     return;
   }
   try {
-    const res = await fetch(`${BASE_URL}/api/mobile/chart`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.ok ? await res.json() : [];
+    const data = await res.json();
     state.songs = data;
     showLoading(false);
     
@@ -355,12 +362,21 @@ function getCurrentList() {
     return state.behaviorRecommendations;
   } else if (state.currentQueueSource === 'recommend_content') {
     return state.contentRecommendations;
+  } else if (state.currentQueueSource === 'recommend_merged') {
+    return [...state.behaviorRecommendations, ...state.contentRecommendations].slice(0, 6);
   } else {
     return state.songs;
   }
 }
 
 async function loadSong(index, shouldPlay = true) {
+  // Pause, remove listeners, and clean up the old Audio element to prevent memory/listener leaks
+  cleanupAudio(audio);
+  
+  audio = new Audio();
+  audio.crossOrigin = "anonymous";
+  setupAudioListeners();
+
   const list = getCurrentList();
   if (index < 0 || index >= list.length) return;
 
@@ -524,8 +540,21 @@ function triggerPlayNext() {
   const list = getCurrentList();
   if (list.length === 0) return;
 
+  if (state.isShuffle) {
+    let nextIndex = state.currentSongIndex;
+    if (list.length > 1) {
+      while (nextIndex === state.currentSongIndex) {
+        nextIndex = Math.floor(Math.random() * list.length);
+      }
+    } else {
+      nextIndex = 0;
+    }
+    loadSong(nextIndex, true);
+    return;
+  }
+
   // Up Next recommendations injection
-  if (state.upNextRecommendations.length > 0 && state.currentQueueSource !== 'playlist') {
+  if (state.upNextRecommendations.length > 0 && state.currentQueueSource === 'chart') {
     const nextRecSong = state.upNextRecommendations.shift();
     const activeList = getCurrentList();
     const existingIdx = activeList.findIndex(s => s.id === nextRecSong.id);
@@ -677,45 +706,79 @@ function toggleFavorite() {
 }
 
 // --- Audio Listener Setup ---
+function onAudioTimeUpdate() {
+  if (isDraggingSeek) return;
+  const progress = audio.duration ? (audio.currentTime / audio.duration) : 0;
+  updateSeekBarProgress(progress);
+  panelCurrentTime.textContent = formatTime(audio.currentTime);
+  updateLyricsHighlight();
+}
+
+function onAudioDurationChange() {
+  panelDurationTime.textContent = formatTime(audio.duration || 0);
+}
+
+function onAudioEnded() {
+  if (state.repeatMode === 'one') {
+    loadSong(state.currentSongIndex, true);
+  } else {
+    const list = getCurrentList();
+    if (state.repeatMode === 'none' && state.currentSongIndex === list.length - 1) {
+      setPlayingState(false);
+    } else {
+      playNext();
+    }
+  }
+}
+
+function onAudioWaiting() {
+  setBuffering(true);
+}
+
+function onAudioPlaying() {
+  setBuffering(false);
+  setPlayingState(true);
+}
+
+function onAudioStalled() {
+  setBuffering(true);
+}
+
+function onAudioCanPlay() {
+  setBuffering(false);
+}
+
+function onAudioError(e) {
+  console.error("Audio element error:", e);
+  setBuffering(false);
+  setPlayingState(false);
+}
+
 function setupAudioListeners() {
-  audio.addEventListener('timeupdate', () => {
-    if (isDraggingSeek) return;
-    const progress = audio.duration ? (audio.currentTime / audio.duration) : 0;
-    updateSeekBarProgress(progress);
-    panelCurrentTime.textContent = formatTime(audio.currentTime);
-    updateLyricsHighlight();
-  });
+  audio.addEventListener('timeupdate', onAudioTimeUpdate);
+  audio.addEventListener('durationchange', onAudioDurationChange);
+  audio.addEventListener('ended', onAudioEnded);
+  audio.addEventListener('waiting', onAudioWaiting);
+  audio.addEventListener('playing', onAudioPlaying);
+  audio.addEventListener('stalled', onAudioStalled);
+  audio.addEventListener('canplay', onAudioCanPlay);
+  audio.addEventListener('error', onAudioError);
+}
 
-  audio.addEventListener('durationchange', () => {
-    panelDurationTime.textContent = formatTime(audio.duration || 0);
-  });
-
-  audio.addEventListener('ended', () => {
-    playNext();
-  });
-
-  audio.addEventListener('waiting', () => {
-    setBuffering(true);
-  });
-
-  audio.addEventListener('playing', () => {
-    setBuffering(false);
-    setPlayingState(true);
-  });
-
-  audio.addEventListener('stalled', () => {
-    setBuffering(true);
-  });
-
-  audio.addEventListener('canplay', () => {
-    setBuffering(false);
-  });
-
-  audio.addEventListener('error', (e) => {
-    console.error("Audio element error:", e);
-    setBuffering(false);
-    setPlayingState(false);
-  });
+function cleanupAudio(oldAudio) {
+  if (!oldAudio) return;
+  try {
+    oldAudio.pause();
+  } catch(e) {}
+  oldAudio.removeEventListener('timeupdate', onAudioTimeUpdate);
+  oldAudio.removeEventListener('durationchange', onAudioDurationChange);
+  oldAudio.removeEventListener('ended', onAudioEnded);
+  oldAudio.removeEventListener('waiting', onAudioWaiting);
+  oldAudio.removeEventListener('playing', onAudioPlaying);
+  oldAudio.removeEventListener('stalled', onAudioStalled);
+  oldAudio.removeEventListener('canplay', onAudioCanPlay);
+  oldAudio.removeEventListener('error', onAudioError);
+  oldAudio.src = '';
 }
 
 function updateSeekBarProgress(progress) {
@@ -767,48 +830,63 @@ function renderTrendingSongs(songsList) {
 // Render recommended scroll (Home tab)
 function renderHomeScrollRecommendations() {
   recommendedScroll.innerHTML = '';
-  const merged = [...state.behaviorRecommendations, ...state.contentRecommendations].slice(0, 8);
+  const merged = [...state.behaviorRecommendations, ...state.contentRecommendations].slice(0, 6);
   if (merged.length === 0) {
-    recommendedScroll.innerHTML = `<div class="scroll-placeholder">Play a song to load recommendations!</div>`;
+    recommendedScroll.innerHTML = `<div class="glass-card rounded-xl p-6 text-center text-sm text-on-surface-variant">Play some songs to build customized recommendations.</div>`;
     return;
   }
 
   merged.forEach((song, i) => {
-    const card = document.createElement('div');
-    card.className = 'song-card';
-    const coverUrl = song.cover_medium || song.cover;
-    card.innerHTML = `
-      <div class="song-card-art-wrapper">
-        ${coverUrl ? `<img src="${coverUrl}" class="song-card-art" alt="${escapeHTML(song.title)}">` : `
-          <div class="song-card-fallback">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-            </svg>
-          </div>
-        `}
-        <div class="song-card-play-overlay">
-          <div class="song-card-play-btn">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-        </div>
+    const row = document.createElement('div');
+    row.className = 'mobile-song-row';
+    const coverUrl = song.cover || song.cover_small;
+    const formattedIdx = String(i + 1).padStart(2, '0');
+
+    row.innerHTML = `
+      <div class="row-index-container">
+        <span class="index-num">${formattedIdx}</span>
+        <svg class="row-playing-icon" viewBox="0 0 24 24" width="11" height="11" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
       </div>
-      <div class="song-card-title">${escapeHTML(song.title)}</div>
-      <div class="song-card-artist">${escapeHTML(song.artist)}</div>
+      ${coverUrl ? `<img src="${coverUrl}" class="row-art" alt="cover">` : `
+        <div class="row-art-fallback">
+          <span class="material-symbols-outlined text-[16px]">music_note</span>
+        </div>
+      `}
+      <div class="row-info">
+        <div class="row-title">${escapeHTML(song.title)}</div>
+        <div class="row-artist">${escapeHTML(song.artist)}</div>
+      </div>
+      <div class="row-actions">
+        <button class="row-action-btn add" title="Add to playlist">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+        </button>
+      </div>
     `;
-    card.addEventListener('click', () => {
-      // Map to behavior/content depending on index
-      if (i < state.behaviorRecommendations.length) {
-        state.currentQueueSource = 'recommend_behavior';
-        loadSong(i, true);
-      } else {
-        state.currentQueueSource = 'recommend_content';
-        loadSong(i - state.behaviorRecommendations.length, true);
-      }
+
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('.row-action-btn')) return;
+      state.currentQueueSource = 'recommend_merged';
+      loadSong(i, true);
     });
-    recommendedScroll.appendChild(card);
+
+    const addBtn = row.querySelector('.row-action-btn');
+    if (addBtn) {
+      addBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showAddToPlaylistOverlay(song);
+      });
+    }
+
+    recommendedScroll.appendChild(row);
   });
+}
+
+function renderForYouTab() {
+  // Stub function to prevent ReferenceError since there is no "For You" tab in the current mobile layout
 }
 
 // Render general songs lists (Search, Recommendations, Playlist details)
@@ -931,7 +1009,8 @@ function updateActiveRowHighlight() {
                      : (PlaylistStore.getPlaylists().find(p => p.id === state.currentPlaylistId)?.songs || [])
                    ) :
                    queueSource === 'recommend_behavior' ? state.behaviorRecommendations :
-                   queueSource === 'recommend_content' ? state.contentRecommendations : [];
+                   queueSource === 'recommend_content' ? state.contentRecommendations :
+                   queueSource === 'recommend_merged' ? [...state.behaviorRecommendations, ...state.contentRecommendations].slice(0, 6) : [];
       const song = list[idx];
       if (currentSong && song && song.id === currentSong.id && state.currentQueueSource === queueSource) {
         row.classList.add('active');
@@ -943,13 +1022,7 @@ function updateActiveRowHighlight() {
 
   highlightContainer(resultsList, 'search');
   highlightContainer(playlistSongsList, 'playlist');
-  
-  if (typeof recBehaviorList !== 'undefined' && recBehaviorList) {
-    highlightContainer(recBehaviorList, 'recommend_behavior');
-  }
-  if (typeof recContentList !== 'undefined' && recContentList) {
-    highlightContainer(recContentList, 'recommend_content');
-  }
+  highlightContainer(recommendedScroll, 'recommend_merged');
 }
 
 // Render Quick Playlists Grid (Home tab)
@@ -1082,23 +1155,7 @@ function showPlaylistDetail(playlistId) {
   renderSongsList(pl.songs, playlistSongsList, 'playlist', playlistId);
 }
 
-// Render recommendations tab lists
-function renderForYouTab() {
-  const behaviorList = state.behaviorRecommendations || [];
-  const contentList = state.contentRecommendations || [];
-
-  if (behaviorList.length === 0 && contentList.length === 0) {
-    recSections.classList.add('hidden');
-    recEmptyPlaceholder.classList.remove('hidden');
-    return;
-  }
-
-  recSections.classList.remove('hidden');
-  recEmptyPlaceholder.classList.add('hidden');
-
-  renderSongsList(behaviorList, recBehaviorList, 'recommend_behavior');
-  renderSongsList(contentList, recContentList, 'recommend_content');
-}
+// renderForYouTab stub is defined above to prevent crash as this layout uses Home tab scrolls for recommendations
 
 // --- Playlist Overlay Bottom Sheet ---
 function showAddToPlaylistOverlay(song) {
@@ -1458,9 +1515,11 @@ function setupUIEventListeners() {
     chip.addEventListener('click', () => {
       // Update active styling
       homeCategoryChips.forEach(c => {
-        c.className = 'flex-shrink-0 px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-surface-container/40 border border-white/10 text-on-surface-variant hover:text-on-surface active:scale-95 transition-transform cursor-pointer category-chip';
+        c.classList.remove('bg-primary-container', 'text-on-primary');
+        c.classList.add('bg-surface-container/40', 'border', 'border-white/10', 'text-on-surface-variant');
       });
-      chip.className = 'flex-shrink-0 px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary-container text-on-primary active:scale-95 transition-transform cursor-pointer category-chip';
+      chip.classList.add('bg-primary-container', 'text-on-primary');
+      chip.classList.remove('bg-surface-container/40', 'border', 'border-white/10', 'text-on-surface-variant');
 
       const category = chip.dataset.category;
       if (category === 'all') {
@@ -1474,6 +1533,131 @@ function setupUIEventListeners() {
       }
     });
   });
+
+  // Shuffle & Repeat buttons
+  const panelShuffleBtn = document.getElementById('panel-shuffle-btn');
+  const panelRepeatBtn = document.getElementById('panel-repeat-btn');
+  if (panelShuffleBtn) {
+    panelShuffleBtn.addEventListener('click', toggleShuffle);
+  }
+  if (panelRepeatBtn) {
+    panelRepeatBtn.addEventListener('click', toggleRepeat);
+  }
+
+  // Notifications icon click
+  const notificationsBtn = document.getElementById('header-notifications-btn');
+  if (notificationsBtn) {
+    notificationsBtn.addEventListener('click', () => {
+      showToast("You're up to date! No new notifications.");
+    });
+  }
+
+  // Settings gear & avatar redirects to profile/account
+  const headerSettingsBtn = document.getElementById('header-settings-btn');
+  if (headerSettingsBtn) {
+    headerSettingsBtn.addEventListener('click', () => {
+      switchTab('profile');
+    });
+  }
+  const headerAvatarContainer = document.getElementById('header-user-avatar-container');
+  if (headerAvatarContainer) {
+    headerAvatarContainer.addEventListener('click', () => {
+      switchTab('profile');
+    });
+  }
+
+  // Profile simulated Follow button
+  const profileFollowBtn = document.getElementById('profile-follow-btn');
+  if (profileFollowBtn) {
+    profileFollowBtn.addEventListener('click', () => {
+      state.isFollowing = !state.isFollowing;
+      if (state.isFollowing) {
+        state.followersCount++;
+        showToast("Following user");
+      } else {
+        state.followersCount--;
+        showToast("Unfollowed user");
+      }
+      updateProfileStats();
+    });
+  }
+  // Initialize profile stats rendering
+  updateProfileStats();
+}
+
+function toggleShuffle() {
+  state.isShuffle = !state.isShuffle;
+  const panelShuffleBtn = document.getElementById('panel-shuffle-btn');
+  if (panelShuffleBtn) {
+    if (state.isShuffle) {
+      panelShuffleBtn.classList.add('text-primary-container');
+      panelShuffleBtn.classList.remove('text-on-surface-variant');
+      showToast("Shuffle Enabled");
+    } else {
+      panelShuffleBtn.classList.remove('text-primary-container');
+      panelShuffleBtn.classList.add('text-on-surface-variant');
+      showToast("Shuffle Disabled");
+    }
+  }
+}
+
+function toggleRepeat() {
+  const panelRepeatBtn = document.getElementById('panel-repeat-btn');
+  const icon = panelRepeatBtn ? panelRepeatBtn.querySelector('span') : null;
+  
+  if (state.repeatMode === 'none') {
+    state.repeatMode = 'all';
+    if (panelRepeatBtn) {
+      panelRepeatBtn.classList.add('text-primary-container');
+      panelRepeatBtn.classList.remove('text-on-surface-variant');
+    }
+    if (icon) icon.textContent = 'repeat';
+    showToast("Repeat All");
+  } else if (state.repeatMode === 'all') {
+    state.repeatMode = 'one';
+    if (panelRepeatBtn) {
+      panelRepeatBtn.classList.add('text-primary-container');
+      panelRepeatBtn.classList.remove('text-on-surface-variant');
+    }
+    if (icon) icon.textContent = 'repeat_one';
+    showToast("Repeat One");
+  } else {
+    state.repeatMode = 'none';
+    if (panelRepeatBtn) {
+      panelRepeatBtn.classList.remove('text-primary-container');
+      panelRepeatBtn.classList.add('text-on-surface-variant');
+    }
+    if (icon) icon.textContent = 'repeat';
+    showToast("Repeat Disabled");
+  }
+}
+
+function updateProfileStats() {
+  const followersEl = document.getElementById('profile-followers-count');
+  const followingEl = document.getElementById('profile-following-count');
+  const followBtn = document.getElementById('profile-follow-btn');
+  
+  if (followersEl) {
+    if (state.followersCount >= 1000) {
+      followersEl.textContent = (state.followersCount / 1000).toFixed(1) + 'k';
+    } else {
+      followersEl.textContent = state.followersCount;
+    }
+  }
+  if (followingEl) {
+    followingEl.textContent = state.followingCount;
+  }
+  if (followBtn) {
+    if (state.isFollowing) {
+      followBtn.textContent = 'Following';
+      followBtn.classList.remove('bg-primary-container', 'text-on-primary');
+      followBtn.classList.add('bg-surface-container-high', 'text-on-surface-variant', 'border', 'border-white/10');
+    } else {
+      followBtn.textContent = 'Follow';
+      followBtn.classList.add('bg-primary-container', 'text-on-primary');
+      followBtn.classList.remove('bg-surface-container-high', 'text-on-surface-variant', 'border', 'border-white/10');
+    }
+  }
 }
 
 function handleSeekUpdate(touchOrClick, performSeek = false) {
@@ -1874,21 +2058,32 @@ let audioCtx = null;
 let analyser = null;
 let source = null;
 
+let mobileVisualizerRunning = false;
+
 function initMobileVisualizer() {
-  if (audioCtx) return;
-  
   try {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    audioCtx = new AudioContext();
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+    }
     
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 256;
+    if (!analyser) {
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 256;
+    }
+    
+    if (source) {
+      source.disconnect();
+    }
     
     source = audioCtx.createMediaElementSource(audio);
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
     
-    drawMobileVisualizer();
+    if (!mobileVisualizerRunning) {
+      mobileVisualizerRunning = true;
+      drawMobileVisualizer();
+    }
   } catch (e) {
     console.error("Failed to initialize Mobile AudioContext visualizer:", e);
   }
@@ -1901,6 +2096,10 @@ function drawMobileVisualizer() {
   const ctx = canvas.getContext('2d');
   const bufferLength = analyser.frequencyBinCount;
   const dataArray = new Uint8Array(bufferLength);
+
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width || 360;
+  canvas.height = rect.height || 360;
   
   function draw() {
     requestAnimationFrame(draw);
@@ -2132,18 +2331,33 @@ function setupFirebaseAuthStateObserver() {
       
       await syncPlaylistsData();
       
-      PlaylistStore.onSave = async (playlists) => {
+      PlaylistStore.onSave = async (playlists, affectedId, action) => {
         try {
+          if (!auth.currentUser) return;
           const userId = auth.currentUser.uid;
-          const batch = db.batch();
-          playlists.forEach(pl => {
-            const docRef = db.collection('users').doc(userId).collection('playlists').doc(pl.id);
-            batch.set(docRef, JSON.parse(JSON.stringify(pl)));
-          });
-          await batch.commit();
-          console.log("Firestore playlists successfully updated");
+          if (affectedId) {
+            const docRef = db.collection('users').doc(userId).collection('playlists').doc(affectedId);
+            if (action === 'delete') {
+              await docRef.delete();
+              console.log(`Firestore playlist ${affectedId} deleted successfully`);
+            } else {
+              const pl = playlists.find(p => p.id === affectedId);
+              if (pl) {
+                await docRef.set(JSON.parse(JSON.stringify(pl)));
+                console.log(`Firestore playlist ${affectedId} updated (${action}) successfully`);
+              }
+            }
+          } else {
+            const batch = db.batch();
+            playlists.forEach(pl => {
+              const docRef = db.collection('users').doc(userId).collection('playlists').doc(pl.id);
+              batch.set(docRef, JSON.parse(JSON.stringify(pl)));
+            });
+            await batch.commit();
+            console.log("Firestore playlists fully synchronized successfully");
+          }
         } catch (e) {
-          console.error("Failed to sync updated playlists to Firestore:", e);
+          console.error("Failed to sync playlists to Firestore:", e);
         }
       };
       

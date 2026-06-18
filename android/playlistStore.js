@@ -26,12 +26,12 @@ const PlaylistStore = {
     }
   },
 
-  savePlaylists(playlists) {
+  savePlaylists(playlists, affectedId = null, action = 'save') {
     try {
       localStorage.setItem(this.KEY, JSON.stringify(playlists));
       window.dispatchEvent(new Event('storage'));
       if (typeof this.onSave === 'function') {
-        this.onSave(playlists);
+        this.onSave(playlists, affectedId, action);
       }
     } catch (e) {
       console.error("Failed to save playlists:", e);
@@ -50,7 +50,7 @@ const PlaylistStore = {
       songs: []
     };
     playlists.push(newPlaylist);
-    this.savePlaylists(playlists);
+    this.savePlaylists(playlists, newPlaylist.id, 'create');
     return newPlaylist;
   },
 
@@ -58,7 +58,7 @@ const PlaylistStore = {
     if (id === 'favorites') return false; // Prevent deleting favorites
     let playlists = this.getPlaylists();
     playlists = playlists.filter(p => p.id !== id);
-    this.savePlaylists(playlists);
+    this.savePlaylists(playlists, id, 'delete');
     return true;
   },
 
@@ -68,7 +68,7 @@ const PlaylistStore = {
     const pl = playlists.find(p => p.id === id);
     if (pl) {
       pl.name = newName.trim();
-      this.savePlaylists(playlists);
+      this.savePlaylists(playlists, id, 'update');
       return true;
     }
     return false;
@@ -84,7 +84,7 @@ const PlaylistStore = {
       if (!exists) {
         // Deep copy song object to prevent reference pollution
         pl.songs.push(JSON.parse(JSON.stringify(song)));
-        this.savePlaylists(playlists);
+        this.savePlaylists(playlists, playlistId, 'update');
         return true;
       }
     }
@@ -96,7 +96,7 @@ const PlaylistStore = {
     const pl = playlists.find(p => p.id === playlistId);
     if (pl) {
       pl.songs = pl.songs.filter(s => s.id !== songId);
-      this.savePlaylists(playlists);
+      this.savePlaylists(playlists, playlistId, 'update');
       return true;
     }
     return false;
