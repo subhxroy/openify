@@ -131,9 +131,32 @@ async function loadChartSongs() {
     showLoading(false);
     
     if (state.songs.length > 0) {
-      renderSongsList(state.songs);
-      // Auto-load first song but do not play until user clicks
-      loadSong(0, false);
+      const lastSongId = localStorage.getItem('openify_last_song_id');
+      let loadedSaved = false;
+      if (lastSongId) {
+        const exists = state.songs.some(s => s.id === lastSongId);
+        if (!exists) {
+          const savedSongStr = localStorage.getItem('openify_last_song');
+          if (savedSongStr) {
+            try {
+              const savedSong = JSON.parse(savedSongStr);
+              state.songs.unshift(savedSong);
+            } catch (e) {}
+          }
+        }
+        
+        renderSongsList(state.songs);
+        const idx = state.songs.findIndex(s => s.id === lastSongId);
+        if (idx !== -1) {
+          loadSong(idx, false);
+          loadedSaved = true;
+        }
+      }
+      
+      if (!loadedSaved) {
+        renderSongsList(state.songs);
+        loadSong(0, false);
+      }
     } else {
       showError(true, "No chart songs found on server.");
     }
@@ -377,6 +400,21 @@ function loadSong(index, shouldPlay = true) {
   audio.crossOrigin = "anonymous";
   setupAudioListeners();
 
+  if (!shouldPlay) {
+    audio.addEventListener('loadedmetadata', () => {
+      const savedTime = localStorage.getItem('openify_last_time');
+      if (savedTime) {
+        const timeVal = parseFloat(savedTime);
+        audio.currentTime = timeVal;
+        setTimeout(() => {
+          const progress = audio.duration ? (audio.currentTime / audio.duration) : 0;
+          updateSeekBarProgress(progress);
+          currentTimeText.textContent = formatTime(audio.currentTime);
+        }, 150);
+      }
+    }, { once: true });
+  }
+
   const list = getCurrentList();
   if (index < 0 || index >= list.length) return;
 
@@ -391,6 +429,10 @@ function loadSong(index, shouldPlay = true) {
 
   state.currentSongIndex = index;
   const song = list[index];
+
+  // Save to localStorage
+  localStorage.setItem('openify_last_song_id', song.id);
+  localStorage.setItem('openify_last_song', JSON.stringify(song));
 
   // Update Right Panel UI
   songTitleText.textContent = song.title;
@@ -589,11 +631,18 @@ function setBuffering(buffering) {
 }
 
 // --- Audio Listeners ---
+let lastTimeSave = 0;
 function onAudioTimeUpdate() {
   if (isDraggingSeek) return;
   const progress = audio.duration ? (audio.currentTime / audio.duration) : 0;
   updateSeekBarProgress(progress);
   currentTimeText.textContent = formatTime(audio.currentTime);
+
+  const now = Date.now();
+  if (now - lastTimeSave > 2000) {
+    localStorage.setItem('openify_last_time', audio.currentTime);
+    lastTimeSave = now;
+  }
 }
 
 function onAudioDurationChange() {
