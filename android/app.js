@@ -258,7 +258,8 @@ async function loadChartSongs() {
   showError(false);
   if (checkOffline()) {
     showLoading(false);
-    showError(true, "App is in simulated offline mode. Play downloaded tracks in the Library tab.");
+    showToast("App is in Offline Mode.");
+    renderTrendingSongs([]);
     return;
   }
   try {
@@ -798,6 +799,10 @@ function updateSeekBarProgress(progress) {
 // Render trending horizontal scroll
 function renderTrendingSongs(songsList) {
   trendingScroll.innerHTML = '';
+  if (!songsList || songsList.length === 0) {
+    trendingScroll.innerHTML = '<div class="text-center w-full py-6 text-on-surface-variant text-xs font-semibold">Offline. Play downloaded songs in Library tab.</div>';
+    return;
+  }
   songsList.forEach((song, i) => {
     const card = document.createElement('div');
     card.className = 'song-card';
