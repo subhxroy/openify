@@ -77,7 +77,13 @@ let currentObjectURL = null;
 
 // --- HTML5 Audio Setup ---
 let audio = new Audio();
-audio.crossOrigin = "anonymous";
+const isInitialIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isInitialSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isInitialIOS || isInitialSafari) {
+  audio.removeAttribute('crossorigin');
+} else {
+  audio.crossOrigin = "anonymous";
+}
 let isDraggingSeek = false;
 let fadeInterval = null;
 let targetVolume = 0.75;
@@ -449,7 +455,11 @@ async function loadSong(index, shouldPlay = true) {
     cleanupAudio(audio);
   }
   setupAudioListeners();
-  audio.crossOrigin = "anonymous";
+  if (isIOS || isSafari) {
+    audio.removeAttribute('crossorigin');
+  } else {
+    audio.crossOrigin = "anonymous";
+  }
 
   // Bless the audio element synchronously during the user gesture callback
   // to bypass iOS Safari's asynchronous playback restriction.
