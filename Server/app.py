@@ -353,6 +353,7 @@ def download_task(song_id, artist, title):
         "cookiefile": str(BASE_DIR / "cookies.txt"),
         "noplaylist": True,
         "quiet": True,
+        "js_runtimes": {"node": {}},
         "extractor_args": {"youtube": {"player_client": ["default", "-android_sdkless"]}},
     }
     try:
@@ -408,6 +409,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
         "cookiefile": str(BASE_DIR / "cookies.txt"),
         "noplaylist": True,
         "quiet": False,
+        "js_runtimes": {"node": {}},
         "extractor_args": {
             "youtube": {
                 "player_client": ["default", "-android_sdkless"],
