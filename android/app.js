@@ -419,11 +419,21 @@ async function loadSong(index, shouldPlay = true) {
     clearInterval(fadeInterval);
     fadeInterval = null;
   }
-  cleanupAudio(audio);
-  
-  audio = new Audio();
-  audio.crossOrigin = "anonymous";
+  if (audio) {
+    cleanupAudio(audio);
+  }
   setupAudioListeners();
+  audio.crossOrigin = "anonymous";
+
+  // Bless the audio element synchronously during the user gesture callback
+  // to bypass iOS Safari's asynchronous playback restriction.
+  if (shouldPlay && audio) {
+    try {
+      audio.play().then(() => {
+        audio.pause();
+      }).catch(() => {});
+    } catch (e) {}
+  }
 
   if (!shouldPlay) {
     audio.addEventListener('loadedmetadata', () => {
@@ -2540,6 +2550,14 @@ function initializePreferences() {
 }
 
 function initMobileVisualizer() {
+  // Check if we are on iOS/Safari, or if visualizer style is disabled.
+  // If so, we bypass Web Audio API to prevent audio playback block / silence bugs.
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isIOS || isSafari || visualizerStyle === 'none') {
+    return;
+  }
+
   try {
     if (!audioCtx) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -2571,16 +2589,14 @@ function initMobileVisualizer() {
       eqTreble.gain.value = 0;
     }
     
-    if (source) {
-      source.disconnect();
+    if (!source) {
+      source = audioCtx.createMediaElementSource(audio);
+      source.connect(eqBass);
+      eqBass.connect(eqMid);
+      eqMid.connect(eqTreble);
+      eqTreble.connect(analyser);
+      analyser.connect(audioCtx.destination);
     }
-    
-    source = audioCtx.createMediaElementSource(audio);
-    source.connect(eqBass);
-    eqBass.connect(eqMid);
-    eqMid.connect(eqTreble);
-    eqTreble.connect(analyser);
-    analyser.connect(audioCtx.destination);
 
     // Apply saved EQ preset
     const savedPreset = localStorage.getItem('openify_eq_preset') || 'flat';
