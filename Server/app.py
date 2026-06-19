@@ -395,11 +395,16 @@ def build_proxy_response(url: str, incoming_headers, headers_json: str):
         return PlainTextResponse(f"Stream error: {exc}", status_code=500)
 
 
+def get_base_url(request: Request) -> str:
+    scheme = request.headers.get("x-forwarded-proto", request.url.scheme)
+    return f"{scheme}://{request.url.netloc}"
+
+
 def render_play_response(request: Request, song_id: str, artist: str, title: str):
     filename = f"{song_id}.m4a"
     filepath = CACHE_DIR / filename
     if filepath.exists():
-        base_url = str(request.base_url).rstrip("/")
+        base_url = get_base_url(request)
         return JSONResponse({"source": "local", "url": f"{base_url}/api/mobile/stream_cache/{filename}"})
 
     query = f"{artist} - {title} audio"
@@ -419,7 +424,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             info = ydl.extract_info(f"ytsearch1:{query}", download=False)
             video = info["entries"][0] if "entries" in info else info
             http_headers = video.get("http_headers", {})
-            base_url = str(request.base_url).rstrip("/")
+            base_url = get_base_url(request)
             proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(video['url'])}&headers={quote(json.dumps(http_headers))}"
             return JSONResponse({"source": "youtube", "url": proxy_url, "direct_url": video["url"], "headers": http_headers})
         except Exception as exc:

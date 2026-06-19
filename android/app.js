@@ -572,7 +572,11 @@ async function loadSong(index, shouldPlay = true) {
       return res.json();
     })
     .then(streamInfo => {
-      audio.src = streamInfo.url;
+      let finalUrl = streamInfo.url;
+      if (BASE_URL.startsWith('https://') && finalUrl.startsWith('http://')) {
+        finalUrl = finalUrl.replace('http://', 'https://');
+      }
+      audio.src = finalUrl;
       if (shouldPlay) {
         audio.volume = 0;
         initMobileVisualizer();
