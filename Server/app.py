@@ -528,15 +528,23 @@ def download_task(song_id, artist, title):
         if TEMP_COOKIE_FILE:
             ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
             
+        # Resolve search using unblocked helpers
+        video_id = search_youtube_via_invidious(query)
+        if not video_id:
+            video_id = search_youtube_via_piped(query)
+            
+        target = f"https://www.youtube.com/watch?v={video_id}" if video_id else f"ytsearch1:{query}"
+        logger.info(f"Downloading stream for target: {target} (query: {query})")
+        
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([f"ytsearch1:{query}"])
+                ydl.download([target])
         except Exception as download_exc:
-            logger.warning(f"Download failed with cookies: {download_exc}. Trying fallback without cookies...")
+            logger.warning(f"Download failed: {download_exc}. Trying fallback without cookies...")
             ydl_opts_fallback = dict(ydl_opts)
             ydl_opts_fallback.pop("cookiefile", None)
             with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
-                ydl.download([f"ytsearch1:{query}"])
+                ydl.download([target])
                 
         clear_cache_if_needed()
         logger.info(f"Successfully downloaded and cached song {song_id} to disk")
@@ -642,20 +650,28 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
         
     extracted_info = None
     
+    # Resolve search using unblocked helpers
+    video_id = search_youtube_via_invidious(query)
+    if not video_id:
+        video_id = search_youtube_via_piped(query)
+        
+    target = f"https://www.youtube.com/watch?v={video_id}" if video_id else f"ytsearch1:{query}"
+    logger.info(f"Extracting stream for target: {target} (query: {query})")
+    
     try:
         # Try extracting with cookies
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            extracted_info = ydl.extract_info(f"ytsearch1:{query}", download=False)
+            extracted_info = ydl.extract_info(target, download=False)
     except Exception as exc:
-        logger.warning(f"Extraction failed with cookies: {exc}. Trying fallback without cookies...")
+        logger.warning(f"Extraction failed: {exc}. Trying fallback without cookies...")
         # Fallback without cookies
         ydl_opts_fallback = dict(ydl_opts)
         ydl_opts_fallback.pop("cookiefile", None)
         try:
             with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
-                extracted_info = ydl.extract_info(f"ytsearch1:{query}", download=False)
+                extracted_info = ydl.extract_info(target, download=False)
         except Exception as fallback_exc:
-            logger.exception("Render play extract error for query: %s", query)
+            logger.exception("Render play extract error for target: %s", target)
             return JSONResponse({"error": f"Song not found: {fallback_exc}"}, status_code=404)
 
     if extracted_info:
@@ -769,24 +785,69 @@ def debug_cookies():
     }
 
 
+def search_youtube_via_invidious(query: str) -> str:
+    import requests
+    instances = [
+        "https://invidious.projectsegfaut.im",
+        "https://yewtu.be",
+        "https://invidious.privacydev.net",
+        "https://invidious.nerdvpn.de",
+        "https://invidious.slipfox.xyz",
+        "https://invidious.esmailelbob.xyz",
+    ]
+    for base in instances:
+        url = f"{base}/api/v1/search?q={requests.utils.quote(query)}&type=video"
+        try:
+            r = requests.get(url, timeout=5)
+            if r.status_code == 200:
+                results = r.json()
+                if results and isinstance(results, list) and len(results) > 0:
+                    video_id = results[0].get("videoId")
+                    if video_id:
+                        logger.info(f"Resolved search via Invidious {base}: {video_id}")
+                        return video_id
+        except Exception:
+            continue
+    return None
+
+
+def search_youtube_via_piped(query: str) -> str:
+    import requests
+    instances = [
+        "https://pipedapi.kavin.rocks",
+        "https://piped-api.garudalinux.org",
+        "https://pipedapi.lunar.icu",
+        "https://api.piped.yt",
+    ]
+    for base in instances:
+        url = f"{base}/search?q={requests.utils.quote(query)}&filter=videos"
+        try:
+            r = requests.get(url, timeout=5)
+            if r.status_code == 200:
+                results = r.json()
+                items = results.get("items", [])
+                if items:
+                    url_path = items[0].get("url", "")
+                    if "v=" in url_path:
+                        video_id = url_path.split("v=")[-1]
+                        logger.info(f"Resolved search via Piped {base}: {video_id}")
+                        return video_id
+        except Exception:
+            continue
+    return None
+
+
 @app.get("/api/mobile/test_extract")
-def test_extract(video_id: str = "EBXHe2mHDI0"):
+def test_extract(video_id: str = "EBXHe2mHDI0", query: str = "Shibu - TAUBA audio"):
     import yt_dlp
     
     results = {}
+    results["invidious_search"] = search_youtube_via_invidious(query)
+    results["piped_search"] = search_youtube_via_piped(query)
     
-    # Test cases
     cases = [
-        ("ios_no_cookies", ["ios"], False),
-        ("ios_with_cookies", ["ios"], True),
         ("android_music_no_cookies", ["android_music"], False),
-        ("android_music_with_cookies", ["android_music"], True),
-        ("tv_no_cookies", ["tv"], False),
-        ("tv_with_cookies", ["tv"], True),
-        ("web_no_cookies", ["web"], False),
-        ("web_with_cookies", ["web"], True),
         ("default_no_cookies", ["default", "-android_sdkless"], False),
-        ("default_with_cookies", ["default", "-android_sdkless"], True),
     ]
     
     for name, clients, use_cookies in cases:
@@ -797,8 +858,6 @@ def test_extract(video_id: str = "EBXHe2mHDI0"):
         }
         if clients:
             ydl_opts["extractor_args"] = {"youtube": {"player_client": clients}}
-        if use_cookies and TEMP_COOKIE_FILE:
-            ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
             
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
