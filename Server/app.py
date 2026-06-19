@@ -730,6 +730,40 @@ def mobile_stream_cache(filename: str):
     return FileResponse(filepath)
 
 
+@app.get("/api/mobile/debug_cookies")
+def debug_cookies():
+    import os
+    from pathlib import Path
+    
+    cookies_txt_exists = Path("cookies.txt").exists()
+    cookies_txt_size = Path("cookies.txt").stat().st_size if cookies_txt_exists else 0
+    
+    data_cookies_exists = Path("data/cookies.txt").exists()
+    data_cookies_size = Path("data/cookies.txt").stat().st_size if data_cookies_exists else 0
+    
+    temp_file_exists = False
+    temp_file_content_preview = ""
+    if TEMP_COOKIE_FILE:
+        p = Path(TEMP_COOKIE_FILE)
+        temp_file_exists = p.exists()
+        if temp_file_exists:
+            try:
+                temp_file_content_preview = p.read_text(encoding="utf-8")[:300]
+            except Exception as e:
+                temp_file_content_preview = f"Error reading: {e}"
+                
+    return {
+        "TEMP_COOKIE_FILE_path": TEMP_COOKIE_FILE,
+        "TEMP_COOKIE_FILE_exists": temp_file_exists,
+        "TEMP_COOKIE_FILE_preview": temp_file_content_preview,
+        "cookies_txt_exists": cookies_txt_exists,
+        "cookies_txt_size": cookies_txt_size,
+        "data_cookies_exists": data_cookies_exists,
+        "data_cookies_size": data_cookies_size,
+        "env_youtube_cookies_exists": bool(os.getenv("YOUTUBE_COOKIES")),
+    }
+
+
 @app.get("/api/mobile/stream_proxy")
 def mobile_stream_proxy(request: Request, url: str = "", headers: str = "{}"):
     if not url:
