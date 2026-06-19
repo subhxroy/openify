@@ -511,13 +511,11 @@ def download_task(song_id, artist, title):
             return
         query = f"{artist} - {title} audio"
         ydl_opts = {
-            "format": "bestaudio[ext=m4a]/bestaudio/best",
+            "format": "bestaudio[ext=m4a]/best",
             "outtmpl": str(filepath),
             "noplaylist": True,
             "quiet": True,
-            "js_runtimes": {"node": {}},
-            "remote_components": ["ejs:github"],
-            "extractor_args": {"youtube": {"player_client": ["android_music", "web"]}},
+            "extractor_args": {"youtube": {"client": ["android", "ios"]}},
         }
         
         proxy_env = os.getenv("YOUTUBE_PROXY")
@@ -630,14 +628,12 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
     # 3. Live extraction
     query = f"{artist} - {title} audio"
     ydl_opts = {
-        "format": "bestaudio[ext=m4a]/bestaudio/best",
+        "format": "bestaudio[ext=m4a]/best",
         "noplaylist": True,
-        "quiet": False,
-        "js_runtimes": {"node": {}},
-        "remote_components": ["ejs:github"],
+        "quiet": True,
         "extractor_args": {
             "youtube": {
-                "player_client": ["android_music", "web"],
+                "client": ["android", "ios"],
             }
         },
     }
@@ -878,11 +874,9 @@ def search_youtube_via_ytdlp(query: str) -> str | None:
         "extract_flat": True,
         "playlist_items": "1",
         "quiet": True,
-        "js_runtimes": {"node": {}},
-        "remote_components": ["ejs:github"],
         "extractor_args": {
             "youtube": {
-                "player_client": ["android_music", "web"],
+                "client": ["android", "ios"],
             }
         },
     }
