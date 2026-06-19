@@ -7,7 +7,15 @@
     if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       window.location.href = window.location.href.replace('http:', 'https:');
     }
+    // Register Service Worker for PWA/Offline capabilities
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => console.warn('SW registration failed:', err));
+      });
+    }
   </script>
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="manifest.json" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Openify - Open Source Music Player</title>
   
@@ -459,7 +467,7 @@
           <!-- Developer Branding Footer -->
           <div class="text-center pt-8 pb-4 border-t border-white/5 opacity-60">
             <p class="text-xs text-on-surface-variant flex items-center justify-center gap-1">
-              Made with 🤍 by 
+              Developed by 
               <a href="https://github.com/subhxroy" target="_blank" rel="noopener noreferrer" class="text-white hover:text-primary-container hover:underline font-bold transition-colors">
                 subhxroy
               </a>

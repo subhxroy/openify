@@ -23,6 +23,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // --- State Management ---
+let isRestoringState = false;
 let state = {
   songs: [],
   currentSongIndex: -1,
@@ -231,6 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
+    // Restore saved state (tabs, queue, search results, etc.) if any
+    if (typeof loadAppState === 'function') {
+      loadAppState();
+    }
+    
     loadChartSongs();
     renderQuickPlaylists();
     renderLibraryPlaylists();
@@ -269,32 +275,14 @@ async function loadChartSongs() {
     state.songs = data;
     showLoading(false);
     
+    renderTrendingSongs(state.songs);
+    
     if (state.songs.length > 0) {
-      const lastSongId = localStorage.getItem('openify_last_song_id');
-      let loadedSaved = false;
-      if (lastSongId) {
-        const exists = state.songs.some(s => s.id === lastSongId);
-        if (!exists) {
-          const savedSongStr = localStorage.getItem('openify_last_song');
-          if (savedSongStr) {
-            try {
-              const savedSong = JSON.parse(savedSongStr);
-              state.songs.unshift(savedSong);
-            } catch (e) {}
-          }
-        }
-        
-        renderTrendingSongs(state.songs);
-        const idx = state.songs.findIndex(s => s.id === lastSongId);
-        if (idx !== -1) {
-          loadSong(idx, false);
-          loadedSaved = true;
-        }
-      }
-      
-      if (!loadedSaved) {
-        renderTrendingSongs(state.songs);
+      // If no song is currently loaded, load the first chart song as default
+      if (state.currentSongIndex === -1) {
         loadSong(0, false);
+      } else {
+        updateActiveRowHighlight();
       }
     } else {
       showError(true, "No chart songs found on server.");
@@ -309,9 +297,11 @@ async function loadChartSongs() {
 async function performSearch(query) {
   if (!query) {
     state.searchText = '';
+    state.searchResults = [];
     categoriesContainer.classList.remove('hidden');
     resultsContainer.classList.add('hidden');
     searchClearBtn.classList.add('hidden');
+    saveAppState();
     return;
   }
 
@@ -333,6 +323,7 @@ async function performSearch(query) {
     showLoading(false);
     
     renderSongsList(state.searchResults, resultsList, 'search');
+    saveAppState();
   } catch (err) {
     showLoading(false);
     renderSongsList([], resultsList, 'search');
@@ -433,6 +424,14 @@ async function loadSong(index, shouldPlay = true) {
 
   state.currentSongIndex = index;
   const song = list[index];
+
+  // Update system media session controls and save state
+  if (typeof updateMediaSession === 'function') {
+    updateMediaSession(song);
+  }
+  if (typeof saveAppState === 'function') {
+    saveAppState();
+  }
 
   // Save to localStorage
   localStorage.setItem('openify_last_song_id', song.id);
@@ -700,6 +699,10 @@ function setPlayingState(playing) {
     // Turntable animations
     mobileVinylDisc.classList.remove('playing');
     mobileNeedleArm.classList.remove('playing');
+  }
+  
+  if (typeof updatePlaybackState === 'function') {
+    updatePlaybackState();
   }
 }
 
@@ -1210,6 +1213,7 @@ function showPlaylistDetail(playlistId) {
 
   // Render song rows
   renderSongsList(pl.songs, playlistSongsList, 'playlist', playlistId);
+  saveAppState();
 }
 
 // renderForYouTab stub is defined above to prevent crash as this layout uses Home tab scrolls for recommendations
@@ -1275,6 +1279,11 @@ function switchTab(tabName) {
     renderQuickPlaylists();
   } else if (tabName === 'library') {
     renderLibraryPlaylists();
+  }
+
+  // Save app state
+  if (typeof saveAppState === 'function') {
+    saveAppState();
   }
 }
 
@@ -1348,6 +1357,7 @@ function setupUIEventListeners() {
   playlistBackBtn.addEventListener('click', () => {
     playlistDetailPanel.classList.remove('active');
     renderLibraryPlaylists();
+    saveAppState();
   });
 
   // Playlist delete
@@ -1476,6 +1486,7 @@ function setupUIEventListeners() {
     targetVolume = vol;
     audio.volume = vol;
     updateVolumeIcon(vol);
+    saveAppState();
   });
 
   panelVolumeToggle.addEventListener('click', () => {
@@ -1490,6 +1501,7 @@ function setupUIEventListeners() {
       panelVolMute.classList.remove('hidden');
       panelVolumeSlider.value = 0;
     }
+    saveAppState();
   });
 
   // Seekbar seeking panel
@@ -1668,48 +1680,27 @@ function setupUIEventListeners() {
 
 function toggleShuffle() {
   state.isShuffle = !state.isShuffle;
-  const panelShuffleBtn = document.getElementById('panel-shuffle-btn');
-  if (panelShuffleBtn) {
-    if (state.isShuffle) {
-      panelShuffleBtn.classList.add('text-primary-container');
-      panelShuffleBtn.classList.remove('text-on-surface-variant');
-      showToast("Shuffle Enabled");
-    } else {
-      panelShuffleBtn.classList.remove('text-primary-container');
-      panelShuffleBtn.classList.add('text-on-surface-variant');
-      showToast("Shuffle Disabled");
-    }
+  updateShuffleRepeatUI();
+  showToast(state.isShuffle ? "Shuffle Enabled" : "Shuffle Disabled");
+  if (typeof saveAppState === 'function') {
+    saveAppState();
   }
 }
 
 function toggleRepeat() {
-  const panelRepeatBtn = document.getElementById('panel-repeat-btn');
-  const icon = panelRepeatBtn ? panelRepeatBtn.querySelector('span') : null;
-  
   if (state.repeatMode === 'none') {
     state.repeatMode = 'all';
-    if (panelRepeatBtn) {
-      panelRepeatBtn.classList.add('text-primary-container');
-      panelRepeatBtn.classList.remove('text-on-surface-variant');
-    }
-    if (icon) icon.textContent = 'repeat';
     showToast("Repeat All");
   } else if (state.repeatMode === 'all') {
     state.repeatMode = 'one';
-    if (panelRepeatBtn) {
-      panelRepeatBtn.classList.add('text-primary-container');
-      panelRepeatBtn.classList.remove('text-on-surface-variant');
-    }
-    if (icon) icon.textContent = 'repeat_one';
     showToast("Repeat One");
   } else {
     state.repeatMode = 'none';
-    if (panelRepeatBtn) {
-      panelRepeatBtn.classList.remove('text-primary-container');
-      panelRepeatBtn.classList.add('text-on-surface-variant');
-    }
-    if (icon) icon.textContent = 'repeat';
     showToast("Repeat Disabled");
+  }
+  updateShuffleRepeatUI();
+  if (typeof saveAppState === 'function') {
+    saveAppState();
   }
 }
 
@@ -2795,3 +2786,234 @@ function showToast(message) {
     }, 300);
   }, 3000);
 }
+
+// --- State Persistence (Local Storage Cache) ---
+function saveAppState() {
+  if (isRestoringState) return;
+  const stateToSave = {
+    currentSongIndex: state.currentSongIndex,
+    activeTab: state.activeTab,
+    currentPlaylistId: state.currentPlaylistId,
+    currentQueueSource: state.currentQueueSource,
+    searchText: state.searchText,
+    searchResults: state.searchResults,
+    playbackHistory: state.playbackHistory,
+    upNextRecommendations: state.upNextRecommendations,
+    behaviorRecommendations: state.behaviorRecommendations,
+    contentRecommendations: state.contentRecommendations,
+    songs: state.songs,
+    isShuffle: state.isShuffle,
+    repeatMode: state.repeatMode,
+    isPlaylistDetailActive: playlistDetailPanel ? playlistDetailPanel.classList.contains('active') : false,
+    volume: targetVolume,
+    isMuted: audio ? audio.muted : false
+  };
+  localStorage.setItem('openify_app_state', JSON.stringify(stateToSave));
+}
+
+function loadAppState() {
+  const savedStateStr = localStorage.getItem('openify_app_state');
+  if (!savedStateStr) return;
+  isRestoringState = true;
+  try {
+    const savedState = JSON.parse(savedStateStr);
+    
+    state.songs = savedState.songs || state.songs;
+    state.currentSongIndex = savedState.currentSongIndex !== undefined ? savedState.currentSongIndex : state.currentSongIndex;
+    state.activeTab = savedState.activeTab || state.activeTab;
+    state.currentPlaylistId = savedState.currentPlaylistId || state.currentPlaylistId;
+    state.currentQueueSource = savedState.currentQueueSource || state.currentQueueSource;
+    state.searchText = savedState.searchText || '';
+    state.searchResults = savedState.searchResults || [];
+    state.playbackHistory = savedState.playbackHistory || [];
+    state.upNextRecommendations = savedState.upNextRecommendations || [];
+    state.behaviorRecommendations = savedState.behaviorRecommendations || [];
+    state.contentRecommendations = savedState.contentRecommendations || [];
+    state.isShuffle = savedState.isShuffle !== undefined ? savedState.isShuffle : state.isShuffle;
+    state.repeatMode = savedState.repeatMode || state.repeatMode;
+    
+    // Switch to active tab
+    if (state.activeTab) {
+      switchTab(state.activeTab);
+    }
+    
+    // Restore search input and results if search text is present
+    if (state.searchText && searchInput) {
+      searchInput.value = state.searchText;
+      searchClearBtn.classList.remove('hidden');
+      categoriesContainer.classList.add('hidden');
+      resultsContainer.classList.remove('hidden');
+      renderSongsList(state.searchResults, resultsList, 'search');
+    }
+    
+    // Restore playlist detail panel if active
+    if (state.activeTab === 'library' && state.currentPlaylistId && savedState.isPlaylistDetailActive) {
+      showPlaylistDetail(state.currentPlaylistId);
+    }
+
+    // Restore volume and mute states
+    if (savedState.volume !== undefined) {
+      targetVolume = savedState.volume;
+      audio.volume = targetVolume;
+      if (panelVolumeSlider) panelVolumeSlider.value = targetVolume;
+      updateVolumeIcon(targetVolume);
+    }
+    if (savedState.isMuted !== undefined) {
+      audio.muted = savedState.isMuted;
+      if (audio.muted) {
+        panelVolHigh.classList.add('hidden');
+        panelVolMute.classList.remove('hidden');
+        if (panelVolumeSlider) panelVolumeSlider.value = 0;
+      } else {
+        panelVolMute.classList.add('hidden');
+        panelVolHigh.classList.remove('hidden');
+        if (panelVolumeSlider) panelVolumeSlider.value = targetVolume;
+      }
+    }
+    
+    // Update shuffle and repeat UI elements
+    updateShuffleRepeatUI();
+
+    // Load the restored song into the player (without autoplaying)
+    if (state.currentSongIndex !== -1) {
+      loadSong(state.currentSongIndex, false);
+    }
+    
+    // Highlight currently playing song row
+    updateActiveRowHighlight();
+  } catch (e) {
+    console.error("Failed to load app state from localStorage:", e);
+  } finally {
+    isRestoringState = false;
+  }
+}
+
+// --- Shuffle & Repeat UI Styling Helper ---
+function updateShuffleRepeatUI() {
+  const panelShuffleBtn = document.getElementById('panel-shuffle-btn');
+  if (panelShuffleBtn) {
+    if (state.isShuffle) {
+      panelShuffleBtn.classList.add('text-primary-container');
+      panelShuffleBtn.classList.remove('text-on-surface-variant');
+    } else {
+      panelShuffleBtn.classList.remove('text-primary-container');
+      panelShuffleBtn.classList.add('text-on-surface-variant');
+    }
+  }
+
+  const panelRepeatBtn = document.getElementById('panel-repeat-btn');
+  if (panelRepeatBtn) {
+    const icon = panelRepeatBtn.querySelector('span');
+    if (state.repeatMode === 'none') {
+      panelRepeatBtn.classList.remove('text-primary-container');
+      panelRepeatBtn.classList.add('text-on-surface-variant');
+      if (icon) icon.textContent = 'repeat';
+    } else if (state.repeatMode === 'all') {
+      panelRepeatBtn.classList.add('text-primary-container');
+      panelRepeatBtn.classList.remove('text-on-surface-variant');
+      if (icon) icon.textContent = 'repeat';
+    } else if (state.repeatMode === 'one') {
+      panelRepeatBtn.classList.add('text-primary-container');
+      panelRepeatBtn.classList.remove('text-on-surface-variant');
+      if (icon) icon.textContent = 'repeat_one';
+    }
+  }
+}
+
+// --- Media Session API (System lock screen / notification / controls) ---
+function updateMediaSession(song) {
+  if (!song) return;
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: song.title || 'Unknown',
+      artist: song.artist || 'Unknown',
+      album: song.album || 'Single',
+      artwork: [
+        { src: song.cover || '', sizes: '200x200', type: 'image/jpeg' },
+        { src: song.cover_xl || song.cover || '', sizes: '600x600', type: 'image/jpeg' }
+      ]
+    });
+
+    // Set action handlers
+    navigator.mediaSession.setActionHandler('play', () => togglePlayPause());
+    navigator.mediaSession.setActionHandler('pause', () => togglePlayPause());
+    navigator.mediaSession.setActionHandler('previoustrack', () => playPrevious());
+    navigator.mediaSession.setActionHandler('nexttrack', () => playNext());
+    
+    try {
+      navigator.mediaSession.setActionHandler('seekto', (details) => {
+        if (details.fastSeek && 'fastSeek' in audio) {
+          audio.fastSeek(details.seekTime);
+        } else {
+          audio.currentTime = details.seekTime;
+        }
+        updatePlaybackState();
+      });
+    } catch (e) {
+      console.warn("MediaSession seekto not supported:", e);
+    }
+  }
+}
+
+function updatePlaybackState() {
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.playbackState = state.isPlaying ? 'playing' : 'paused';
+  }
+}
+
+// --- Global Keyboard Shortcuts ---
+document.addEventListener('keydown', (e) => {
+  const activeEl = document.activeElement;
+  if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+    return;
+  }
+
+  switch (e.code) {
+    case 'Space':
+      e.preventDefault();
+      togglePlayPause();
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      if (audio) {
+        audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 5);
+        panelCurrentTime.textContent = formatTime(audio.currentTime);
+      }
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      if (audio) {
+        audio.currentTime = Math.max(0, audio.currentTime - 5);
+        panelCurrentTime.textContent = formatTime(audio.currentTime);
+      }
+      break;
+    case 'ArrowUp':
+      e.preventDefault();
+      if (audio) {
+        const newVol = Math.min(1, audio.volume + 0.05);
+        audio.volume = newVol;
+        targetVolume = newVol;
+        if (panelVolumeSlider) panelVolumeSlider.value = newVol;
+        updateVolumeIcon(newVol);
+      }
+      break;
+    case 'ArrowDown':
+      e.preventDefault();
+      if (audio) {
+        const newVol = Math.max(0, audio.volume - 0.05);
+        audio.volume = newVol;
+        targetVolume = newVol;
+        if (panelVolumeSlider) panelVolumeSlider.value = newVol;
+        updateVolumeIcon(newVol);
+      }
+      break;
+    case 'KeyM':
+      e.preventDefault();
+      if (panelVolumeToggle) panelVolumeToggle.click();
+      break;
+    case 'KeyL':
+      e.preventDefault();
+      toggleFavorite();
+      break;
+  }
+});
