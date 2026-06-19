@@ -5,6 +5,7 @@ FROM python:3.10-slim
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
+    ffmpeg \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs \
     && apt-get clean \
