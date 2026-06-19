@@ -14,7 +14,8 @@ const PlaylistStore = {
           id: 'favorites',
           name: 'My Favorites',
           description: 'Your favorite tracks',
-          songs: []
+          songs: [],
+          updatedAt: Date.now()
         }];
         localStorage.setItem(this.KEY, JSON.stringify(defaults));
         return defaults;
@@ -47,7 +48,8 @@ const PlaylistStore = {
       id: 'pl_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
       name: name.trim(),
       description: description.trim(),
-      songs: []
+      songs: [],
+      updatedAt: Date.now()
     };
     playlists.push(newPlaylist);
     this.savePlaylists(playlists, newPlaylist.id, 'create');
@@ -68,6 +70,7 @@ const PlaylistStore = {
     const pl = playlists.find(p => p.id === id);
     if (pl) {
       pl.name = newName.trim();
+      pl.updatedAt = Date.now();
       this.savePlaylists(playlists, id, 'update');
       return true;
     }
@@ -84,6 +87,7 @@ const PlaylistStore = {
       if (!exists) {
         // Deep copy song object to prevent reference pollution
         pl.songs.push(JSON.parse(JSON.stringify(song)));
+        pl.updatedAt = Date.now();
         this.savePlaylists(playlists, playlistId, 'update');
         return true;
       }
@@ -96,6 +100,7 @@ const PlaylistStore = {
     const pl = playlists.find(p => p.id === playlistId);
     if (pl) {
       pl.songs = pl.songs.filter(s => s.id !== songId);
+      pl.updatedAt = Date.now();
       this.savePlaylists(playlists, playlistId, 'update');
       return true;
     }

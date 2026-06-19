@@ -8,6 +8,7 @@ const BASE_URL = 'https://openify-production-8e41.up.railway.app';
 // --- State Management ---
 let state = {
   songs: [],
+  queue: [], // active cloned queue
   currentSongIndex: -1,
   isPlaying: false,
   isBuffering: false,
@@ -120,6 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- API Calls ---
 
+let searchAbortController = null;
+
 async function loadChartSongs() {
   showLoading(true);
   showError(false);
@@ -127,7 +130,7 @@ async function loadChartSongs() {
     const res = await fetch(`${BASE_URL}/api/mobile/chart`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    state.songs = data;
+    state.songs = Array.isArray(data) ? data : [];
     showLoading(false);
     
     if (state.songs.length > 0) {
@@ -148,6 +151,7 @@ async function loadChartSongs() {
         renderSongsList(state.songs);
         const idx = state.songs.findIndex(s => s.id === lastSongId);
         if (idx !== -1) {
+          state.queue = [...state.songs];
           loadSong(idx, false);
           loadedSaved = true;
         }
@@ -155,6 +159,7 @@ async function loadChartSongs() {
       
       if (!loadedSaved) {
         renderSongsList(state.songs);
+        state.queue = [...state.songs];
         loadSong(0, false);
       }
     } else {
@@ -169,24 +174,32 @@ async function loadChartSongs() {
 async function performSearch(query) {
   if (!query) {
     state.searchText = '';
+    state.searchResults = [];
     renderSongsList(state.songs);
     listHeader.textContent = 'TRENDING';
     searchClearBtn.classList.add('hidden');
     return;
   }
 
+  if (searchAbortController) {
+    searchAbortController.abort();
+  }
+  searchAbortController = new AbortController();
+  const signal = searchAbortController.signal;
+
   showLoading(true);
   searchClearBtn.classList.remove('hidden');
   try {
-    const res = await fetch(`${BASE_URL}/api/mobile/search?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`${BASE_URL}/api/mobile/search?q=${encodeURIComponent(query)}`, { signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    state.searchResults = data;
+    state.searchResults = Array.isArray(data) ? data : [];
     showLoading(false);
     
     listHeader.textContent = 'RESULTS';
     renderSongsList(state.searchResults, songsContainer, 'search');
   } catch (err) {
+    if (err.name === 'AbortError') return;
     showLoading(false);
     renderSongsList([], songsContainer, 'search');
     console.error("Search error:", err);
@@ -199,7 +212,7 @@ async function loadUpNext(songId) {
     if (res.ok) {
       const data = await res.json();
       // Filter out songs with unknown/empty titles
-      state.upNextRecommendations = data.filter(s => s.title && s.title !== "Unknown");
+      state.upNextRecommendations = Array.isArray(data) ? data.filter(s => s.title && s.title !== "Unknown") : [];
     }
   } catch (err) {
     console.error("UpNext load failed:", err);
@@ -209,7 +222,7 @@ async function loadUpNext(songId) {
 
 // --- Player Logic ---
 
-function getCurrentList() {
+function getSourceList() {
   if (state.currentQueueSource === 'playlist') {
     const playlists = PlaylistStore.getPlaylists();
     const pl = playlists.find(p => p.id === state.currentPlaylistId);
@@ -225,13 +238,20 @@ function getCurrentList() {
   }
 }
 
+function getCurrentList() {
+  if (state.queue && state.queue.length > 0) {
+    return state.queue;
+  }
+  return getSourceList();
+}
+
 async function loadRecommendations(songId) {
   try {
     const res = await fetch(`${BASE_URL}/api/mobile/recommend?song_id=${songId}`);
     if (res.ok) {
       const data = await res.json();
-      state.behaviorRecommendations = data.behavior_based || [];
-      state.contentRecommendations = data.content_based || [];
+      state.behaviorRecommendations = data && Array.isArray(data.behavior_based) ? data.behavior_based : [];
+      state.contentRecommendations = data && Array.isArray(data.content_based) ? data.content_based : [];
       
       // Update the recommendations view if active
       if (state.activeTab === 'recommend') {
@@ -325,6 +345,10 @@ function drawVisualizer() {
   canvas.height = rect.height || 440;
   
   function draw() {
+    if (!state.isPlaying || document.hidden) {
+      visualizerRunning = false;
+      return;
+    }
     requestAnimationFrame(draw);
     
     const rect = canvas.getBoundingClientRect();
@@ -393,6 +417,10 @@ function drawVisualizer() {
 }
 
 function loadSong(index, shouldPlay = true) {
+  if (fadeInterval) {
+    clearInterval(fadeInterval);
+    fadeInterval = null;
+  }
   // Pause, remove listeners, and clean up the old Audio element to prevent memory/listener leaks
   cleanupAudio(audio);
   
@@ -485,6 +513,7 @@ function loadSong(index, shouldPlay = true) {
         audio.play().then(() => {
           setPlayingState(true);
           fadeTo(targetVolume, 400);
+          setBuffering(false);
         }).catch(err => {
           console.warn("Audio play failed on start:", err);
           setPlayingState(false);
@@ -701,6 +730,10 @@ function setupAudioListeners() {
 }
 
 function cleanupAudio(oldAudio) {
+  if (fadeInterval) {
+    clearInterval(fadeInterval);
+    fadeInterval = null;
+  }
   if (!oldAudio) return;
   try {
     oldAudio.pause();
@@ -781,6 +814,7 @@ function renderSongsList(songsList, container = songsContainer, queueSource = 'c
       if (queueSource === 'playlist') {
         state.currentPlaylistId = playlistId;
       }
+      state.queue = [...songsList];
       loadSong(i, true);
     });
 
@@ -1288,6 +1322,10 @@ function setupStarDriftBackground() {
   }
 
   function draw() {
+    if (document.hidden) {
+      animationId = null;
+      return;
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Draw space stars using fillRect to avoid expensive path creation and arc drawing
@@ -1309,7 +1347,21 @@ function setupStarDriftBackground() {
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
   draw();
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && !animationId) {
+      draw();
+    }
+  });
 }
+
+// Global visibility change handler for visualizer
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && state.isPlaying && !visualizerRunning) {
+    visualizerRunning = true;
+    drawVisualizer();
+  }
+});
 
 // --- Utilities ---
 

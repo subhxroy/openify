@@ -22,10 +22,20 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+// Enable Firestore offline persistence
+db.enablePersistence().catch((err) => {
+  if (err.code === 'failed-precondition') {
+    console.warn("Firestore persistence failed: Multiple tabs open.");
+  } else if (err.code === 'unimplemented') {
+    console.warn("Firestore persistence failed: Browser doesn't support it.");
+  }
+});
+
 // --- State Management ---
 let isRestoringState = false;
 let state = {
   songs: [],
+  queue: [], // active cloned queue
   currentSongIndex: -1,
   isPlaying: false,
   isBuffering: false,
@@ -294,6 +304,7 @@ async function loadChartSongs() {
   }
 }
 
+let searchAbortController = null;
 async function performSearch(query) {
   if (!query) {
     state.searchText = '';
@@ -310,21 +321,28 @@ async function performSearch(query) {
     return;
   }
 
+  if (searchAbortController) {
+    searchAbortController.abort();
+  }
+  searchAbortController = new AbortController();
+  const signal = searchAbortController.signal;
+
   showLoading(true);
   searchClearBtn.classList.remove('hidden');
   categoriesContainer.classList.add('hidden');
   resultsContainer.classList.remove('hidden');
 
   try {
-    const res = await fetch(`${BASE_URL}/api/mobile/search?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`${BASE_URL}/api/mobile/search?q=${encodeURIComponent(query)}`, { signal });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    state.searchResults = data;
+    state.searchResults = Array.isArray(data) ? data : [];
     showLoading(false);
     
     renderSongsList(state.searchResults, resultsList, 'search');
     saveAppState();
   } catch (err) {
+    if (err.name === 'AbortError') return;
     showLoading(false);
     renderSongsList([], resultsList, 'search');
     console.error("Search error:", err);
@@ -336,7 +354,7 @@ async function loadUpNext(songId) {
     const res = await fetch(`${BASE_URL}/api/mobile/up_next?song_id=${songId}&limit=10`);
     if (res.ok) {
       const data = await res.json();
-      state.upNextRecommendations = data.filter(s => s.title && s.title !== "Unknown");
+      state.upNextRecommendations = Array.isArray(data) ? data.filter(s => s.title && s.title !== "Unknown") : [];
     }
   } catch (err) {
     console.error("UpNext load failed:", err);
@@ -349,8 +367,8 @@ async function loadRecommendations(songId) {
     const res = await fetch(`${BASE_URL}/api/mobile/recommend?song_id=${songId}`);
     if (res.ok) {
       const data = await res.json();
-      state.behaviorRecommendations = data.behavior_based || [];
-      state.contentRecommendations = data.content_based || [];
+      state.behaviorRecommendations = data && Array.isArray(data.behavior_based) ? data.behavior_based : [];
+      state.contentRecommendations = data && Array.isArray(data.content_based) ? data.content_based : [];
       
       // Update the For You tab lists
       renderForYouTab();
@@ -366,7 +384,7 @@ async function loadRecommendations(songId) {
 
 // --- Player Logic ---
 
-function getCurrentList() {
+function getSourceList() {
   if (state.currentQueueSource === 'playlist') {
     if (state.currentPlaylistId === 'downloads') {
       return state.downloadedSongsList || [];
@@ -375,20 +393,31 @@ function getCurrentList() {
     const pl = playlists.find(p => p.id === state.currentPlaylistId);
     return pl ? pl.songs : [];
   } else if (state.currentQueueSource === 'search') {
-    return state.searchResults;
+    return state.searchResults || [];
   } else if (state.currentQueueSource === 'recommend_behavior') {
-    return state.behaviorRecommendations;
+    return state.behaviorRecommendations || [];
   } else if (state.currentQueueSource === 'recommend_content') {
-    return state.contentRecommendations;
+    return state.contentRecommendations || [];
   } else if (state.currentQueueSource === 'recommend_merged') {
     return [...state.behaviorRecommendations, ...state.contentRecommendations].slice(0, 6);
   } else {
-    return state.songs;
+    return state.songs || [];
   }
 }
 
+function getCurrentList() {
+  if (state.queue && state.queue.length > 0) {
+    return state.queue;
+  }
+  return getSourceList();
+}
+
 async function loadSong(index, shouldPlay = true) {
-  // Pause, remove listeners, and clean up the old Audio element to prevent memory/listener leaks
+  // Clear fadeInterval and clean up the old Audio element to prevent memory/listener leaks
+  if (fadeInterval) {
+    clearInterval(fadeInterval);
+    fadeInterval = null;
+  }
   cleanupAudio(audio);
   
   audio = new Audio();
@@ -552,6 +581,7 @@ async function loadSong(index, shouldPlay = true) {
         audio.play().then(() => {
           setPlayingState(true);
           fadeTo(targetVolume, 400);
+          setBuffering(false);
         }).catch(err => {
           console.warn("Play blocked/failed:", err);
           setPlayingState(false);
@@ -794,6 +824,7 @@ function onAudioWaiting() {
 function onAudioPlaying() {
   setBuffering(false);
   setPlayingState(true);
+  initMobileVisualizer();
 }
 
 function onAudioStalled() {
@@ -822,6 +853,10 @@ function setupAudioListeners() {
 }
 
 function cleanupAudio(oldAudio) {
+  if (fadeInterval) {
+    clearInterval(fadeInterval);
+    fadeInterval = null;
+  }
   if (!oldAudio) return;
   try {
     oldAudio.pause();
@@ -881,6 +916,7 @@ function renderTrendingSongs(songsList) {
     `;
     card.addEventListener('click', () => {
       state.currentQueueSource = 'chart';
+      state.queue = [...state.songs];
       loadSong(i, true);
     });
     trendingScroll.appendChild(card);
@@ -930,6 +966,7 @@ function renderHomeScrollRecommendations() {
     row.addEventListener('click', (e) => {
       if (e.target.closest('.row-action-btn')) return;
       state.currentQueueSource = 'recommend_merged';
+      state.queue = [...state.behaviorRecommendations, ...state.contentRecommendations].slice(0, 6);
       loadSong(i, true);
     });
 
@@ -1020,6 +1057,7 @@ function renderSongsList(songsList, container, queueSource, playlistId = null) {
       if (queueSource === 'playlist') {
         state.currentPlaylistId = playlistId;
       }
+      state.queue = [...songsList];
       loadSong(i, true);
     });
 
@@ -1306,6 +1344,7 @@ function setupUIEventListeners() {
       return;
     }
     nowPlayingPanel.classList.add('active');
+    initMobileVisualizer();
   });
 
   // Close mini player
@@ -1391,9 +1430,10 @@ function setupUIEventListeners() {
 
   // Play playlist button in details
   playlistPlayAllBtn.addEventListener('click', () => {
-    const songs = getCurrentList();
+    const songs = getSourceList();
     if (songs.length > 0) {
       state.currentQueueSource = 'playlist';
+      state.queue = [...songs];
       loadSong(0, true);
     }
   });
@@ -1757,19 +1797,21 @@ function updateVolumeIcon(vol) {
 
 // --- Swipe Gestures ---
 function setupSwipeGestures() {
-  let startY = 0;
+  let miniPlayerStartY = 0;
+  let headerStartY = 0;
   
   // Swipe up on mini player opens now playing
   miniPlayer.addEventListener('touchstart', (e) => {
-    startY = e.touches[0].clientY;
+    miniPlayerStartY = e.touches[0].clientY;
   });
 
   miniPlayer.addEventListener('touchend', (e) => {
     const endY = e.changedTouches[0].clientY;
-    const diffY = endY - startY;
+    const diffY = endY - miniPlayerStartY;
     // Swipe up (negative Y movement)
     if (diffY < -40) {
       nowPlayingPanel.classList.add('active');
+      initMobileVisualizer();
     }
   });
 
@@ -1777,12 +1819,12 @@ function setupSwipeGestures() {
   const header = document.querySelector('.panel-header');
   if (header) {
     header.addEventListener('touchstart', (e) => {
-      startY = e.touches[0].clientY;
+      headerStartY = e.touches[0].clientY;
     });
 
     header.addEventListener('touchend', (e) => {
       const endY = e.changedTouches[0].clientY;
-      const diffY = endY - startY;
+      const diffY = endY - headerStartY;
       // Swipe down (positive Y movement)
       if (diffY > 40) {
         nowPlayingPanel.classList.remove('active');
@@ -1938,6 +1980,20 @@ function setupStarDriftBackground() {
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
   draw();
+
+  // Cancel animation on visibilitychange to save power
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    } else {
+      if (!animationId) {
+        draw();
+      }
+    }
+  });
 }
 
 // --- Utilities ---
@@ -2009,10 +2065,17 @@ async function fetchLyricsForSong(artist, title, songId = null) {
   state.parsedLyrics = [];
   state.activeLyricIndex = -1;
 
+  const currentList = getCurrentList();
+  const activeSong = state.currentSongIndex !== -1 ? currentList[state.currentSongIndex] : null;
+  const activeSongId = activeSong ? activeSong.id : null;
+
   if (songId) {
     try {
       const cachedSong = await getDownloadedSong(songId);
       if (cachedSong && cachedSong.lyrics) {
+        // Guard check: ensure this request is still relevant to the playing song
+        if (activeSongId && songId !== activeSongId) return;
+
         const data = cachedSong.lyrics;
         state.lyricsType = data.type;
         if (data.type === 'synced') {
@@ -2042,6 +2105,14 @@ async function fetchLyricsForSong(artist, title, songId = null) {
     if (!res.ok) throw new Error("Lyrics request failed");
     const data = await res.json();
     
+    // Guard check: ensure this request is still relevant to the playing song
+    if (activeSongId && songId && songId !== activeSongId) return;
+    const latestList = getCurrentList();
+    const latestActiveSong = state.currentSongIndex !== -1 ? latestList[state.currentSongIndex] : null;
+    if (latestActiveSong && (latestActiveSong.title !== title || latestActiveSong.artist !== artist)) {
+      return;
+    }
+
     state.lyricsType = data.type;
     
     if (data.type === 'synced') {
@@ -2174,6 +2245,10 @@ function drawMobileVisualizer() {
   canvas.height = rect.height || 360;
   
   function draw() {
+    if (!state.isPlaying || !nowPlayingPanel.classList.contains('active')) {
+      mobileVisualizerRunning = false;
+      return;
+    }
     requestAnimationFrame(draw);
     
     const rect = canvas.getBoundingClientRect();
@@ -2479,8 +2554,10 @@ async function syncPlaylistsData(forceSync = false) {
         batch.set(docRef, JSON.parse(JSON.stringify(localPl)));
         firestorePlaylists.push(localPl);
         hasUploads = true;
-      } else if (localPl.songs.length !== match.songs.length || localPl.name !== match.name) {
-        if (forceSync || localPl.songs.length > match.songs.length) {
+      } else {
+        const localTime = localPl.updatedAt || 0;
+        const matchTime = match.updatedAt || 0;
+        if (forceSync || localTime > matchTime) {
           const docRef = db.collection('users').doc(userId).collection('playlists').doc(localPl.id);
           batch.set(docRef, JSON.parse(JSON.stringify(localPl)));
           hasUploads = true;
@@ -2492,15 +2569,23 @@ async function syncPlaylistsData(forceSync = false) {
       await batch.commit();
     }
     
+    // Filter out uploaded local playlists from the download loop to avoid self-comparison bug
+    const originalFirestorePlaylists = firestorePlaylists.filter(f => 
+      !localPlaylists.some(l => l.id === f.id) || 
+      (f.updatedAt && f.updatedAt > (localPlaylists.find(l => l.id === f.id)?.updatedAt || 0))
+    );
+    
     let updatedLocalPlaylists = [...localPlaylists];
-    firestorePlaylists.forEach(fPl => {
+    originalFirestorePlaylists.forEach(fPl => {
       const localIdx = updatedLocalPlaylists.findIndex(l => l.id === fPl.id);
       if (localIdx === -1) {
         updatedLocalPlaylists.push(fPl);
         hasDownloads = true;
       } else {
         const localPl = updatedLocalPlaylists[localIdx];
-        if (forceSync || fPl.songs.length > localPl.songs.length || (fPl.name !== localPl.name)) {
+        const localTime = localPl.updatedAt || 0;
+        const fTime = fPl.updatedAt || 0;
+        if (forceSync || fTime > localTime) {
           updatedLocalPlaylists[localIdx] = fPl;
           hasDownloads = true;
         }

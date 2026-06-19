@@ -16,7 +16,7 @@
   </script>
   <meta name="theme-color" content="#000000" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Openify - Open Source Music Player</title>
   
   <!-- SEO Meta Tags -->
@@ -102,10 +102,10 @@
       </div>
       <div class="flex items-center gap-4">
         <span id="cloud-sync-icon" class="material-symbols-outlined text-on-surface-variant text-xl opacity-40 cursor-pointer" title="Not Synced">cloud_off</span>
-        <button class="hover:opacity-80 active:scale-95 transition-transform" id="header-notifications-btn">
+        <button class="hover:opacity-80 active:scale-95 transition-transform" id="header-notifications-btn" aria-label="Notifications">
           <span class="material-symbols-outlined text-on-surface text-xl">notifications</span>
         </button>
-        <button class="hover:opacity-80 active:scale-95 transition-transform" id="header-settings-btn">
+        <button class="hover:opacity-80 active:scale-95 transition-transform" id="header-settings-btn" aria-label="Settings">
           <span class="material-symbols-outlined text-on-surface text-xl">settings</span>
         </button>
       </div>
@@ -149,7 +149,7 @@
               <h3 class="text-xl font-bold text-white leading-tight">Discover Weekly</h3>
               <p class="text-xs text-white/70 max-w-[200px]">Fresh tunes curated based on your recent listening habits.</p>
             </div>
-            <button class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center glow-lime active:scale-90 transition-all shrink-0 hover:bg-white" id="bento-play-btn">
+            <button class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center glow-lime active:scale-90 transition-all shrink-0 hover:bg-white" id="bento-play-btn" aria-label="Play Discover Weekly">
               <span class="material-symbols-outlined text-on-primary text-[24px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </button>
           </div>
@@ -187,7 +187,7 @@
         <div class="relative w-full h-12 rounded-xl bg-surface-container/60 border border-white/10 flex items-center px-4 gap-3 focus-within:border-primary-container/40 focus-within:ring-1 focus-within:ring-primary-container/30 transition-all shadow-lg">
           <span class="material-symbols-outlined text-on-surface-variant text-xl">search</span>
           <input type="text" id="mobile-search-input" placeholder="What do you want to listen to?" autocomplete="off" spellcheck="false" class="flex-1 bg-transparent border-none p-0 text-sm text-white placeholder-on-surface-variant/60 focus:ring-0 focus:outline-none" />
-          <button id="search-clear-btn" class="hidden text-on-surface-variant hover:text-white">
+          <button id="search-clear-btn" class="hidden text-on-surface-variant hover:text-white" aria-label="Clear search input">
             <span class="material-symbols-outlined text-lg">close</span>
           </button>
         </div>
@@ -239,7 +239,7 @@
       <section id="tab-content-library" class="tab-content px-6 py-6 space-y-6 hidden">
         <div class="flex justify-between items-center">
           <h1 class="text-2xl font-bold tracking-tight text-white">Library</h1>
-          <button id="show-playlist-create-modal" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-white border border-white/10 hover:border-primary-container/30 hover:bg-surface-container-high transition-all active:scale-90">
+          <button id="show-playlist-create-modal" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-white border border-white/10 hover:border-primary-container/30 hover:bg-surface-container-high transition-all active:scale-90" aria-label="Create Playlist">
             <span class="material-symbols-outlined text-[20px]">add</span>
           </button>
         </div>
@@ -264,7 +264,7 @@
               <h2 class="text-lg font-bold text-white leading-tight">Openify Favorites</h2>
               <p id="pulse-mix-count" class="text-xs text-on-surface-variant">0 tracks • Updated just now</p>
             </div>
-            <button class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary shadow-lg hover:bg-white active:scale-90 transition-transform shrink-0" id="pulse-mix-play-btn">
+            <button class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary shadow-lg hover:bg-white active:scale-90 transition-transform shrink-0" id="pulse-mix-play-btn" aria-label="Play Favorites">
               <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             </button>
           </div>
@@ -515,18 +515,18 @@
         </div>
 
         <div class="flex items-center gap-1.5 shrink-0 pl-3">
-          <button id="mini-play-btn" class="w-8 h-8 flex items-center justify-center text-white hover:text-primary-container active:scale-90 transition-transform">
+          <button id="mini-play-btn" class="w-8 h-8 flex items-center justify-center text-white hover:text-primary-container active:scale-90 transition-transform" aria-label="Play or Pause">
             <!-- Play Icon -->
             <span id="mini-play-icon" class="material-symbols-outlined text-[24px]">play_arrow</span>
             <!-- Pause Icon -->
             <span id="mini-pause-icon" class="material-symbols-outlined text-[24px] hidden">pause</span>
           </button>
           
-          <button id="mini-next-btn" class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-white active:scale-90 transition-transform">
+          <button id="mini-next-btn" class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-white active:scale-90 transition-transform" aria-label="Next track">
             <span class="material-symbols-outlined text-[24px]">skip_next</span>
           </button>
           
-          <button id="mini-close-btn" class="w-8 h-8 flex items-center justify-center text-on-surface-variant/50 hover:text-white active:scale-90 transition-transform">
+          <button id="mini-close-btn" class="w-8 h-8 flex items-center justify-center text-on-surface-variant/50 hover:text-white active:scale-90 transition-transform" aria-label="Close player">
             <span class="material-symbols-outlined text-[20px]">close</span>
           </button>
         </div>
@@ -534,20 +534,20 @@
     </div>
 
     <!-- Bottom Glassmorphic Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-white/5 px-8 h-20 flex justify-around items-center z-30">
-      <button class="nav-tab-btn active" data-tab="home">
+    <nav class="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-xl border-t border-white/5 px-8 h-[calc(5rem+env(safe-area-inset-bottom,0px))] pb-[env(safe-area-inset-bottom,0px)] flex justify-around items-center z-30">
+      <button class="nav-tab-btn active" data-tab="home" aria-label="Home Tab">
         <span class="material-symbols-outlined text-xl">home</span>
         <span class="text-[9px] uppercase tracking-wider">Home</span>
       </button>
-      <button class="nav-tab-btn" data-tab="search">
+      <button class="nav-tab-btn" data-tab="search" aria-label="Search Tab">
         <span class="material-symbols-outlined text-xl">search</span>
         <span class="text-[9px] uppercase tracking-wider">Search</span>
       </button>
-      <button class="nav-tab-btn" data-tab="library">
+      <button class="nav-tab-btn" data-tab="library" aria-label="Library Tab">
         <span class="material-symbols-outlined text-xl">library_music</span>
         <span class="text-[9px] uppercase tracking-wider">Library</span>
       </button>
-      <button class="nav-tab-btn" data-tab="profile">
+      <button class="nav-tab-btn" data-tab="profile" aria-label="Account Tab">
         <span class="material-symbols-outlined text-xl">settings_accessibility</span>
         <span class="text-[9px] uppercase tracking-wider">Account</span>
       </button>
@@ -559,14 +559,14 @@
     
     <!-- Top Bar -->
     <header class="panel-header w-full flex items-center justify-between px-6 h-16 shrink-0 bg-transparent z-10">
-      <button id="panel-close-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 active:scale-90 transition-transform">
+      <button id="panel-close-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 active:scale-90 transition-transform" aria-label="Minimize player">
         <span class="material-symbols-outlined text-2xl">expand_more</span>
       </button>
       <div class="text-center">
         <p class="text-[9px] font-bold text-on-surface-variant tracking-widest uppercase">Now Playing</p>
         <p class="text-xs font-bold text-primary-container">Openify Player</p>
       </div>
-      <button id="panel-menu-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 active:scale-90 transition-transform">
+      <button id="panel-menu-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/5 active:scale-90 transition-transform" aria-label="More options">
         <span class="material-symbols-outlined text-2xl">more_vert</span>
       </button>
     </header>
@@ -620,13 +620,13 @@
         </div>
         <div class="flex items-center gap-2">
           <!-- Download Button -->
-          <button id="panel-download-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-all shrink-0 bg-white/5" title="Download Song">
+          <button id="panel-download-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-all shrink-0 bg-white/5" title="Download Song" aria-label="Download song">
             <span id="download-icon-hollow" class="material-symbols-outlined text-2xl">download</span>
             <span id="download-icon-solid" class="material-symbols-outlined text-2xl text-primary-container hidden" style="font-variation-settings: 'FILL' 1;">download_done</span>
             <span id="download-icon-loading" class="material-symbols-outlined text-2xl text-primary-container hidden animate-spin">sync</span>
           </button>
           
-          <button id="panel-fav-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-red-400 active:scale-90 transition-all shrink-0 bg-white/5">
+          <button id="panel-fav-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-red-400 active:scale-90 transition-all shrink-0 bg-white/5" aria-label="Toggle favorite">
             <span id="fav-icon-outline" class="material-symbols-outlined text-2xl">favorite</span>
             <span id="fav-icon-solid" class="material-symbols-outlined text-2xl text-red-500 hidden" style="font-variation-settings: 'FILL' 1;">favorite</span>
           </button>
@@ -641,10 +641,10 @@
 
       <!-- Neon Progress Bar Seek Container -->
       <div class="w-full max-w-sm px-2 shrink-0 z-10">
-        <div id="panel-seek-bar-wrapper" class="relative h-1.5 w-full bg-white/10 rounded-full overflow-hidden group cursor-pointer">
-          <div id="panel-seek-fill" class="absolute top-0 left-0 h-full w-0 bg-primary-container shadow-[0_0_10px_rgba(196,242,102,0.8)]"></div>
+        <div id="panel-seek-bar-wrapper" class="relative h-1.5 w-full bg-white/10 rounded-full group cursor-pointer">
+          <div id="panel-seek-fill" class="absolute top-0 left-0 h-full w-0 bg-primary-container shadow-[0_0_10px_rgba(196,242,102,0.8)] rounded-full"></div>
           <!-- Seek Handle -->
-          <div id="panel-seek-handle" class="absolute top-1/2 left-0 -translate-y-1/2 w-3.5 h-3.5 bg-primary-container rounded-full scale-0 group-hover:scale-100 transition-transform duration-200 shadow-lg"></div>
+          <div id="panel-seek-handle" class="absolute top-1/2 left-0 -translate-y-1/2 w-3.5 h-3.5 bg-primary-container rounded-full transition-transform duration-200 shadow-lg"></div>
         </div>
         <div class="flex justify-between mt-2.5">
           <span id="panel-current-time" class="text-[10px] font-bold text-on-surface-variant tracking-wider">0:00</span>
@@ -655,33 +655,33 @@
 
       <!-- Controls Row -->
       <div class="flex items-center justify-between w-full max-w-sm px-2 shrink-0 z-10">
-        <button id="panel-shuffle-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-colors">
+        <button id="panel-shuffle-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-colors" aria-label="Toggle shuffle">
           <span class="material-symbols-outlined text-[22px]">shuffle</span>
         </button>
         
         <div class="flex items-center gap-6">
-          <button id="panel-prev-btn" class="w-12 h-12 rounded-full flex items-center justify-center text-white hover:text-primary-container active:scale-90 transition-all">
+          <button id="panel-prev-btn" class="w-12 h-12 rounded-full flex items-center justify-center text-white hover:text-primary-container active:scale-90 transition-all" aria-label="Previous track">
             <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">skip_previous</span>
           </button>
           
-          <button id="panel-play-pause-btn" class="w-16 h-16 bg-primary-container text-on-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(196,242,102,0.4)] active:scale-95 hover:scale-105 transition-all" title="Play/Pause">
+          <button id="panel-play-pause-btn" class="w-16 h-16 bg-primary-container text-on-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(196,242,102,0.4)] active:scale-95 hover:scale-105 transition-all" title="Play/Pause" aria-label="Play or Pause">
             <span id="panel-play-icon" class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
             <span id="panel-pause-icon" class="material-symbols-outlined text-[32px] hidden" style="font-variation-settings: 'FILL' 1;">pause</span>
           </button>
           
-          <button id="panel-next-btn" class="w-12 h-12 rounded-full flex items-center justify-center text-white hover:text-primary-container active:scale-90 transition-all">
+          <button id="panel-next-btn" class="w-12 h-12 rounded-full flex items-center justify-center text-white hover:text-primary-container active:scale-90 transition-all" aria-label="Next track">
             <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">skip_next</span>
           </button>
         </div>
 
-        <button id="panel-repeat-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-colors">
+        <button id="panel-repeat-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-90 transition-colors" aria-label="Toggle repeat">
           <span class="material-symbols-outlined text-[22px]">repeat</span>
         </button>
       </div>
 
       <!-- Volume Fader Control -->
       <div class="w-full max-w-sm flex items-center gap-3 px-2 mt-2 shrink-0 z-10">
-        <button id="panel-volume-toggle" class="text-on-surface-variant hover:text-white">
+        <button id="panel-volume-toggle" class="text-on-surface-variant hover:text-white" aria-label="Toggle mute">
           <span id="panel-vol-high" class="material-symbols-outlined text-lg">volume_up</span>
           <span id="panel-vol-mute" class="material-symbols-outlined text-lg hidden">volume_off</span>
         </button>
@@ -696,11 +696,11 @@
     
     <!-- Top Bar -->
     <header class="w-full flex items-center justify-between px-6 h-16 shrink-0 bg-background/60 backdrop-blur-xl border-b border-white/5 z-10">
-      <button id="playlist-back-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:text-white hover:bg-white/5 active:scale-90 transition-transform">
+      <button id="playlist-back-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:text-white hover:bg-white/5 active:scale-90 transition-transform" aria-label="Go back">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
       <h3 class="text-sm font-bold text-white tracking-tight uppercase" id="playlist-detail-header-title">Playlist</h3>
-      <button id="delete-playlist-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:text-red-400 hover:bg-white/5 active:scale-90 transition-transform">
+      <button id="delete-playlist-btn" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:text-red-400 hover:bg-white/5 active:scale-90 transition-transform" aria-label="Delete playlist">
         <span class="material-symbols-outlined text-xl">delete</span>
       </button>
     </header>

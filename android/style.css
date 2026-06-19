@@ -522,5 +522,25 @@ body {
   font-size: 22px;
 }
 
+/* Vinyl Spin & Needle Arm Playing States */
+#mobile-vinyl-disc.playing {
+  animation: spin-disc 22s linear infinite;
+}
+
+#mobile-needle-arm.playing {
+  transform: rotate(0deg) !important;
+}
+
+/* Safe-area-insets for notched displays */
+#mini-player {
+  bottom: calc(5rem + 1rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+#now-playing-panel {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+
 
 
