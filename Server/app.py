@@ -348,7 +348,7 @@ def download_task(song_id, artist, title):
         return
     query = f"{artist} - {title} audio"
     ydl_opts = {
-        "format": "bestaudio/best",
+        "format": "bestaudio[ext=m4a]/bestaudio/best",
         "outtmpl": str(filepath),
         "noplaylist": True,
         "quiet": True,
@@ -409,7 +409,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
 
     query = f"{artist} - {title} audio"
     ydl_opts = {
-        "format": "bestaudio/best",
+        "format": "bestaudio[ext=m4a]/bestaudio/best",
         "noplaylist": True,
         "quiet": False,
         "js_runtimes": {"node": {}},
