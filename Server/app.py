@@ -516,6 +516,42 @@ def mobile_health():
     return JSONResponse({"status": "ok", "server": "Bitsongs", "version": "2.0", "timestamp": int(time.time())})
 
 
+@app.get("/api/mobile/test_ytdl")
+def test_ytdl(use_cookies: bool = False, format: str = "bestaudio[ext=m4a]/bestaudio/best", client: str = "default"):
+    query = "Shibu - TAUBA audio"
+    ydl_opts = {
+        "format": format,
+        "noplaylist": True,
+        "quiet": True,
+        "js_runtimes": {"node": {}},
+        "extractor_args": {
+            "youtube": {
+                "player_client": [client] if client != "default" else ["default", "-android_sdkless"],
+            }
+        },
+    }
+    if use_cookies and TEMP_COOKIE_FILE:
+        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+        
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        try:
+            info = ydl.extract_info(f"ytsearch1:{query}", download=False)
+            video = info["entries"][0] if "entries" in info else info
+            return JSONResponse({
+                "status": "success",
+                "title": video.get("title"),
+                "format": video.get("format"),
+                "ext": video.get("ext"),
+                "url": video.get("url")[:100] + "..."
+            })
+        except Exception as e:
+            return JSONResponse({
+                "status": "failed",
+                "error_type": type(e).__name__,
+                "error": str(e)
+            }, status_code=500)
+
+
 if __name__ == "__main__":
     import uvicorn
 
