@@ -422,8 +422,28 @@ def fetch_artist_search_results(artist_name, limit=25):
         return []
 
 
+def lookup_song_on_itunes(song_id):
+    try:
+        response = requests.get(
+            "https://itunes.apple.com/lookup",
+            params={"id": song_id, "country": "IN"},
+            timeout=10,
+        )
+        data = response.json()
+        results = data.get("results", [])
+        if results:
+            song = _itunes_to_song(results[0])
+            upsert_song_records([song])
+            return song
+    except Exception as e:
+        logger.warning(f"Failed to lookup song {song_id} on iTunes: {e}")
+    return None
+
+
 def enrich_catalog_for_song(song_id):
     song = get_song_by_id(song_id)
+    if not song:
+        song = lookup_song_on_itunes(song_id)
     if not song:
         return
     fetched_songs = fetch_artist_tracks(song.get("artist_id"))

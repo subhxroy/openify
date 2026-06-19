@@ -283,9 +283,33 @@ async function loadChartSongs() {
     const res = await fetch(`${BASE_URL}/api/mobile/chart`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    state.songs = data;
-    showLoading(false);
     
+    // Preserve the loaded/playing song if the source is 'chart'
+    if (state.currentSongIndex !== -1 && state.currentQueueSource === 'chart') {
+      const currentList = getCurrentList();
+      const currentSong = currentList[state.currentSongIndex];
+      if (currentSong) {
+        // Find if this song exists in the new chart
+        const newIdx = data.findIndex(s => s.id === currentSong.id);
+        if (newIdx !== -1) {
+          // If it exists, update index to match the new position
+          state.songs = data;
+          state.currentSongIndex = newIdx;
+        } else {
+          // If it doesn't exist, prepend the current song to the chart so it remains at index 0,
+          // and update currentSongIndex to 0
+          data.unshift(currentSong);
+          state.songs = data;
+          state.currentSongIndex = 0;
+        }
+      } else {
+        state.songs = data;
+      }
+    } else {
+      state.songs = data;
+    }
+    
+    showLoading(false);
     renderTrendingSongs(state.songs);
     
     if (state.songs.length > 0) {
@@ -1702,7 +1726,7 @@ function setupUIEventListeners() {
         const settingsSection = document.getElementById('settings-section');
         const mainContainer = document.querySelector('main');
         if (settingsSection && mainContainer) {
-          const topPos = settingsSection.offsetTop;
+          const topPos = settingsSection.getBoundingClientRect().top - mainContainer.getBoundingClientRect().top + mainContainer.scrollTop - 16;
           mainContainer.scrollTo({
             top: topPos,
             behavior: 'smooth'
@@ -3030,6 +3054,18 @@ async function syncPlaylistsData(forceSync = false) {
       renderQuickPlaylists();
     }
     
+    // Fetch personalized recommendations based on favorites if none are currently loaded
+    if (state.behaviorRecommendations.length === 0 && state.contentRecommendations.length === 0) {
+      const favorites = updatedLocalPlaylists.find(p => p.id === 'favorites');
+      if (favorites && favorites.songs.length > 0) {
+        const lastFav = favorites.songs[favorites.songs.length - 1];
+        if (lastFav && lastFav.id) {
+          console.log(`Preloading personalized recommendations based on last favorite track: ${lastFav.title}`);
+          loadRecommendations(lastFav.id);
+        }
+      }
+    }
+
     if (syncDashboardStatus) syncDashboardStatus.textContent = 'All synced';
     console.log("Two-way Firebase sync finished successfully.");
   } catch (err) {
@@ -3311,6 +3347,7 @@ function saveAppState() {
     behaviorRecommendations: state.behaviorRecommendations,
     contentRecommendations: state.contentRecommendations,
     songs: state.songs,
+    queue: state.queue,
     isShuffle: state.isShuffle,
     repeatMode: state.repeatMode,
     isPlaylistDetailActive: playlistDetailPanel ? playlistDetailPanel.classList.contains('active') : false,
@@ -3328,6 +3365,7 @@ function loadAppState() {
     const savedState = JSON.parse(savedStateStr);
     
     state.songs = savedState.songs || state.songs;
+    state.queue = savedState.queue || [];
     state.currentSongIndex = savedState.currentSongIndex !== undefined ? savedState.currentSongIndex : state.currentSongIndex;
     state.activeTab = savedState.activeTab || state.activeTab;
     state.currentPlaylistId = savedState.currentPlaylistId || state.currentPlaylistId;
