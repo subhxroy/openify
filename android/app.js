@@ -3,7 +3,7 @@
    ========================================================================== */
 
 // --- Configuration ---
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://openify-production-8e41.up.railway.app';
 const DEFAULT_AVATAR = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' fill='%231e293b'/><circle cx='12' cy='8' r='4' fill='%23a3e635'/><path d='M12,14 C8.13,14 5,16.24 5,19 L19,19 C19,16.24 15.87,14 12,14 Z' fill='%23a3e635'/></svg>";
 
 // Your web app's Firebase configuration

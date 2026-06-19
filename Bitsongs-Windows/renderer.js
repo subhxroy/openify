@@ -3,7 +3,7 @@
    ========================================================================== */
 
 // --- Configuration ---
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://openify-production-8e41.up.railway.app';
 
 // --- State Management ---
 let state = {
