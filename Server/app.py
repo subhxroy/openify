@@ -40,6 +40,8 @@ app.add_middleware(
     allow_headers=["Content-Type", "Authorization"],
 )
 
+import tempfile
+
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 CACHE_DIR = BASE_DIR / "song_cache"
@@ -47,6 +49,19 @@ CACHE_LIMIT_BYTES = 600 * 1024 * 1024
 
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+# Copy cookies.txt to a temp file to prevent Uvicorn auto-reload loops in development when yt-dlp writes to it
+TEMP_COOKIE_FILE = None
+cookies_source = BASE_DIR / "cookies.txt"
+if cookies_source.exists():
+    try:
+        temp_dir = Path(tempfile.gettempdir())
+        cookies_dest = temp_dir / "openify_cookies.txt"
+        shutil.copy2(cookies_source, cookies_dest)
+        TEMP_COOKIE_FILE = str(cookies_dest)
+        logger.info(f"Successfully copied cookies.txt to temp location: {TEMP_COOKIE_FILE}")
+    except Exception as e:
+        logger.error(f"Failed to copy cookies.txt to temp location: {e}")
 
 executor = ThreadPoolExecutor(max_workers=2)
 
@@ -355,6 +370,8 @@ def download_task(song_id, artist, title):
         "js_runtimes": {"node": {}},
         "extractor_args": {"youtube": {"player_client": ["default", "-android_sdkless"]}},
     }
+    if TEMP_COOKIE_FILE:
+        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([f"ytsearch1:{query}"])
@@ -419,6 +436,8 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             }
         },
     }
+    if TEMP_COOKIE_FILE:
+        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
             info = ydl.extract_info(f"ytsearch1:{query}", download=False)
