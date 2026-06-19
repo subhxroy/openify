@@ -2,13 +2,42 @@
 <html class="dark" lang="en">
 <head>
   <meta charset="utf-8" />
+  <script>
+    // Enforce HTTPS to prevent mixed content issues and "Not Secure" warnings on Netlify
+    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.href = window.location.href.replace('http:', 'https:');
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Openify Mobile</title>
+  <title>Openify - Open Source Music Player</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Openify is a sleek, minimalist, and open-source music player. Stream and download high-quality music ad-free without tracking." />
+  <meta name="keywords" content="openify, music player, open source, streaming, download music, ad-free music, minimalist audio player" />
+  <meta name="author" content="subhxroy" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://openify.netlify.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://openify.netlify.app/" />
+  <meta property="og:title" content="Openify - Open Source Music Player" />
+  <meta property="og:description" content="Stream and download high-quality music ad-free with a sleek, minimalist interface." />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://openify.netlify.app/" />
+  <meta property="twitter:title" content="Openify - Open Source Music Player" />
+  <meta property="twitter:description" content="Stream and download high-quality music ad-free with a sleek, minimalist interface." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='24' fill='%23111111'/&gt;&lt;circle cx='50' cy='50' r='28' fill='none' stroke='%230066cc' stroke-width='8'/&gt;&lt;path d='M46 36 L64 50 L46 64 Z' fill='%23a3e635'/&gt;&lt;/svg&gt;">
+
   <!-- Google Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -426,6 +455,16 @@
             <span class="material-symbols-outlined text-lg">logout</span>
             Sign Out Account
           </button>
+          
+          <!-- Developer Branding Footer -->
+          <div class="text-center pt-8 pb-4 border-t border-white/5 opacity-60">
+            <p class="text-xs text-on-surface-variant flex items-center justify-center gap-1">
+              Made with 🤍 by 
+              <a href="https://github.com/subhxroy" target="_blank" rel="noopener noreferrer" class="text-white hover:text-primary-container hover:underline font-bold transition-colors">
+                subhxroy
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
