@@ -112,10 +112,8 @@ def write_cookies_to_temp(cookie_content: str):
         return False
 
 def initialize_cookies():
-    # If running on Railway/production, do not load cookies to bypass bot checks.
-    if os.getenv("RAILWAY_ENVIRONMENT") or os.getenv("PORT") or os.name != "nt":
-        logger.info("Running in production/Railway. Disabling YouTube cookies to prevent bot blocks.")
-        return
+    # Load cookies in all environments (including production/Railway) to bypass bot checks.
+    logger.info("Initializing cookies...")
 
     # 1. Try persistent data directory cookies.txt
     persistent_cookies_path = DATA_DIR / "cookies.txt"
@@ -518,6 +516,7 @@ def download_task(song_id, artist, title):
             "noplaylist": True,
             "quiet": True,
             "js_runtimes": {"node": {}},
+            "remote_components": ["ejs:github"],
             "extractor_args": {"youtube": {"player_client": ["android_music", "web"]}},
         }
         
@@ -532,6 +531,8 @@ def download_task(song_id, artist, title):
         video_id = search_youtube_via_invidious(query)
         if not video_id:
             video_id = search_youtube_via_piped(query)
+        if not video_id:
+            video_id = search_youtube_via_ytdlp(query)
             
         target = f"https://www.youtube.com/watch?v={video_id}" if video_id else f"ytsearch1:{query}"
         logger.info(f"Downloading stream for target: {target} (query: {query})")
@@ -633,6 +634,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
         "noplaylist": True,
         "quiet": False,
         "js_runtimes": {"node": {}},
+        "remote_components": ["ejs:github"],
         "extractor_args": {
             "youtube": {
                 "player_client": ["android_music", "web"],
@@ -654,6 +656,8 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
     video_id = search_youtube_via_invidious(query)
     if not video_id:
         video_id = search_youtube_via_piped(query)
+    if not video_id:
+        video_id = search_youtube_via_ytdlp(query)
         
     target = f"https://www.youtube.com/watch?v={video_id}" if video_id else f"ytsearch1:{query}"
     logger.info(f"Extracting stream for target: {target} (query: {query})")
@@ -785,8 +789,9 @@ def debug_cookies():
     }
 
 
-def search_youtube_via_invidious(query: str) -> str:
+def search_youtube_via_invidious(query: str) -> str | None:
     import requests
+    from concurrent.futures import ThreadPoolExecutor, as_completed
     instances = [
         "https://invidious.projectsegfaut.im",
         "https://yewtu.be",
@@ -794,35 +799,55 @@ def search_youtube_via_invidious(query: str) -> str:
         "https://invidious.nerdvpn.de",
         "https://invidious.slipfox.xyz",
         "https://invidious.esmailelbob.xyz",
+        "https://iv.ggtyler.dev",
+        "https://invidious.lunar.icu",
+        "https://invidious.flokinet.to",
     ]
-    for base in instances:
+    
+    def check_instance(base):
         url = f"{base}/api/v1/search?q={requests.utils.quote(query)}&type=video"
         try:
-            r = requests.get(url, timeout=5)
+            r = requests.get(url, timeout=2.5)
             if r.status_code == 200:
                 results = r.json()
                 if results and isinstance(results, list) and len(results) > 0:
                     video_id = results[0].get("videoId")
                     if video_id:
-                        logger.info(f"Resolved search via Invidious {base}: {video_id}")
                         return video_id
         except Exception:
-            continue
+            pass
+        return None
+
+    try:
+        with ThreadPoolExecutor(max_workers=5) as pool:
+            futures = {pool.submit(check_instance, base): base for base in instances}
+            for future in as_completed(futures):
+                res = future.result()
+                if res:
+                    logger.info(f"Resolved search via Invidious (parallel): {res}")
+                    return res
+    except Exception as e:
+        logger.warning(f"Parallel Invidious search failed: {e}")
     return None
 
 
-def search_youtube_via_piped(query: str) -> str:
+def search_youtube_via_piped(query: str) -> str | None:
     import requests
+    from concurrent.futures import ThreadPoolExecutor, as_completed
     instances = [
         "https://pipedapi.kavin.rocks",
         "https://piped-api.garudalinux.org",
         "https://pipedapi.lunar.icu",
         "https://api.piped.yt",
+        "https://pipedapi.ox.rs",
+        "https://pipedapi.colby.cloud",
+        "https://pipedapi.reallyawesomelink.co",
     ]
-    for base in instances:
+    
+    def check_instance(base):
         url = f"{base}/search?q={requests.utils.quote(query)}&filter=videos"
         try:
-            r = requests.get(url, timeout=5)
+            r = requests.get(url, timeout=2.5)
             if r.status_code == 200:
                 results = r.json()
                 items = results.get("items", [])
@@ -830,10 +855,70 @@ def search_youtube_via_piped(query: str) -> str:
                     url_path = items[0].get("url", "")
                     if "v=" in url_path:
                         video_id = url_path.split("v=")[-1]
-                        logger.info(f"Resolved search via Piped {base}: {video_id}")
                         return video_id
         except Exception:
-            continue
+            pass
+        return None
+
+    try:
+        with ThreadPoolExecutor(max_workers=5) as pool:
+            futures = {pool.submit(check_instance, base): base for base in instances}
+            for future in as_completed(futures):
+                res = future.result()
+                if res:
+                    logger.info(f"Resolved search via Piped (parallel): {res}")
+                    return res
+    except Exception as e:
+        logger.warning(f"Parallel Piped search failed: {e}")
+    return None
+
+
+def search_youtube_via_ytdlp(query: str) -> str | None:
+    ydl_opts = {
+        "extract_flat": True,
+        "playlist_items": "1",
+        "quiet": True,
+        "js_runtimes": {"node": {}},
+        "remote_components": ["ejs:github"],
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android_music", "web"],
+            }
+        },
+    }
+    if TEMP_COOKIE_FILE:
+        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+        
+    proxy_env = os.getenv("YOUTUBE_PROXY")
+    if proxy_env:
+        ydl_opts["proxy"] = proxy_env
+        
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(f"ytsearch1:{query}", download=False)
+            if info and "entries" in info and len(info["entries"]) > 0:
+                entry = info["entries"][0]
+                video_id = entry.get("id")
+                if video_id:
+                    logger.info(f"Resolved search via yt-dlp search extractor: {video_id}")
+                    return video_id
+    except Exception as e:
+        logger.warning(f"yt-dlp search failed with cookies: {e}")
+        
+    try:
+        ydl_opts_nocookies = dict(ydl_opts)
+        ydl_opts_nocookies.pop("cookiefile", None)
+        with yt_dlp.YoutubeDL(ydl_opts_nocookies) as ydl:
+            info = ydl.extract_info(f"ytsearch1:{query}", download=False)
+            if info and "entries" in info and len(info["entries"]) > 0:
+                entry = info["entries"][0]
+                video_id = entry.get("id")
+                if video_id:
+                    logger.info(f"Resolved search via yt-dlp search extractor (no cookies): {video_id}")
+                    return video_id
+    except Exception as e:
+        logger.warning(f"yt-dlp search failed without cookies: {e}")
+        
     return None
 
 
