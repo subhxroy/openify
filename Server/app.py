@@ -2,7 +2,21 @@ import json
 import logging
 import os
 import shutil
+import sys
 import time
+
+# Refresh PATH from registry on Windows to pick up new installations (like winget Gyan.FFmpeg)
+if sys.platform == "win32":
+    try:
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as key:
+            user_path, _ = winreg.QueryValueEx(key, "Path")
+            if user_path:
+                user_path = os.path.expandvars(user_path)
+                os.environ["PATH"] = user_path + os.pathsep + os.environ["PATH"]
+    except Exception:
+        pass
+
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.parse import quote
@@ -36,8 +50,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type", "Authorization"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 import tempfile
@@ -545,7 +560,12 @@ def build_proxy_response(url: str, incoming_headers, headers_json: str):
             headers["Range"] = incoming_headers["range"]
 
         req = requests.get(url, stream=True, headers=headers, timeout=30)
-        excluded_headers = {"content-encoding", "transfer-encoding", "connection"}
+        excluded_headers = {
+            "content-encoding", "transfer-encoding", "connection", 
+            "date", "server", "access-control-allow-origin", 
+            "access-control-allow-methods", "access-control-allow-headers", 
+            "access-control-expose-headers"
+        }
         response_headers = {name: value for name, value in req.headers.items() if name.lower() not in excluded_headers}
         response_headers["Accept-Ranges"] = "bytes"
         return StreamingResponse(

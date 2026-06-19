@@ -3,7 +3,9 @@
    ========================================================================== */
 
 // --- Configuration ---
-const BASE_URL = 'https://openify-production-8e41.up.railway.app';
+const BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ? 'http://localhost:8000'
+  : 'https://openify-production-8e41.up.railway.app';
 const DEFAULT_AVATAR = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' fill='%231e293b'/><circle cx='12' cy='8' r='4' fill='%23a3e635'/><path d='M12,14 C8.13,14 5,16.24 5,19 L19,19 C19,16.24 15.87,14 12,14 Z' fill='%23a3e635'/></svg>";
 
 // Your web app's Firebase configuration
@@ -879,7 +881,11 @@ function onAudioCanPlay() {
 }
 
 function onAudioError(e) {
-  console.error("Audio element error:", e);
+  console.error("Audio element error event:", e);
+  if (audio && audio.error) {
+    console.error("Audio error code:", audio.error.code);
+    console.error("Audio error message:", audio.error.message);
+  }
   setBuffering(false);
   setPlayingState(false);
 }
@@ -1325,11 +1331,11 @@ function showAddToPlaylistOverlay(song) {
     overlayPlaylistsList.appendChild(btn);
   });
 
-  addToPlaylistOverlay.classList.remove('hidden');
+  addToPlaylistOverlay.classList.remove('translate-y-full');
 }
 
 function hideAddToPlaylistOverlay() {
-  addToPlaylistOverlay.classList.add('hidden');
+  addToPlaylistOverlay.classList.add('translate-y-full');
   state.selectedSongForOverlay = null;
 }
 
@@ -1518,7 +1524,7 @@ function setupUIEventListeners() {
 
   // Close overlay on click outside container
   document.addEventListener('touchstart', (e) => {
-    if (!addToPlaylistOverlay.classList.contains('hidden') && 
+    if (!addToPlaylistOverlay.classList.contains('translate-y-full') && 
         !addToPlaylistOverlay.contains(e.target) && 
         !e.target.closest('.row-action-btn')) {
       hideAddToPlaylistOverlay();
