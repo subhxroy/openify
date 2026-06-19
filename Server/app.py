@@ -50,20 +50,122 @@ CACHE_LIMIT_BYTES = 600 * 1024 * 1024
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
-# Copy cookies.txt to a temp file to prevent Uvicorn auto-reload loops in development when yt-dlp writes to it
 TEMP_COOKIE_FILE = None
-cookies_source = BASE_DIR / "cookies.txt"
-if cookies_source.exists():
+
+def write_cookies_to_temp(cookie_content: str):
+    global TEMP_COOKIE_FILE
     try:
         temp_dir = Path(tempfile.gettempdir())
         cookies_dest = temp_dir / "openify_cookies.txt"
-        shutil.copy2(cookies_source, cookies_dest)
+        
+        cookie_content_str = cookie_content.strip()
+        is_json = False
+        if cookie_content_str.startswith("[") and cookie_content_str.endswith("]"):
+            try:
+                cookies_json = json.loads(cookie_content_str)
+                is_json = True
+            except Exception:
+                is_json = False
+                
+        if is_json:
+            lines = ["# Netscape HTTP Cookie File\n", "# Generated from JSON by Openify\n\n"]
+            for cookie in cookies_json:
+                domain = cookie.get("domain", "")
+                flag = "FALSE" if cookie.get("hostOnly", False) else "TRUE"
+                if domain.startswith("."):
+                    flag = "TRUE"
+                path = cookie.get("path", "/")
+                secure = "TRUE" if cookie.get("secure", False) else "FALSE"
+                expiry = cookie.get("expirationDate")
+                if expiry is None:
+                    expiry = int(time.time()) + 31536000
+                else:
+                    expiry = int(expiry)
+                name = cookie.get("name", "")
+                value = cookie.get("value", "")
+                lines.append(f"{domain}\t{flag}\t{path}\t{secure}\t{expiry}\t{name}\t{value}\n")
+            netscape_content = "".join(lines)
+        else:
+            netscape_content = cookie_content
+            
+        cookies_dest.write_text(netscape_content, encoding="utf-8")
         TEMP_COOKIE_FILE = str(cookies_dest)
-        logger.info(f"Successfully copied cookies.txt to temp location: {TEMP_COOKIE_FILE}")
+        logger.info(f"Successfully wrote cookies to temp location: {TEMP_COOKIE_FILE}")
+        return True
     except Exception as e:
-        logger.error(f"Failed to copy cookies.txt to temp location: {e}")
+        logger.error(f"Failed to write cookies to temp location: {e}")
+        return False
+
+def initialize_cookies():
+    # 1. Try env var
+    env_cookies = os.getenv("YOUTUBE_COOKIES")
+    if env_cookies:
+        logger.info("Loading cookies from YOUTUBE_COOKIES environment variable")
+        if write_cookies_to_temp(env_cookies):
+            return
+            
+    # 2. Try persistent data directory cookies.txt
+    persistent_cookies_path = DATA_DIR / "cookies.txt"
+    if persistent_cookies_path.exists():
+        try:
+            logger.info("Loading cookies from persistent data/cookies.txt")
+            cookie_content = persistent_cookies_path.read_text(encoding="utf-8")
+            if write_cookies_to_temp(cookie_content):
+                return
+        except Exception as e:
+            logger.error(f"Failed to read persistent cookies: {e}")
+            
+    # 3. Try base directory cookies.txt
+    cookies_source = BASE_DIR / "cookies.txt"
+    if cookies_source.exists():
+        try:
+            logger.info("Loading cookies from Server/cookies.txt")
+            cookie_content = cookies_source.read_text(encoding="utf-8")
+            write_cookies_to_temp(cookie_content)
+        except Exception as e:
+            logger.error(f"Failed to read base directory cookies.txt: {e}")
+
+initialize_cookies()
+
+STREAM_URL_CACHE_PATH = DATA_DIR / "stream_url_cache.json"
+STREAM_URL_CACHE = {}
+
+def load_stream_url_cache():
+    global STREAM_URL_CACHE
+    if STREAM_URL_CACHE_PATH.exists():
+        try:
+            STREAM_URL_CACHE = json.loads(STREAM_URL_CACHE_PATH.read_text(encoding="utf-8"))
+            logger.info(f"Loaded {len(STREAM_URL_CACHE)} entries from stream URL cache.")
+        except Exception as e:
+            logger.error(f"Failed to load stream URL cache: {e}")
+            STREAM_URL_CACHE = {}
+
+def save_stream_url_cache():
+    try:
+        STREAM_URL_CACHE_PATH.write_text(json.dumps(STREAM_URL_CACHE), encoding="utf-8")
+    except Exception as e:
+        logger.error(f"Failed to save stream URL cache: {e}")
+
+load_stream_url_cache()
+
+from urllib.parse import urlparse, parse_qs
+
+def parse_url_expiry(url: str) -> int:
+    try:
+        parsed = urlparse(url)
+        qs = parse_qs(parsed.query)
+        expire_val = qs.get("expire")
+        if expire_val:
+            return int(expire_val[0])
+    except Exception as e:
+        logger.warning(f"Failed to parse url expiry: {e}")
+    return int(time.time()) + 14400
+
+import threading
 
 executor = ThreadPoolExecutor(max_workers=2)
+CURRENTLY_DOWNLOADING = set()
+DOWNLOADING_LOCK = threading.Lock()
 
 
 @app.middleware("http")
@@ -357,27 +459,51 @@ def build_up_next_response(song_id, limit=10):
 
 
 def download_task(song_id, artist, title):
-    clear_cache_if_needed()
-    filepath = CACHE_DIR / f"{song_id}.m4a"
-    if filepath.exists():
-        return
-    query = f"{artist} - {title} audio"
-    ydl_opts = {
-        "format": "bestaudio[ext=m4a]/bestaudio/best",
-        "outtmpl": str(filepath),
-        "noplaylist": True,
-        "quiet": True,
-        "js_runtimes": {"node": {}},
-        "extractor_args": {"youtube": {"player_client": ["default", "-android_sdkless"]}},
-    }
-    if TEMP_COOKIE_FILE:
-        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+    with DOWNLOADING_LOCK:
+        if song_id in CURRENTLY_DOWNLOADING:
+            logger.info(f"Song {song_id} is already downloading, skipping duplicate task")
+            return
+        CURRENTLY_DOWNLOADING.add(song_id)
+        
     try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([f"ytsearch1:{query}"])
         clear_cache_if_needed()
+        filepath = CACHE_DIR / f"{song_id}.m4a"
+        if filepath.exists():
+            return
+        query = f"{artist} - {title} audio"
+        ydl_opts = {
+            "format": "bestaudio[ext=m4a]/bestaudio/best",
+            "outtmpl": str(filepath),
+            "noplaylist": True,
+            "quiet": True,
+            "js_runtimes": {"node": {}},
+            "extractor_args": {"youtube": {"player_client": ["default", "-android_sdkless"]}},
+        }
+        
+        proxy_env = os.getenv("YOUTUBE_PROXY")
+        if proxy_env:
+            ydl_opts["proxy"] = proxy_env
+            
+        if TEMP_COOKIE_FILE:
+            ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+            
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([f"ytsearch1:{query}"])
+        except Exception as download_exc:
+            logger.warning(f"Download failed with cookies: {download_exc}. Trying fallback without cookies...")
+            ydl_opts_fallback = dict(ydl_opts)
+            ydl_opts_fallback.pop("cookiefile", None)
+            with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
+                ydl.download([f"ytsearch1:{query}"])
+                
+        clear_cache_if_needed()
+        logger.info(f"Successfully downloaded and cached song {song_id} to disk")
     except Exception as e:
         logger.exception("Download task exception for song: %s (%s - %s)", song_id, artist, title)
+    finally:
+        with DOWNLOADING_LOCK:
+            CURRENTLY_DOWNLOADING.discard(song_id)
 
 
 def build_proxy_response(url: str, incoming_headers, headers_json: str):
@@ -420,10 +546,33 @@ def get_base_url(request: Request) -> str:
 def render_play_response(request: Request, song_id: str, artist: str, title: str):
     filename = f"{song_id}.m4a"
     filepath = CACHE_DIR / filename
+    
+    # 1. Check disk cache
     if filepath.exists():
         base_url = get_base_url(request)
         return JSONResponse({"source": "local", "url": f"{base_url}/api/mobile/stream_cache/{filename}"})
 
+    # 2. Check stream URL cache
+    now = int(time.time())
+    cached_entry = STREAM_URL_CACHE.get(song_id)
+    if cached_entry and cached_entry.get("expire_at", 0) > now + 60:
+        logger.info(f"Serving song {song_id} from stream URL cache")
+        base_url = get_base_url(request)
+        direct_url = cached_entry["direct_url"]
+        http_headers = cached_entry["headers"]
+        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
+        
+        # Trigger background auto-download to disk cache
+        executor.submit(download_task, song_id, artist, title)
+        
+        return JSONResponse({
+            "source": "youtube_cached", 
+            "url": proxy_url, 
+            "direct_url": direct_url, 
+            "headers": http_headers
+        })
+
+    # 3. Live extraction
     query = f"{artist} - {title} audio"
     ydl_opts = {
         "format": "bestaudio[ext=m4a]/bestaudio/best",
@@ -436,19 +585,64 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             }
         },
     }
+    
+    proxy_env = os.getenv("YOUTUBE_PROXY")
+    if proxy_env:
+        ydl_opts["proxy"] = proxy_env
+        logger.info(f"Using proxy for yt-dlp: {proxy_env}")
+
     if TEMP_COOKIE_FILE:
         ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        
+    extracted_info = None
+    
+    try:
+        # Try extracting with cookies
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            extracted_info = ydl.extract_info(f"ytsearch1:{query}", download=False)
+    except Exception as exc:
+        logger.warning(f"Extraction failed with cookies: {exc}. Trying fallback without cookies...")
+        # Fallback without cookies
+        ydl_opts_fallback = dict(ydl_opts)
+        ydl_opts_fallback.pop("cookiefile", None)
         try:
-            info = ydl.extract_info(f"ytsearch1:{query}", download=False)
-            video = info["entries"][0] if "entries" in info else info
-            http_headers = video.get("http_headers", {})
-            base_url = get_base_url(request)
-            proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(video['url'])}&headers={quote(json.dumps(http_headers))}"
-            return JSONResponse({"source": "youtube", "url": proxy_url, "direct_url": video["url"], "headers": http_headers})
-        except Exception as exc:
+            with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
+                extracted_info = ydl.extract_info(f"ytsearch1:{query}", download=False)
+        except Exception as fallback_exc:
             logger.exception("Render play extract error for query: %s", query)
-            return JSONResponse({"error": f"Song not found: {exc}"}, status_code=404)
+            return JSONResponse({"error": f"Song not found: {fallback_exc}"}, status_code=404)
+
+    if extracted_info:
+        try:
+            video = extracted_info["entries"][0] if "entries" in extracted_info else extracted_info
+            direct_url = video["url"]
+            http_headers = video.get("http_headers", {})
+            
+            # Cache the extracted URL
+            expire_at = parse_url_expiry(direct_url)
+            STREAM_URL_CACHE[song_id] = {
+                "direct_url": direct_url,
+                "headers": http_headers,
+                "expire_at": expire_at
+            }
+            save_stream_url_cache()
+            logger.info(f"Cached stream URL for song {song_id}, expiring at {expire_at}")
+            
+            base_url = get_base_url(request)
+            proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
+            
+            # Queue background download to local disk cache
+            executor.submit(download_task, song_id, artist, title)
+            
+            return JSONResponse({
+                "source": "youtube", 
+                "url": proxy_url, 
+                "direct_url": direct_url, 
+                "headers": http_headers
+            })
+        except Exception as parse_exc:
+            logger.error(f"Failed to parse video info: {parse_exc}")
+            return JSONResponse({"error": f"Failed to parse video metadata: {parse_exc}"}, status_code=500)
 
 
 @app.get("/")
@@ -516,40 +710,28 @@ def mobile_health():
     return JSONResponse({"status": "ok", "server": "Bitsongs", "version": "2.0", "timestamp": int(time.time())})
 
 
-@app.get("/api/mobile/test_ytdl")
-def test_ytdl(use_cookies: bool = False, format: str = "bestaudio[ext=m4a]/bestaudio/best", client: str = "default"):
-    query = "Shibu - TAUBA audio"
-    ydl_opts = {
-        "format": format,
-        "noplaylist": True,
-        "quiet": True,
-        "js_runtimes": {"node": {}},
-        "extractor_args": {
-            "youtube": {
-                "player_client": [client] if client != "default" else ["default", "-android_sdkless"],
-            }
-        },
-    }
-    if use_cookies and TEMP_COOKIE_FILE:
-        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+@app.post("/api/mobile/update_cookies")
+async def update_cookies(request: Request):
+    try:
+        data = await request.json()
+        cookie_content = data.get("cookies", "")
+    except Exception:
+        return JSONResponse({"status": "error", "message": "Invalid JSON payload"}, status_code=400)
         
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    if not cookie_content:
+        return JSONResponse({"status": "error", "message": "Cookies content cannot be empty"}, status_code=400)
+        
+    success = write_cookies_to_temp(cookie_content)
+    if success:
         try:
-            info = ydl.extract_info(f"ytsearch1:{query}", download=False)
-            video = info["entries"][0] if "entries" in info else info
-            return JSONResponse({
-                "status": "success",
-                "title": video.get("title"),
-                "format": video.get("format"),
-                "ext": video.get("ext"),
-                "url": video.get("url")[:100] + "..."
-            })
+            persistent_cookies_path = DATA_DIR / "cookies.txt"
+            persistent_cookies_path.write_text(cookie_content, encoding="utf-8")
+            logger.info(f"Saved cookies to persistent path: {persistent_cookies_path}")
         except Exception as e:
-            return JSONResponse({
-                "status": "failed",
-                "error_type": type(e).__name__,
-                "error": str(e)
-            }, status_code=500)
+            logger.error(f"Failed to save persistent cookies: {e}")
+        return JSONResponse({"status": "success", "message": "Cookies updated successfully"})
+    else:
+        return JSONResponse({"status": "error", "message": "Failed to update cookies"}, status_code=500)
 
 
 if __name__ == "__main__":
