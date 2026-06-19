@@ -350,7 +350,6 @@ def download_task(song_id, artist, title):
     ydl_opts = {
         "format": "bestaudio/best",
         "outtmpl": str(filepath),
-        "cookiefile": str(BASE_DIR / "cookies.txt"),
         "noplaylist": True,
         "quiet": True,
         "js_runtimes": {"node": {}},
@@ -406,7 +405,6 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
     query = f"{artist} - {title} audio"
     ydl_opts = {
         "format": "bestaudio/best",
-        "cookiefile": str(BASE_DIR / "cookies.txt"),
         "noplaylist": True,
         "quiet": False,
         "js_runtimes": {"node": {}},
