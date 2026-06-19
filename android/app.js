@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupStarDriftBackground();
   setupSwipeGestures();
   setupLibraryFilters();
+  initializePreferences();
   
   // Initialize Offline DB and load downloaded songs
   initOfflineDb().then(() => {
@@ -594,11 +595,13 @@ async function loadSong(index, shouldPlay = true) {
       }
     })
     .catch(err => {
-      console.error("Stream load error:", err);
-      showToast("Failed to load audio stream");
+      console.error("Failed to load stream url:", err);
       setBuffering(false);
       setPlayingState(false);
     });
+  if (shouldPlay) {
+    scrobbleTrackToLastfm(song);
+  }
 }
 
 function playNext() {
@@ -1714,6 +1717,106 @@ function setupUIEventListeners() {
       updateProfileStats();
     });
   }
+
+  // Theme Selector listener
+  const selectTheme = document.getElementById('setting-select-theme');
+  if (selectTheme) {
+    selectTheme.addEventListener('change', (e) => {
+      const val = e.target.value;
+      applyAppTheme(val);
+      const label = document.getElementById('current-theme-label');
+      if (label) {
+        const option = selectTheme.options[selectTheme.selectedIndex];
+        label.textContent = option ? option.textContent : 'Dynamic Extraction';
+      }
+    });
+  }
+
+  // EQ Preset Selector listener
+  const selectEQ = document.getElementById('setting-select-eq');
+  if (selectEQ) {
+    selectEQ.addEventListener('change', (e) => {
+      const val = e.target.value;
+      applyEQPreset(val);
+      const label = document.getElementById('current-eq-label');
+      if (label) {
+        const option = selectEQ.options[selectEQ.selectedIndex];
+        label.textContent = option ? option.textContent : 'Flat';
+      }
+    });
+  }
+
+  // Visualizer Style Selector listener
+  const selectVisualizer = document.getElementById('setting-select-visualizer');
+  if (selectVisualizer) {
+    selectVisualizer.addEventListener('change', (e) => {
+      const val = e.target.value;
+      visualizerStyle = val;
+      localStorage.setItem('openify_visualizer_style', val);
+      const label = document.getElementById('current-visualizer-label');
+      if (label) {
+        const option = selectVisualizer.options[selectVisualizer.selectedIndex];
+        label.textContent = option ? option.textContent : 'Radial Ring';
+      }
+    });
+  }
+
+  // Sleep Timer listeners
+  const settingItemSleepTimer = document.getElementById('setting-item-sleeptimer');
+  const sleeptimerOverlay = document.getElementById('sleeptimer-overlay');
+  const closeSleeptimerOverlayBtn = document.getElementById('close-sleeptimer-overlay-btn');
+  
+  if (settingItemSleepTimer && sleeptimerOverlay) {
+    settingItemSleepTimer.addEventListener('click', () => {
+      sleeptimerOverlay.classList.remove('translate-y-full');
+      updateSleepTimerUI();
+    });
+  }
+  
+  if (closeSleeptimerOverlayBtn && sleeptimerOverlay) {
+    closeSleeptimerOverlayBtn.addEventListener('click', () => {
+      sleeptimerOverlay.classList.add('translate-y-full');
+    });
+  }
+
+  const optionBtns = document.querySelectorAll('.sleeptimer-option-btn');
+  optionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const minutes = btn.dataset.minutes;
+      if (minutes === 'off') {
+        setSleepTimer('off');
+      } else {
+        setSleepTimer(parseInt(minutes));
+      }
+      if (sleeptimerOverlay) sleeptimerOverlay.classList.add('translate-y-full');
+    });
+  });
+
+  const customSetBtn = document.getElementById('sleeptimer-custom-set-btn');
+  const customInput = document.getElementById('sleeptimer-custom-input');
+  if (customSetBtn && customInput) {
+    customSetBtn.addEventListener('click', () => {
+      const minutes = parseInt(customInput.value);
+      if (minutes > 0) {
+        setSleepTimer(minutes);
+        customInput.value = '';
+        if (sleeptimerOverlay) sleeptimerOverlay.classList.add('translate-y-full');
+      } else {
+        showToast("Enter a valid number of minutes");
+      }
+    });
+  }
+
+  // Last.fm input listener
+  const inputLastfm = document.getElementById('setting-input-lastfm');
+  if (inputLastfm) {
+    inputLastfm.addEventListener('input', (e) => {
+      const username = e.target.value.trim();
+      localStorage.setItem('openify_lastfm_user', username);
+      updateLastfmProfileUI(username);
+    });
+  }
+
   // Initialize profile stats rendering
   updateProfileStats();
 }
@@ -1835,6 +1938,14 @@ function setupSwipeGestures() {
 
 // --- Dynamic Color Extraction ---
 function extractDominantColors(imgUrl) {
+  const currentTheme = localStorage.getItem('openify_app_theme') || 'dynamic';
+  if (currentTheme !== 'dynamic') {
+    const coverUrl = imgUrl;
+    if (vinylCenterImage) {
+      vinylCenterImage.style.backgroundImage = `url('${coverUrl}')`;
+    }
+    return;
+  }
   const img = new Image();
   img.onload = () => {
     try {
@@ -1922,6 +2033,11 @@ function extractDominantColors(imgUrl) {
 }
 
 function resetColorsToDefault() {
+  const currentTheme = localStorage.getItem('openify_app_theme') || 'dynamic';
+  if (currentTheme !== 'dynamic') {
+    applyAppTheme(currentTheme);
+    return;
+  }
   const root = document.documentElement;
   root.style.setProperty('--primary-color', '#212842');
   root.style.setProperty('--secondary-color', '#2b3352');
@@ -2196,12 +2312,228 @@ function renderForYouTab() {
   // Staging stub for mobile. Recommended list is rendered in the Home tab scroll viewport.
 }
 
-// --- Audio Visualizer Helper Functions ---
+// --- Audio Visualizer & Preferences Helper Functions ---
 let audioCtx = null;
 let analyser = null;
 let source = null;
 
 let mobileVisualizerRunning = false;
+
+// preference variables
+let visualizerStyle = localStorage.getItem('openify_visualizer_style') || 'radial';
+let sleepTimerId = null;
+let sleepTimeRemaining = 0; // in seconds
+let sleepTimerIntervalId = null;
+let eqBass = null;
+let eqMid = null;
+let eqTreble = null;
+
+function applyEQPreset(presetName) {
+  if (!eqBass || !eqMid || !eqTreble) return;
+  const presets = {
+    flat: { bass: 0, mid: 0, treble: 0 },
+    bass: { bass: 7, mid: 0, treble: -2 },
+    treble: { bass: -2, mid: 0, treble: 7 },
+    vocal: { bass: -4, mid: 5, treble: 2 },
+    dance: { bass: 6, mid: -2, treble: 5 },
+    acoustic: { bass: 3, mid: 2, treble: 4 }
+  };
+  const settings = presets[presetName] || presets.flat;
+  eqBass.gain.value = settings.bass;
+  eqMid.gain.value = settings.mid;
+  eqTreble.gain.value = settings.treble;
+  localStorage.setItem('openify_eq_preset', presetName);
+}
+
+function applyAppTheme(themeName) {
+  localStorage.setItem('openify_app_theme', themeName);
+  
+  if (themeName === 'dynamic') {
+    const currentList = getCurrentList();
+    const currentSong = state.currentSongIndex !== -1 ? currentList[state.currentSongIndex] : null;
+    if (currentSong && (currentSong.cover_xl || currentSong.cover)) {
+      extractDominantColors(currentSong.cover_xl || currentSong.cover);
+    } else {
+      resetColorsToDefault();
+    }
+    return;
+  }
+  
+  const root = document.documentElement;
+  const themeColors = {
+    amoled: {
+      primary: '#000000',
+      secondary: '#121212',
+      accent: '#a3e635',
+      accentRgb: '163, 230, 53',
+      primaryRgb: '0, 0, 0'
+    },
+    purple: {
+      primary: '#120E2E',
+      secondary: '#1B163F',
+      accent: '#9D4EDD',
+      accentRgb: '157, 78, 221',
+      primaryRgb: '18, 14, 46'
+    },
+    green: {
+      primary: '#051A10',
+      secondary: '#0A2E1C',
+      accent: '#1DB954',
+      accentRgb: '29, 185, 84',
+      primaryRgb: '5, 26, 16'
+    },
+    pink: {
+      primary: '#240B13',
+      secondary: '#3D1420',
+      accent: '#FF4D80',
+      accentRgb: '255, 77, 128',
+      primaryRgb: '36, 11, 19'
+    }
+  };
+  
+  const colors = themeColors[themeName] || themeColors.amoled;
+  root.style.setProperty('--primary-color', colors.primary);
+  root.style.setProperty('--secondary-color', colors.secondary);
+  root.style.setProperty('--accent-color', colors.accent);
+  root.style.setProperty('--accent-rgb', colors.accentRgb);
+  root.style.setProperty('--primary-rgb', colors.primaryRgb);
+  
+  const playlistRowArtElements = document.querySelectorAll('.playlist-row-art, .playlist-art-placeholder, .quick-playlist-art');
+  playlistRowArtElements.forEach(el => {
+    el.style.backgroundColor = colors.accent;
+  });
+}
+
+function setSleepTimer(minutes) {
+  if (sleepTimerId) {
+    clearTimeout(sleepTimerId);
+    sleepTimerId = null;
+  }
+  if (sleepTimerIntervalId) {
+    clearInterval(sleepTimerIntervalId);
+    sleepTimerIntervalId = null;
+  }
+
+  if (minutes === 'off') {
+    sleepTimeRemaining = 0;
+    updateSleepTimerUI();
+    showToast("Sleep Timer turned off");
+    localStorage.removeItem('openify_sleep_timer');
+    return;
+  }
+
+  const durationMs = minutes * 60 * 1000;
+  sleepTimeRemaining = minutes * 60;
+  
+  sleepTimerId = setTimeout(() => {
+    if (state.isPlaying) {
+      togglePlayPause();
+      showToast("Sleep Timer triggered. Music paused.");
+    }
+    setSleepTimer('off');
+  }, durationMs);
+
+  sleepTimerIntervalId = setInterval(() => {
+    sleepTimeRemaining--;
+    if (sleepTimeRemaining <= 0) {
+      clearInterval(sleepTimerIntervalId);
+      sleepTimerIntervalId = null;
+    }
+    updateSleepTimerUI();
+  }, 1000);
+
+  updateSleepTimerUI();
+  showToast(`Sleep Timer set for ${minutes} minutes`);
+  localStorage.setItem('openify_sleep_timer', minutes);
+}
+
+function updateSleepTimerUI() {
+  const label = document.getElementById('current-sleeptimer-label');
+  const statusLabel = document.getElementById('overlay-sleeptimer-status');
+  
+  if (sleepTimeRemaining > 0) {
+    const mins = Math.floor(sleepTimeRemaining / 60);
+    const secs = sleepTimeRemaining % 60;
+    const timeStr = `${mins}:${secs.toString().padStart(2, '0')} remaining`;
+    
+    if (label) label.textContent = timeStr;
+    if (statusLabel) statusLabel.textContent = timeStr;
+  } else {
+    if (label) label.textContent = 'Off';
+    if (statusLabel) statusLabel.textContent = 'Inactive';
+  }
+}
+
+function scrobbleTrackToLastfm(song) {
+  const username = localStorage.getItem('openify_lastfm_user');
+  if (!username || !song) return;
+  console.log(`[Last.fm] Scrobbling track: ${song.title} by ${song.artist} for user ${username}`);
+}
+
+function updateLastfmProfileUI(username) {
+  const profileLastfm = document.getElementById('profile-user-lastfm');
+  const profileLastfmLink = document.getElementById('profile-user-lastfm-link');
+  if (profileLastfm && profileLastfmLink) {
+    if (username) {
+      profileLastfmLink.textContent = username;
+      profileLastfmLink.href = `https://www.last.fm/user/${username}`;
+      profileLastfm.classList.remove('hidden');
+    } else {
+      profileLastfm.classList.add('hidden');
+    }
+  }
+}
+
+function initializePreferences() {
+  // Theme load
+  const savedTheme = localStorage.getItem('openify_app_theme') || 'dynamic';
+  const selectTheme = document.getElementById('setting-select-theme');
+  if (selectTheme) {
+    selectTheme.value = savedTheme;
+    const label = document.getElementById('current-theme-label');
+    if (label) {
+      const option = selectTheme.options[selectTheme.selectedIndex];
+      label.textContent = option ? option.textContent : 'Dynamic Extraction';
+    }
+  }
+  applyAppTheme(savedTheme);
+
+  // EQ load
+  const savedEQ = localStorage.getItem('openify_eq_preset') || 'flat';
+  const selectEQ = document.getElementById('setting-select-eq');
+  if (selectEQ) {
+    selectEQ.value = savedEQ;
+    const label = document.getElementById('current-eq-label');
+    if (label) {
+      const option = selectEQ.options[selectEQ.selectedIndex];
+      label.textContent = option ? option.textContent : 'Flat';
+    }
+  }
+
+  // Visualizer load
+  const savedVisualizer = localStorage.getItem('openify_visualizer_style') || 'radial';
+  visualizerStyle = savedVisualizer;
+  const selectVisualizer = document.getElementById('setting-select-visualizer');
+  if (selectVisualizer) {
+    selectVisualizer.value = savedVisualizer;
+    const label = document.getElementById('current-visualizer-label');
+    if (label) {
+      const option = selectVisualizer.options[selectVisualizer.selectedIndex];
+      label.textContent = option ? option.textContent : 'Radial Ring';
+    }
+  }
+
+  // Last.fm load
+  const savedLastfm = localStorage.getItem('openify_lastfm_user') || '';
+  const inputLastfm = document.getElementById('setting-input-lastfm');
+  if (inputLastfm) {
+    inputLastfm.value = savedLastfm;
+  }
+  updateLastfmProfileUI(savedLastfm);
+  
+  // Sleep Timer init (Off by default on load)
+  updateSleepTimerUI();
+}
 
 function initMobileVisualizer() {
   try {
@@ -2214,14 +2546,41 @@ function initMobileVisualizer() {
       analyser = audioCtx.createAnalyser();
       analyser.fftSize = 256;
     }
+
+    if (!eqBass) {
+      eqBass = audioCtx.createBiquadFilter();
+      eqBass.type = 'lowshelf';
+      eqBass.frequency.value = 200;
+      eqBass.gain.value = 0;
+    }
+    if (!eqMid) {
+      eqMid = audioCtx.createBiquadFilter();
+      eqMid.type = 'peaking';
+      eqMid.frequency.value = 1000;
+      eqMid.Q.value = 1.0;
+      eqMid.gain.value = 0;
+    }
+    if (!eqTreble) {
+      eqTreble = audioCtx.createBiquadFilter();
+      eqTreble.type = 'highshelf';
+      eqTreble.frequency.value = 4000;
+      eqTreble.gain.value = 0;
+    }
     
     if (source) {
       source.disconnect();
     }
     
     source = audioCtx.createMediaElementSource(audio);
-    source.connect(analyser);
+    source.connect(eqBass);
+    eqBass.connect(eqMid);
+    eqMid.connect(eqTreble);
+    eqTreble.connect(analyser);
     analyser.connect(audioCtx.destination);
+
+    // Apply saved EQ preset
+    const savedPreset = localStorage.getItem('openify_eq_preset') || 'flat';
+    applyEQPreset(savedPreset);
     
     if (!mobileVisualizerRunning) {
       mobileVisualizerRunning = true;
@@ -2257,15 +2616,58 @@ function drawMobileVisualizer() {
       canvas.height = rect.height;
     }
     
-    analyser.getByteFrequencyData(dataArray);
-    
+    const accentRgb = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim() || '196, 242, 102';
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    if (visualizerStyle === 'none') {
+      return;
+    }
+
+    if (visualizerStyle === 'wave') {
+      analyser.getByteTimeDomainData(dataArray);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = `rgba(${accentRgb}, 0.85)`;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = `rgba(${accentRgb}, 0.5)`;
+      ctx.beginPath();
+      
+      const sliceWidth = canvas.width / bufferLength;
+      let x = 0;
+      for (let i = 0; i < bufferLength; i++) {
+        const v = dataArray[i] / 128.0;
+        const y = (v * canvas.height) / 2;
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+        x += sliceWidth;
+      }
+      ctx.lineTo(canvas.width, canvas.height / 2);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      return;
+    }
+
+    if (visualizerStyle === 'bars') {
+      analyser.getByteFrequencyData(dataArray);
+      const barWidth = (canvas.width / bufferLength) * 2.0;
+      let barHeight;
+      let x = 0;
+      for (let i = 0; i < bufferLength; i++) {
+        barHeight = (dataArray[i] / 255.0) * canvas.height * 0.8;
+        ctx.fillStyle = `rgba(${accentRgb}, ${0.5 + (barHeight / canvas.height) * 0.5})`;
+        ctx.fillRect(x, canvas.height - barHeight, barWidth - 2, barHeight);
+        x += barWidth;
+      }
+      return;
+    }
+
+    // Default: radial ring
+    analyser.getByteFrequencyData(dataArray);
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const innerRadius = 135;
-    
-    const accentRgb = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim() || '196, 242, 102';
     
     let sum = 0;
     for (let i = 0; i < bufferLength; i++) {

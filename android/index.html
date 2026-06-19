@@ -368,6 +368,10 @@
             </div>
             <h2 id="profile-user-name" class="text-xl font-bold text-white tracking-tight text-center">Guest</h2>
             <p id="profile-user-email" class="text-xs text-on-surface-variant mt-0.5 text-center">guest@openify.com</p>
+            <p id="profile-user-lastfm" class="text-[11px] text-primary-container mt-1 text-center hidden flex items-center justify-center gap-1 font-semibold tracking-wide">
+              <span class="material-symbols-outlined text-[14px]">music_note</span>
+              scrobbling to: <a href="" target="_blank" id="profile-user-lastfm-link" class="underline hover:text-white transition-colors"></a>
+            </p>
             <div class="flex gap-2.5 mt-3">
               <div class="bg-surface-container-high px-4 py-1.5 rounded-full border border-primary-container/20 flex items-center gap-1.5 shadow-md">
                 <span class="material-symbols-outlined text-[13px] text-primary-container">verified</span>
@@ -443,6 +447,86 @@
                 <input type="checkbox" id="setting-toggle-offlinemode" class="sr-only peer">
                 <div class="w-11 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container peer-checked:shadow-[0_0_10px_rgba(196,242,102,0.4)]"></div>
               </label>
+            </div>
+
+            <!-- Theme Setting Selector -->
+            <div class="flex items-center justify-between p-4 rounded-xl bg-surface-container/40 border border-white/5">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-white">palette</span>
+                <div>
+                  <h4 class="text-sm font-bold text-white">App Theme</h4>
+                  <p class="text-[11px] text-on-surface-variant" id="current-theme-label">Dynamic Extraction</p>
+                </div>
+              </div>
+              <select id="setting-select-theme" class="bg-surface-container border border-white/10 rounded-lg text-xs font-bold text-white px-3 py-1.5 focus:outline-none cursor-pointer">
+                <option value="dynamic">Dynamic</option>
+                <option value="amoled">AMOLED Black</option>
+                <option value="purple">Cosmic Purple</option>
+                <option value="green">Emerald Green</option>
+                <option value="pink">Sakura Pink</option>
+              </select>
+            </div>
+
+            <!-- Equalizer Preset Selector -->
+            <div class="flex items-center justify-between p-4 rounded-xl bg-surface-container/40 border border-white/5">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-white">equalizer</span>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Equalizer Preset</h4>
+                  <p class="text-[11px] text-on-surface-variant" id="current-eq-label">Flat</p>
+                </div>
+              </div>
+              <select id="setting-select-eq" class="bg-surface-container border border-white/10 rounded-lg text-xs font-bold text-white px-3 py-1.5 focus:outline-none cursor-pointer">
+                <option value="flat">Flat</option>
+                <option value="bass">Bass Booster</option>
+                <option value="treble">Treble Booster</option>
+                <option value="vocal">Vocal Booster</option>
+                <option value="dance">Dance/Electronic</option>
+                <option value="acoustic">Acoustic</option>
+              </select>
+            </div>
+
+            <!-- Visualizer Style Selector -->
+            <div class="flex items-center justify-between p-4 rounded-xl bg-surface-container/40 border border-white/5">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-white">visual_effects</span>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Visualizer Style</h4>
+                  <p class="text-[11px] text-on-surface-variant" id="current-visualizer-label">Radial Ring</p>
+                </div>
+              </div>
+              <select id="setting-select-visualizer" class="bg-surface-container border border-white/10 rounded-lg text-xs font-bold text-white px-3 py-1.5 focus:outline-none cursor-pointer">
+                <option value="radial">Radial Ring</option>
+                <option value="wave">Waveform Line</option>
+                <option value="bars">Linear Bars</option>
+                <option value="none">Disabled</option>
+              </select>
+            </div>
+
+            <!-- Sleep Timer Selection -->
+            <div id="setting-item-sleeptimer" class="flex items-center justify-between p-4 rounded-xl bg-surface-container/40 border border-white/5 cursor-pointer hover:bg-surface-container/60 active:scale-[0.99] transition-all">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-white">timer</span>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Sleep Timer</h4>
+                  <p class="text-[11px] text-on-surface-variant" id="current-sleeptimer-label">Off</p>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-on-surface-variant text-lg">chevron_right</span>
+            </div>
+
+            <!-- Last.fm Integration -->
+            <div class="flex flex-col gap-2 p-4 rounded-xl bg-surface-container/40 border border-white/5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-white">music_note</span>
+                  <div>
+                    <h4 class="text-sm font-bold text-white">Last.fm Username</h4>
+                    <p class="text-[11px] text-on-surface-variant">Links your scrobbling profile</p>
+                  </div>
+                </div>
+              </div>
+              <input type="text" id="setting-input-lastfm" placeholder="Enter username..." class="w-full bg-surface-container border border-white/10 rounded-lg text-xs font-bold text-white px-3 py-2 focus:outline-none focus:border-primary-container/40 mt-1" />
             </div>
             
             <!-- Rebranding Version Info -->
@@ -745,6 +829,51 @@
     </div>
     
     <button id="close-overlay-btn" class="w-full py-3 bg-surface-container hover:bg-surface-container-high text-white font-semibold text-sm rounded-xl transition-colors shrink-0">
+      Cancel
+    </button>
+  </div>
+
+  <!-- Sleep Timer slide-up overlay -->
+  <div id="sleeptimer-overlay" class="fixed inset-x-0 bottom-0 z-50 bg-[#1A1A1A] rounded-t-[24px] border-t border-white/10 p-6 translate-y-full transition-transform duration-300 max-h-[80vh] flex flex-col justify-between">
+    <div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-4 shrink-0"></div>
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-md font-bold text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary-container">timer</span>
+        Sleep Timer
+      </h3>
+      <span class="text-xs text-on-surface-variant font-semibold" id="overlay-sleeptimer-status">Inactive</span>
+    </div>
+    
+    <div class="flex-1 overflow-y-auto no-scrollbar space-y-2 mb-6">
+      <button class="sleeptimer-option-btn w-full text-left py-3 px-4 bg-surface-container/30 hover:bg-surface-container/60 active:scale-95 text-white font-medium text-sm rounded-xl transition-all" data-minutes="off">
+        Turn Off
+      </button>
+      <button class="sleeptimer-option-btn w-full text-left py-3 px-4 bg-surface-container/30 hover:bg-surface-container/60 active:scale-95 text-white font-medium text-sm rounded-xl transition-all" data-minutes="5">
+        5 Minutes
+      </button>
+      <button class="sleeptimer-option-btn w-full text-left py-3 px-4 bg-surface-container/30 hover:bg-surface-container/60 active:scale-95 text-white font-medium text-sm rounded-xl transition-all" data-minutes="15">
+        15 Minutes
+      </button>
+      <button class="sleeptimer-option-btn w-full text-left py-3 px-4 bg-surface-container/30 hover:bg-surface-container/60 active:scale-95 text-white font-medium text-sm rounded-xl transition-all" data-minutes="30">
+        30 Minutes
+      </button>
+      <button class="sleeptimer-option-btn w-full text-left py-3 px-4 bg-surface-container/30 hover:bg-surface-container/60 active:scale-95 text-white font-medium text-sm rounded-xl transition-all" data-minutes="45">
+        45 Minutes
+      </button>
+      <button class="sleeptimer-option-btn w-full text-left py-3 px-4 bg-surface-container/30 hover:bg-surface-container/60 active:scale-95 text-white font-medium text-sm rounded-xl transition-all" data-minutes="60">
+        60 Minutes
+      </button>
+      
+      <!-- Custom minutes option -->
+      <div class="flex items-center gap-2 pt-2">
+        <input type="number" id="sleeptimer-custom-input" placeholder="Custom minutes..." class="flex-1 bg-surface-container border border-white/10 rounded-xl text-xs font-bold text-white px-4 py-3 focus:outline-none focus:border-primary-container/40" />
+        <button id="sleeptimer-custom-set-btn" class="px-5 py-3 bg-primary-container hover:bg-white text-on-primary font-bold text-xs rounded-xl transition-all active:scale-90">
+          Set
+        </button>
+      </div>
+    </div>
+    
+    <button id="close-sleeptimer-overlay-btn" class="w-full py-3 bg-surface-container hover:bg-surface-container-high text-white font-semibold text-sm rounded-xl transition-colors shrink-0">
       Cancel
     </button>
   </div>
