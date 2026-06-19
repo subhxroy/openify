@@ -764,6 +764,53 @@ def debug_cookies():
     }
 
 
+@app.get("/api/mobile/test_extract")
+def test_extract(video_id: str = "EBXHe2mHDI0"):
+    import yt_dlp
+    
+    results = {}
+    
+    # Test cases
+    cases = [
+        ("ios_no_cookies", ["ios"], False),
+        ("ios_with_cookies", ["ios"], True),
+        ("android_music_no_cookies", ["android_music"], False),
+        ("android_music_with_cookies", ["android_music"], True),
+        ("tv_no_cookies", ["tv"], False),
+        ("tv_with_cookies", ["tv"], True),
+        ("web_no_cookies", ["web"], False),
+        ("web_with_cookies", ["web"], True),
+        ("default_no_cookies", ["default", "-android_sdkless"], False),
+        ("default_with_cookies", ["default", "-android_sdkless"], True),
+    ]
+    
+    for name, clients, use_cookies in cases:
+        ydl_opts = {
+            "format": "bestaudio",
+            "noplaylist": True,
+            "quiet": True,
+        }
+        if clients:
+            ydl_opts["extractor_args"] = {"youtube": {"player_client": clients}}
+        if use_cookies and TEMP_COOKIE_FILE:
+            ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+            
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(video_id, download=False)
+                results[name] = {
+                    "success": True,
+                    "url_preview": info.get("url", "")[:100] if info else ""
+                }
+        except Exception as e:
+            results[name] = {
+                "success": False,
+                "error": str(e)
+            }
+            
+    return results
+
+
 @app.get("/api/mobile/stream_proxy")
 def mobile_stream_proxy(request: Request, url: str = "", headers: str = "{}"):
     if not url:
