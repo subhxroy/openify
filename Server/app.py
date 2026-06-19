@@ -112,6 +112,11 @@ def write_cookies_to_temp(cookie_content: str):
         return False
 
 def initialize_cookies():
+    # If running on Railway/production, do not load cookies to bypass bot checks.
+    if os.getenv("RAILWAY_ENVIRONMENT") or os.getenv("PORT") or os.name != "nt":
+        logger.info("Running in production/Railway. Disabling YouTube cookies to prevent bot blocks.")
+        return
+
     # 1. Try persistent data directory cookies.txt
     persistent_cookies_path = DATA_DIR / "cookies.txt"
     if persistent_cookies_path.exists():
@@ -513,7 +518,7 @@ def download_task(song_id, artist, title):
             "noplaylist": True,
             "quiet": True,
             "js_runtimes": {"node": {}},
-            "extractor_args": {"youtube": {"player_client": ["ios", "android_music", "tv", "web"]}},
+            "extractor_args": {"youtube": {"player_client": ["android_music", "web"]}},
         }
         
         proxy_env = os.getenv("YOUTUBE_PROXY")
@@ -622,7 +627,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
         "js_runtimes": {"node": {}},
         "extractor_args": {
             "youtube": {
-                "player_client": ["ios", "android_music", "tv", "web"],
+                "player_client": ["android_music", "web"],
             }
         },
     }
