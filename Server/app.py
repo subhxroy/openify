@@ -513,7 +513,7 @@ def download_task(song_id, artist, title):
             "noplaylist": True,
             "quiet": True,
             "js_runtimes": {"node": {}},
-            "extractor_args": {"youtube": {"player_client": ["default", "-android_sdkless"]}},
+            "extractor_args": {"youtube": {"player_client": ["ios", "android_music", "tv", "web"]}},
         }
         
         proxy_env = os.getenv("YOUTUBE_PROXY")
@@ -622,7 +622,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
         "js_runtimes": {"node": {}},
         "extractor_args": {
             "youtube": {
-                "player_client": ["default", "-android_sdkless"],
+                "player_client": ["ios", "android_music", "tv", "web"],
             }
         },
     }
