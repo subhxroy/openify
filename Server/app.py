@@ -97,14 +97,7 @@ def write_cookies_to_temp(cookie_content: str):
         return False
 
 def initialize_cookies():
-    # 1. Try env var
-    env_cookies = os.getenv("YOUTUBE_COOKIES")
-    if env_cookies:
-        logger.info("Loading cookies from YOUTUBE_COOKIES environment variable")
-        if write_cookies_to_temp(env_cookies):
-            return
-            
-    # 2. Try persistent data directory cookies.txt
+    # 1. Try persistent data directory cookies.txt
     persistent_cookies_path = DATA_DIR / "cookies.txt"
     if persistent_cookies_path.exists():
         try:
@@ -115,15 +108,23 @@ def initialize_cookies():
         except Exception as e:
             logger.error(f"Failed to read persistent cookies: {e}")
             
-    # 3. Try base directory cookies.txt
+    # 2. Try base directory cookies.txt
     cookies_source = BASE_DIR / "cookies.txt"
     if cookies_source.exists():
         try:
             logger.info("Loading cookies from Server/cookies.txt")
             cookie_content = cookies_source.read_text(encoding="utf-8")
-            write_cookies_to_temp(cookie_content)
+            if write_cookies_to_temp(cookie_content):
+                return
         except Exception as e:
             logger.error(f"Failed to read base directory cookies.txt: {e}")
+
+    # 3. Try env var
+    env_cookies = os.getenv("YOUTUBE_COOKIES")
+    if env_cookies:
+        logger.info("Loading cookies from YOUTUBE_COOKIES environment variable")
+        if write_cookies_to_temp(env_cookies):
+            return
 
 initialize_cookies()
 
