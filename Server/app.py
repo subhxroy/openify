@@ -385,148 +385,35 @@ def get_chart():
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# JioSaavn — Primary cookie-free audio source (no auth needed, works globally)
+# TIDAL — Primary audio source (cookie-free, accurate metadata, high quality)
 # ─────────────────────────────────────────────────────────────────────────────
 
-def _decrypt_jiosaavn_url(encrypted_url: str) -> str:
-    """Decrypt JioSaavn's DES-encrypted media URL."""
-    try:
-        from Crypto.Cipher import DES
-        import base64
+import tidal_source
 
-        key = b"38346591"
-        enc = base64.b64decode(encrypted_url.strip())
-        cipher = DES.new(key, DES.MODE_ECB)
-        decrypted = cipher.decrypt(enc)
-        # Remove padding and fix URL quality
-        url = decrypted.decode("utf-8", errors="ignore").rstrip("\x00\x01\x02\x03\x04\x05\x06\x07\x08\t")
-        # Upgrade to 320kbps if available
-        url = url.replace("_96.mp4", "_320.mp4").replace("_160.mp4", "_320.mp4")
-        return url.strip()
-    except Exception as e:
-        logger.warning(f"JioSaavn URL decryption failed: {e}")
-        return ""
-
-
-def get_audio_stream_via_jiosaavn(artist: str, title: str, expected_duration: int | None = None):
+def get_audio_stream_via_tidal(artist: str, title: str):
     """
-    Fetch a direct audio stream URL from JioSaavn's unofficial API.
-    Uses duration and metadata matching to find the best matching studio track.
+    Fetch a direct audio stream URL from TIDAL.
+    Uses TIDAL's search API for accurate track matching, then extracts
+    a progressive audio URL from the playback manifest.
     Returns (direct_url, headers, expire_at) or None.
     """
     try:
-        query = f"{artist} {title}"
-        # Search JioSaavn — encrypted_media_url is already in search results
-        search_resp = requests.get(
-            "https://www.jiosaavn.com/api.php",
-            params={
-                "__call": "search.getResults",
-                "q": query,
-                "_format": "json",
-                "_marker": "0",
-                "api_version": "4",
-                "ctx": "web6dot0",
-                "p": "1",
-                "n": "5",
-            },
-            headers={
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                "Referer": "https://www.jiosaavn.com",
-            },
-            timeout=8,
-        )
-        if search_resp.status_code != 200:
-            logger.warning(f"JioSaavn search returned HTTP {search_resp.status_code}")
+        matched = tidal_source.search_track(artist, title)
+        if not matched:
+            logger.info(f"TIDAL: no match found for '{artist} - {title}'")
             return None
 
-        search_data = search_resp.json()
-        results = search_data.get("results", [])
-        if not results:
-            logger.warning(f"JioSaavn: no results for '{query}'")
-            return None
+        result = tidal_source.get_stream_url(matched["id"])
+        if result:
+            direct_url, http_headers, expire_at = result
+            logger.info(f"TIDAL stream resolved for '{artist} - {title}' (track id: {matched['id']})")
+            return direct_url, http_headers, expire_at
 
-        best_song = None
-        best_score = -999.0
-
-        for song in results:
-            more_info = song.get("more_info", {})
-            enc_url = more_info.get("encrypted_media_url", "")
-            if not enc_url:
-                continue
-
-            # Calculate match score
-            score = 100.0
-
-            # 1. Compare duration if expected
-            if expected_duration is not None and expected_duration > 0:
-                try:
-                    song_duration = int(more_info.get("duration", 0))
-                    duration_diff = abs(song_duration - expected_duration)
-                    if duration_diff > 12:
-                        score -= min(duration_diff * 2.5, 60)  # Penalize duration differences
-                except Exception:
-                    pass
-
-            # 2. Check title matching (penalize remixes/covers/live if not in query)
-            song_title = (song.get("title", "") or "").lower()
-            query_lower = query.lower()
-            
-            for word in ["remix", "live", "cover", "karaoke", "instrumental", "tribute", "mashup"]:
-                if word in song_title and word not in query_lower:
-                    score -= 40
-
-            # 3. Check primary artist map
-            artist_matched = False
-            primary_artists = more_info.get("artistMap", {}).get("primary_artists", [])
-            for art in primary_artists:
-                art_name = (art.get("name", "") or "").lower()
-                if art_name in query_lower or any(part in query_lower for part in art_name.split()):
-                    artist_matched = True
-                    break
-            
-            if not artist_matched and primary_artists:
-                score -= 15
-
-            if score > best_score:
-                best_score = score
-                best_song = song
-
-        if not best_song:
-            logger.warning(f"JioSaavn: no suitable match found for '{query}'")
-            return None
-
-        # Bypass JioSaavn for international/English tracks (to avoid covers/tributes)
-        song_language = (best_song.get("language", "") or "").lower()
-        indian_languages = {
-            "hindi", "punjabi", "tamil", "telugu", "bengali", "marathi", 
-            "kannada", "malayalam", "gujarati", "rajasthani", "bhojpuri", 
-            "odia", "urdu", "assamese", "haryanvi"
-        }
-        if song_language and song_language not in indian_languages:
-            logger.info(f"Skipping JioSaavn for international song '{query}' (language: {song_language})")
-            return None
-
-        more_info = best_song.get("more_info", {})
-        encrypted_url = more_info.get("encrypted_media_url", "")
-
-        # Decrypt the URL
-        direct_url = _decrypt_jiosaavn_url(encrypted_url)
-        if not direct_url or not direct_url.startswith("http"):
-            logger.warning(f"JioSaavn: decryption yielded invalid URL: '{direct_url[:80]}'")
-            return None
-
-        logger.info(f"JioSaavn audio stream for '{query}' (best score={best_score}): {direct_url[:80]}")
-        http_headers = {
-            "User-Agent": "Mozilla/5.0",
-            "Referer": "https://www.jiosaavn.com",
-        }
-        expire_at = int(time.time()) + 3 * 3600  # JioSaavn URLs valid ~3h
-        return direct_url, http_headers, expire_at
-
-    except Exception as e:
-        logger.warning(f"JioSaavn stream fetch failed for '{artist} - {title}': {e}")
+        logger.info(f"TIDAL: no progressive stream for track {matched['id']} — falling through")
         return None
-
+    except Exception as e:
+        logger.warning(f"TIDAL stream fetch failed for '{artist} - {title}': {e}")
+        return None
 
 def fetch_lyrics(artist, title):
 
@@ -714,27 +601,23 @@ def download_task(song_id, artist, title):
             return
         query = f"{artist} - {title} audio"
 
-        # 1. Try JioSaavn first (no cookies, no auth needed)
-        expected_duration = None
-        song_info = get_song_by_id(song_id)
-        if song_info:
-            expected_duration = song_info.get("duration")
-        saavn_result = get_audio_stream_via_jiosaavn(artist, title, expected_duration=expected_duration)
-        if saavn_result:
-            direct_url, saavn_headers, _ = saavn_result
+        # 1. Try TIDAL first (accurate metadata, no cookies, high quality)
+        tidal_result = get_audio_stream_via_tidal(artist, title)
+        if tidal_result:
+            direct_url, tidal_headers, _ = tidal_result
             try:
-                logger.info(f"Downloading song {song_id} from JioSaavn")
-                resp = requests.get(direct_url, stream=True, headers=saavn_headers, timeout=60)
+                logger.info(f"Downloading song {song_id} from TIDAL")
+                resp = requests.get(direct_url, stream=True, headers=tidal_headers, timeout=60)
                 if resp.status_code == 200:
                     with open(filepath, "wb") as f:
                         for chunk in resp.iter_content(chunk_size=1024 * 64):
                             if chunk:
                                 f.write(chunk)
                     clear_cache_if_needed()
-                    logger.info(f"Successfully downloaded song {song_id} via JioSaavn")
+                    logger.info(f"Successfully downloaded song {song_id} via TIDAL")
                     return
             except Exception as dl_exc:
-                logger.warning(f"JioSaavn download failed for {song_id}: {dl_exc}")
+                logger.warning(f"TIDAL download failed for {song_id}: {dl_exc}")
                 if filepath.exists():
                     filepath.unlink(missing_ok=True)
 
@@ -1019,7 +902,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             "headers": http_headers
         })
 
-    # 3. Try JioSaavn first (no cookies, no auth, works everywhere globally)
+    # 3. Try TIDAL first (accurate metadata, no cookies, high quality)
     base_url = get_base_url(request)
     expected_duration = None
     song_info = get_song_by_id(song_id)
@@ -1028,14 +911,14 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
     if song_info:
         expected_duration = song_info.get("duration")
 
-    saavn_result = get_audio_stream_via_jiosaavn(artist, title, expected_duration=expected_duration)
-    if saavn_result:
-        direct_url, http_headers, expire_at = saavn_result
+    tidal_result = get_audio_stream_via_tidal(artist, title)
+    if tidal_result:
+        direct_url, http_headers, expire_at = tidal_result
         STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
         save_stream_url_cache()
         proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
         executor.submit(download_task, song_id, artist, title)
-        return JSONResponse({"source": "jiosaavn", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
+        return JSONResponse({"source": "tidal", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
 
     # 4. Resolve YouTube video ID via unblocked search helpers
     query = f"{artist} - {title} audio"
