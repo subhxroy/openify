@@ -371,7 +371,102 @@ def get_chart():
         return []
 
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# JioSaavn — Primary cookie-free audio source (no auth needed, works globally)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _decrypt_jiosaavn_url(encrypted_url: str) -> str:
+    """Decrypt JioSaavn's DES-encrypted media URL."""
+    try:
+        from Crypto.Cipher import DES
+        import base64
+
+        key = b"38346591"
+        iv = b"\x00" * 8
+        enc = base64.b64decode(encrypted_url.strip())
+        cipher = DES.new(key, DES.MODE_CBC, iv)
+        decrypted = cipher.decrypt(enc)
+        # Remove padding and fix URL quality
+        url = decrypted.decode("utf-8", errors="ignore").rstrip("\x00\x01\x02\x03\x04\x05\x06\x07\x08\t")
+        # Upgrade to 320kbps if available
+        url = url.replace("_96.mp4", "_320.mp4").replace("_160.mp4", "_320.mp4")
+        return url.strip()
+    except Exception as e:
+        logger.warning(f"JioSaavn URL decryption failed: {e}")
+        return ""
+
+
+def get_audio_stream_via_jiosaavn(artist: str, title: str):
+    """
+    Fetch a direct audio stream URL from JioSaavn's unofficial API.
+    No cookies, no auth, works on all cloud hosts globally.
+    Returns (direct_url, headers, expire_at) or None.
+    """
+    try:
+        query = f"{artist} {title}"
+        # Search JioSaavn — encrypted_media_url is already in search results
+        search_resp = requests.get(
+            "https://www.jiosaavn.com/api.php",
+            params={
+                "__call": "search.getResults",
+                "q": query,
+                "_format": "json",
+                "_marker": "0",
+                "api_version": "4",
+                "ctx": "web6dot0",
+                "p": "1",
+                "n": "5",
+            },
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                "Referer": "https://www.jiosaavn.com",
+            },
+            timeout=8,
+        )
+        if search_resp.status_code != 200:
+            logger.warning(f"JioSaavn search returned HTTP {search_resp.status_code}")
+            return None
+
+        search_data = search_resp.json()
+        results = search_data.get("results", [])
+        if not results:
+            logger.warning(f"JioSaavn: no results for '{query}'")
+            return None
+
+        # Find the first result with an encrypted_media_url
+        encrypted_url = ""
+        for song in results:
+            more_info = song.get("more_info", {})
+            encrypted_url = more_info.get("encrypted_media_url", "")
+            if encrypted_url:
+                break
+
+        if not encrypted_url:
+            logger.warning(f"JioSaavn: no encrypted_media_url in any result for '{query}'")
+            return None
+
+        # Decrypt the URL
+        direct_url = _decrypt_jiosaavn_url(encrypted_url)
+        if not direct_url or not direct_url.startswith("http"):
+            logger.warning(f"JioSaavn: decryption yielded invalid URL: '{direct_url[:80]}'")
+            return None
+
+        logger.info(f"JioSaavn audio stream for '{query}': {direct_url[:80]}")
+        http_headers = {
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://www.jiosaavn.com",
+        }
+        expire_at = int(time.time()) + 3 * 3600  # JioSaavn URLs valid ~3h
+        return direct_url, http_headers, expire_at
+
+    except Exception as e:
+        logger.warning(f"JioSaavn stream fetch failed for '{artist} - {title}': {e}")
+        return None
+
+
 def fetch_lyrics(artist, title):
+
     """
     Fetch lyrics with multiple fallback sources for reliability:
     1. lrclib.net (preferred — synced LRC lyrics)
@@ -548,55 +643,233 @@ def download_task(song_id, artist, title):
             logger.info(f"Song {song_id} is already downloading, skipping duplicate task")
             return
         CURRENTLY_DOWNLOADING.add(song_id)
-        
+
     try:
         clear_cache_if_needed()
         filepath = CACHE_DIR / f"{song_id}.m4a"
         if filepath.exists():
             return
         query = f"{artist} - {title} audio"
-        ydl_opts = {
-            "format": "bestaudio[ext=m4a]/best",
-            "outtmpl": str(filepath),
-            "noplaylist": True,
-            "quiet": True,
-            "extractor_args": {"youtube": {"client": ["android", "ios"]}},
-        }
-        
-        proxy_env = os.getenv("YOUTUBE_PROXY")
-        if proxy_env:
-            ydl_opts["proxy"] = proxy_env
-            
-        if TEMP_COOKIE_FILE:
-            ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
-            
-        # Resolve search using unblocked helpers
+
+        # 1. Try JioSaavn first (no cookies, no auth needed)
+        saavn_result = get_audio_stream_via_jiosaavn(artist, title)
+        if saavn_result:
+            direct_url, saavn_headers, _ = saavn_result
+            try:
+                logger.info(f"Downloading song {song_id} from JioSaavn")
+                resp = requests.get(direct_url, stream=True, headers=saavn_headers, timeout=60)
+                if resp.status_code == 200:
+                    with open(filepath, "wb") as f:
+                        for chunk in resp.iter_content(chunk_size=1024 * 64):
+                            if chunk:
+                                f.write(chunk)
+                    clear_cache_if_needed()
+                    logger.info(f"Successfully downloaded song {song_id} via JioSaavn")
+                    return
+            except Exception as dl_exc:
+                logger.warning(f"JioSaavn download failed for {song_id}: {dl_exc}")
+                if filepath.exists():
+                    filepath.unlink(missing_ok=True)
+
+        # 2. Resolve YouTube video ID
         video_id = search_youtube_via_invidious(query)
         if not video_id:
             video_id = search_youtube_via_piped(query)
         if not video_id:
             video_id = search_youtube_via_ytdlp(query)
-            
-        target = f"https://www.youtube.com/watch?v={video_id}" if video_id else f"ytsearch1:{query}"
-        logger.info(f"Downloading stream for target: {target} (query: {query})")
-        
+        if not video_id:
+            logger.warning(f"Could not resolve video_id for download: {artist} - {title}")
+            return
+
+        # 3. Try Piped/Invidious stream for download (no yt-dlp, no cookies)
+        piped_result = get_audio_stream_via_piped(video_id)
+        if not piped_result:
+            piped_result = get_audio_stream_via_invidious(video_id)
+
+        if piped_result:
+            direct_url, _, _ = piped_result
+            try:
+                logger.info(f"Downloading cached audio from Piped/Invidious for song {song_id}")
+                resp = requests.get(direct_url, stream=True, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+                if resp.status_code == 200:
+                    with open(filepath, "wb") as f:
+                        for chunk in resp.iter_content(chunk_size=1024 * 64):
+                            if chunk:
+                                f.write(chunk)
+                    clear_cache_if_needed()
+                    logger.info(f"Successfully downloaded song {song_id} via Piped/Invidious")
+                    return
+            except Exception as dl_exc:
+                logger.warning(f"Piped/Invidious download failed for {song_id}: {dl_exc}")
+                # Clean up partial file
+                if filepath.exists():
+                    filepath.unlink(missing_ok=True)
+
+        # Fallback: yt-dlp download
+        target = f"https://www.youtube.com/watch?v={video_id}"
+        logger.info(f"Downloading via yt-dlp for target: {target} (query: {query})")
+        ydl_opts = {
+            "format": "bestaudio[ext=m4a]/bestaudio/best",
+            "outtmpl": str(filepath),
+            "noplaylist": True,
+            "quiet": True,
+            "extractor_args": {"youtube": {"client": ["android", "ios"]}},
+        }
+        proxy_env = os.getenv("YOUTUBE_PROXY")
+        if proxy_env:
+            ydl_opts["proxy"] = proxy_env
+        if TEMP_COOKIE_FILE:
+            ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([target])
         except Exception as download_exc:
-            logger.warning(f"Download failed: {download_exc}. Trying fallback without cookies...")
+            logger.warning(f"yt-dlp download failed: {download_exc}. Trying without cookies...")
             ydl_opts_fallback = dict(ydl_opts)
             ydl_opts_fallback.pop("cookiefile", None)
             with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
                 ydl.download([target])
-                
+
         clear_cache_if_needed()
-        logger.info(f"Successfully downloaded and cached song {song_id} to disk")
+        logger.info(f"Successfully downloaded and cached song {song_id} via yt-dlp")
     except Exception as e:
         logger.exception("Download task exception for song: %s (%s - %s)", song_id, artist, title)
     finally:
         with DOWNLOADING_LOCK:
             CURRENTLY_DOWNLOADING.discard(song_id)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Cookie-free audio stream extraction via Piped / Invidious
+# These services solve YouTube's bot-detection on their own servers,
+# so we can get direct Googlevideo CDN URLs without any cookies.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PIPED_API_INSTANCES = [
+    "https://pipedapi.kavin.rocks",
+    "https://piped-api.garudalinux.org",
+    "https://pipedapi.tokhmi.xyz",
+    "https://watchapi.whatever.social",
+    "https://api.piped.privacydev.net",
+    "https://piped.video/api",
+    "https://api.piped.yt",
+    "https://pipedapi.reallyawesomelink.co",
+]
+
+INVIDIOUS_STREAM_INSTANCES = [
+    "https://invidious.projectsegfaut.im",
+    "https://yewtu.be",
+    "https://invidious.privacydev.net",
+    "https://inv.nadeko.net",
+    "https://iv.ggtyler.dev",
+    "https://invidious.lunar.icu",
+]
+
+
+def get_audio_stream_via_piped(video_id: str):
+    """
+    Fetch a direct audio stream URL from a Piped instance — no yt-dlp, no cookies.
+    Piped solves YouTube's n-challenge on its own servers.
+    Returns (direct_url, headers, expire_at) or None.
+    """
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    def try_instance(base):
+        try:
+            resp = requests.get(
+                f"{base}/streams/{video_id}",
+                timeout=8,
+                headers={"User-Agent": "Mozilla/5.0"}
+            )
+            if resp.status_code != 200:
+                return None
+            data = resp.json()
+            if data.get("error"):
+                return None
+            audio_streams = data.get("audioStreams", [])
+            if not audio_streams:
+                return None
+            # Prefer m4a/mp4a for broadest compatibility
+            m4a = [s for s in audio_streams if "m4a" in s.get("mimeType", "") or "mp4a" in s.get("mimeType", "")]
+            candidates = m4a if m4a else audio_streams
+            best = max(candidates, key=lambda s: s.get("bitrate", 0))
+            url = best.get("url", "")
+            if not url:
+                return None
+            logger.info(f"Piped {base} → audio stream for {video_id} (bitrate={best.get('bitrate','?')}bps)")
+            return url
+        except Exception as e:
+            logger.warning(f"Piped {base} failed for {video_id}: {e}")
+            return None
+
+    try:
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            futures = {pool.submit(try_instance, base): base for base in PIPED_API_INSTANCES}
+            for future in as_completed(futures, timeout=10):
+                result = future.result()
+                if result:
+                    http_headers = {"User-Agent": "Mozilla/5.0"}
+                    expire_at = parse_url_expiry(result) if result else int(time.time()) + 14400
+                    return result, http_headers, expire_at
+    except Exception as e:
+        logger.warning(f"Piped parallel stream extraction failed for {video_id}: {e}")
+    return None
+
+
+def get_audio_stream_via_invidious(video_id: str):
+    """
+    Fetch a direct audio stream URL from an Invidious instance — no yt-dlp, no cookies.
+    Returns (direct_url, headers, expire_at) or None.
+    """
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    def try_instance(base):
+        try:
+            resp = requests.get(
+                f"{base}/api/v1/videos/{video_id}",
+                params={"fields": "adaptiveFormats"},
+                timeout=8,
+                headers={"User-Agent": "Mozilla/5.0"}
+            )
+            if resp.status_code != 200:
+                return None
+            data = resp.json()
+            formats = data.get("adaptiveFormats", [])
+            # Find best audio-only m4a/mp4 format
+            audio_formats = [
+                f for f in formats
+                if f.get("type", "").startswith("audio") and not f.get("qualityLabel")
+            ]
+            m4a_formats = [
+                f for f in audio_formats
+                if "m4a" in f.get("container", "") or "mp4" in f.get("container", "")
+            ]
+            candidates = m4a_formats if m4a_formats else audio_formats
+            if not candidates:
+                return None
+            best = max(candidates, key=lambda f: f.get("bitrate", 0))
+            url = best.get("url", "")
+            if not url:
+                return None
+            logger.info(f"Invidious {base} → audio stream for {video_id}")
+            return url
+        except Exception as e:
+            logger.warning(f"Invidious {base} failed for {video_id}: {e}")
+            return None
+
+    try:
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            futures = {pool.submit(try_instance, base): base for base in INVIDIOUS_STREAM_INSTANCES}
+            for future in as_completed(futures, timeout=10):
+                result = future.result()
+                if result:
+                    http_headers = {"User-Agent": "Mozilla/5.0"}
+                    expire_at = parse_url_expiry(result) if result else int(time.time()) + 14400
+                    return result, http_headers, expire_at
+    except Exception as e:
+        logger.warning(f"Invidious parallel stream extraction failed for {video_id}: {e}")
+    return None
 
 
 def build_proxy_response(url: str, incoming_headers, headers_json: str):
@@ -670,53 +943,78 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             "headers": http_headers
         })
 
-    # 3. Live extraction
-    query = f"{artist} - {title} audio"
-    ydl_opts = {
-        "format": "bestaudio[ext=m4a]/best",
-        "noplaylist": True,
-        "quiet": True,
-        "extractor_args": {
-            "youtube": {
-                "client": ["android", "ios"],
-            }
-        },
-    }
-    
-    proxy_env = os.getenv("YOUTUBE_PROXY")
-    if proxy_env:
-        ydl_opts["proxy"] = proxy_env
-        logger.info(f"Using proxy for yt-dlp: {proxy_env}")
+    # 3. Try JioSaavn first (no cookies, no auth, works everywhere globally)
+    base_url = get_base_url(request)
+    saavn_result = get_audio_stream_via_jiosaavn(artist, title)
+    if saavn_result:
+        direct_url, http_headers, expire_at = saavn_result
+        STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
+        save_stream_url_cache()
+        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
+        executor.submit(download_task, song_id, artist, title)
+        return JSONResponse({"source": "jiosaavn", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
 
-    if TEMP_COOKIE_FILE:
-        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
-        
-    extracted_info = None
-    
-    # Resolve search using unblocked helpers
+    # 4. Resolve YouTube video ID via unblocked search helpers
+    query = f"{artist} - {title} audio"
     video_id = search_youtube_via_invidious(query)
     if not video_id:
         video_id = search_youtube_via_piped(query)
     if not video_id:
         video_id = search_youtube_via_ytdlp(query)
-        
-    target = f"https://www.youtube.com/watch?v={video_id}" if video_id else f"ytsearch1:{query}"
-    logger.info(f"Extracting stream for target: {target} (query: {query})")
-    
+
+    if not video_id:
+        return JSONResponse({"error": "Could not find song on YouTube"}, status_code=404)
+
+    logger.info(f"Resolved video_id={video_id} for query: {query}")
+
+    # ── 5. Cookie-free extraction: try Piped ────────────────────────────────
+    piped_result = get_audio_stream_via_piped(video_id)
+    if piped_result:
+        direct_url, http_headers, expire_at = piped_result
+        STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
+        save_stream_url_cache()
+        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
+        executor.submit(download_task, song_id, artist, title)
+        return JSONResponse({"source": "piped", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
+
+    # ── 6. Cookie-free extraction: try Invidious ────────────────────────────
+    inv_result = get_audio_stream_via_invidious(video_id)
+    if inv_result:
+        direct_url, http_headers, expire_at = inv_result
+        STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
+        save_stream_url_cache()
+        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
+        executor.submit(download_task, song_id, artist, title)
+        return JSONResponse({"source": "invidious", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
+
+    # ── 6. Last resort: yt-dlp (with and without cookies) ───────────────────
+    target = f"https://www.youtube.com/watch?v={video_id}"
+    logger.info(f"Falling back to yt-dlp for target: {target}")
+    ydl_opts = {
+        "format": "bestaudio[ext=m4a]/bestaudio/best",
+        "noplaylist": True,
+        "quiet": True,
+        "extractor_args": {"youtube": {"client": ["android", "ios"]}},
+    }
+    proxy_env = os.getenv("YOUTUBE_PROXY")
+    if proxy_env:
+        ydl_opts["proxy"] = proxy_env
+    if TEMP_COOKIE_FILE:
+        ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+
+    extracted_info = None
     try:
-        # Try extracting with cookies
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             extracted_info = ydl.extract_info(target, download=False)
     except Exception as exc:
-        logger.warning(f"Extraction failed: {exc}. Trying fallback without cookies...")
-        # Fallback without cookies
+        logger.warning(f"yt-dlp extraction failed (with cookies): {exc}. Trying without cookies...")
         ydl_opts_fallback = dict(ydl_opts)
         ydl_opts_fallback.pop("cookiefile", None)
         try:
             with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
                 extracted_info = ydl.extract_info(target, download=False)
         except Exception as fallback_exc:
-            logger.exception("Render play extract error for target: %s", target)
+            logger.exception("yt-dlp fallback also failed for target: %s", target)
             return JSONResponse({"error": f"Song not found: {fallback_exc}"}, status_code=404)
 
     if extracted_info:
@@ -724,31 +1022,15 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             video = extracted_info["entries"][0] if "entries" in extracted_info else extracted_info
             direct_url = video["url"]
             http_headers = video.get("http_headers", {})
-            
-            # Cache the extracted URL
             expire_at = parse_url_expiry(direct_url)
-            STREAM_URL_CACHE[song_id] = {
-                "direct_url": direct_url,
-                "headers": http_headers,
-                "expire_at": expire_at
-            }
+            STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
             save_stream_url_cache()
-            logger.info(f"Cached stream URL for song {song_id}, expiring at {expire_at}")
-            
-            base_url = get_base_url(request)
+            logger.info(f"Cached stream URL for song {song_id} via yt-dlp, expiring at {expire_at}")
             proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
-            
-            # Queue background download to local disk cache
             executor.submit(download_task, song_id, artist, title)
-            
-            return JSONResponse({
-                "source": "youtube", 
-                "url": proxy_url, 
-                "direct_url": direct_url, 
-                "headers": http_headers
-            })
+            return JSONResponse({"source": "youtube", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
         except Exception as parse_exc:
-            logger.error(f"Failed to parse video info: {parse_exc}")
+            logger.error(f"Failed to parse yt-dlp video info: {parse_exc}")
             return JSONResponse({"error": f"Failed to parse video metadata: {parse_exc}"}, status_code=500)
 
 
