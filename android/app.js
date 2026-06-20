@@ -75,6 +75,7 @@ let state = {
 };
 
 let currentObjectURL = null;
+let playUrlCache = {}; // Global cache: songId -> { url, streamInfo }
 
 // --- HTML5 Audio Setup ---
 let audio = new Audio();
@@ -446,6 +447,85 @@ function getCurrentList() {
   return getSourceList();
 }
 
+// --- Pre-resolution & Caching Optimizations ---
+async function preResolveSongUrl(song) {
+  if (!song || !song.id) return;
+  if (playUrlCache[song.id]) return; // Already cached
+
+  if (window.navigator.onLine === false || (settingOfflineMode && settingOfflineMode.checked)) {
+    return;
+  }
+
+  try {
+    const downloaded = await isSongDownloaded(song.id);
+    if (downloaded) return; // Plays instantly from IndexedDB
+  } catch (e) {}
+
+  const playUrl = `${BASE_URL}/api/mobile/play?id=${song.id}&artist=${encodeURIComponent(song.artist)}&title=${encodeURIComponent(song.title)}`;
+  
+  try {
+    const res = await fetch(playUrl);
+    if (res.ok) {
+      const streamInfo = await res.json();
+      let finalUrl = streamInfo.url;
+      if (BASE_URL.startsWith('https://') && finalUrl.startsWith('http://')) {
+        finalUrl = finalUrl.replace('http://', 'https://');
+      }
+      playUrlCache[song.id] = { url: finalUrl, streamInfo };
+      console.log(`Pre-resolved stream URL for: ${song.title}`);
+    }
+  } catch (err) {
+    console.warn("Failed to pre-resolve stream URL:", err);
+  }
+}
+
+async function precacheNextSongs() {
+  if (window.navigator.onLine === false || (settingOfflineMode && settingOfflineMode.checked)) {
+    return;
+  }
+  const list = getCurrentList();
+  if (list.length === 0 || state.currentSongIndex === -1) return;
+
+  const nextIndices = [];
+  if (state.isShuffle) {
+    for (let i = 0; i < Math.min(2, list.length); i++) {
+      const randIdx = Math.floor(Math.random() * list.length);
+      if (randIdx !== state.currentSongIndex && !nextIndices.includes(randIdx)) {
+        nextIndices.push(randIdx);
+      }
+    }
+  } else {
+    const nextIdx1 = (state.currentSongIndex + 1) % list.length;
+    const nextIdx2 = (state.currentSongIndex + 2) % list.length;
+    nextIndices.push(nextIdx1);
+    if (nextIdx2 !== nextIdx1) {
+      nextIndices.push(nextIdx2);
+    }
+  }
+
+  nextIndices.forEach(async (idx) => {
+    const nextSong = list[idx];
+    if (!nextSong) return;
+
+    preResolveSongUrl(nextSong);
+
+    try {
+      const downloaded = await isSongDownloaded(nextSong.id);
+      if (downloaded) return;
+
+      fetch(`${BASE_URL}/api/mobile/cache_song`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: nextSong.id,
+          artist: nextSong.artist,
+          title: nextSong.title
+        })
+      }).catch(() => {});
+    } catch (e) {}
+  });
+}
+
 async function loadSong(index, shouldPlay = true) {
   // Clear fadeInterval and clean up the old Audio element to prevent memory/listener leaks
   if (fadeInterval) {
@@ -612,9 +692,42 @@ async function loadSong(index, shouldPlay = true) {
     return;
   }
 
-  // Trigger stream play online
   const playUrl = `${BASE_URL}/api/mobile/play?id=${song.id}&artist=${encodeURIComponent(song.artist)}&title=${encodeURIComponent(song.title)}${previousSongId ? `&previous_song_id=${previousSongId}` : ''}`;
-  
+
+  // Check in-memory cache first (instant playback)
+  if (playUrlCache[song.id]) {
+    const cachedUrl = playUrlCache[song.id].url;
+    audio.src = cachedUrl;
+    if (shouldPlay) {
+      audio.volume = 0;
+      initMobileVisualizer();
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      audio.play().then(() => {
+        setPlayingState(true);
+        fadeTo(targetVolume, 400);
+        setBuffering(false);
+      }).catch(err => {
+        console.warn("Cached play blocked/failed:", err);
+        setPlayingState(false);
+        setBuffering(false);
+      });
+    } else {
+      audio.volume = targetVolume;
+      setPlayingState(false);
+      setBuffering(false);
+    }
+    if (shouldPlay) {
+      scrobbleTrackToLastfm(song);
+    }
+    // Record history & trigger backend cache task in background
+    fetch(playUrl).catch(() => {});
+    precacheNextSongs();
+    return;
+  }
+
+  // Trigger stream play online
   fetch(playUrl)
     .then(res => {
       if (!res.ok) throw new Error("Stream unreachable");
@@ -625,6 +738,9 @@ async function loadSong(index, shouldPlay = true) {
       if (BASE_URL.startsWith('https://') && finalUrl.startsWith('http://')) {
         finalUrl = finalUrl.replace('http://', 'https://');
       }
+      // Populate frontend cache
+      playUrlCache[song.id] = { url: finalUrl, streamInfo };
+
       audio.src = finalUrl;
       if (shouldPlay) {
         audio.volume = 0;
@@ -646,6 +762,7 @@ async function loadSong(index, shouldPlay = true) {
         setPlayingState(false);
         setBuffering(false);
       }
+      precacheNextSongs();
     })
     .catch(err => {
       console.error("Failed to load stream url:", err);
@@ -984,7 +1101,18 @@ function renderTrendingSongs(songsList) {
       state.queue = [...state.songs];
       loadSong(i, true);
     });
+    card.addEventListener('mouseenter', () => {
+      preResolveSongUrl(song);
+    });
+    card.addEventListener('touchstart', () => {
+      preResolveSongUrl(song);
+    }, { passive: true });
     trendingScroll.appendChild(card);
+  });
+  
+  // Pre-resolve top 3 trending songs
+  songsList.slice(0, 3).forEach(song => {
+    preResolveSongUrl(song);
   });
 }
 
@@ -1034,6 +1162,12 @@ function renderHomeScrollRecommendations() {
       state.queue = [...state.behaviorRecommendations, ...state.contentRecommendations].slice(0, 6);
       loadSong(i, true);
     });
+    row.addEventListener('mouseenter', () => {
+      preResolveSongUrl(song);
+    });
+    row.addEventListener('touchstart', () => {
+      preResolveSongUrl(song);
+    }, { passive: true });
 
     const addBtn = row.querySelector('.row-action-btn');
     if (addBtn) {
@@ -1044,6 +1178,11 @@ function renderHomeScrollRecommendations() {
     }
 
     recommendedScroll.appendChild(row);
+  });
+  
+  // Pre-resolve first 2 recommendations
+  merged.slice(0, 2).forEach(song => {
+    preResolveSongUrl(song);
   });
 }
 
@@ -1122,6 +1261,12 @@ function renderSongsList(songsList, container, queueSource, playlistId = null) {
       state.queue = [...songsList];
       loadSong(i, true);
     });
+    row.addEventListener('mouseenter', () => {
+      preResolveSongUrl(song);
+    });
+    row.addEventListener('touchstart', () => {
+      preResolveSongUrl(song);
+    }, { passive: true });
 
     // Action button handlers
     const actionBtn = row.querySelector('.row-action-btn');
@@ -1151,6 +1296,11 @@ function renderSongsList(songsList, container, queueSource, playlistId = null) {
     }
 
     container.appendChild(row);
+  });
+
+  // Pre-resolve top 3 songs in this rendered list
+  songsList.slice(0, 3).forEach(song => {
+    preResolveSongUrl(song);
   });
 }
 

@@ -396,10 +396,10 @@ def _decrypt_jiosaavn_url(encrypted_url: str) -> str:
         return ""
 
 
-def get_audio_stream_via_jiosaavn(artist: str, title: str):
+def get_audio_stream_via_jiosaavn(artist: str, title: str, expected_duration: int | None = None):
     """
     Fetch a direct audio stream URL from JioSaavn's unofficial API.
-    No cookies, no auth, works on all cloud hosts globally.
+    Uses duration and metadata matching to find the best matching studio track.
     Returns (direct_url, headers, expire_at) or None.
     """
     try:
@@ -433,17 +433,58 @@ def get_audio_stream_via_jiosaavn(artist: str, title: str):
             logger.warning(f"JioSaavn: no results for '{query}'")
             return None
 
-        # Find the first result with an encrypted_media_url
-        encrypted_url = ""
+        best_song = None
+        best_score = -999.0
+
         for song in results:
             more_info = song.get("more_info", {})
-            encrypted_url = more_info.get("encrypted_media_url", "")
-            if encrypted_url:
-                break
+            enc_url = more_info.get("encrypted_media_url", "")
+            if not enc_url:
+                continue
 
-        if not encrypted_url:
-            logger.warning(f"JioSaavn: no encrypted_media_url in any result for '{query}'")
+            # Calculate match score
+            score = 100.0
+
+            # 1. Compare duration if expected
+            if expected_duration is not None and expected_duration > 0:
+                try:
+                    song_duration = int(more_info.get("duration", 0))
+                    duration_diff = abs(song_duration - expected_duration)
+                    if duration_diff > 12:
+                        score -= min(duration_diff * 2.5, 60)  # Penalize duration differences
+                except Exception:
+                    pass
+
+            # 2. Check title matching (penalize remixes/covers/live if not in query)
+            song_title = (song.get("title", "") or "").lower()
+            query_lower = query.lower()
+            
+            for word in ["remix", "live", "cover", "karaoke", "instrumental", "tribute", "mashup"]:
+                if word in song_title and word not in query_lower:
+                    score -= 40
+
+            # 3. Check primary artist map
+            artist_matched = False
+            primary_artists = more_info.get("artistMap", {}).get("primary_artists", [])
+            for art in primary_artists:
+                art_name = (art.get("name", "") or "").lower()
+                if art_name in query_lower or any(part in query_lower for part in art_name.split()):
+                    artist_matched = True
+                    break
+            
+            if not artist_matched and primary_artists:
+                score -= 15
+
+            if score > best_score:
+                best_score = score
+                best_song = song
+
+        if not best_song:
+            logger.warning(f"JioSaavn: no suitable match found for '{query}'")
             return None
+
+        more_info = best_song.get("more_info", {})
+        encrypted_url = more_info.get("encrypted_media_url", "")
 
         # Decrypt the URL
         direct_url = _decrypt_jiosaavn_url(encrypted_url)
@@ -451,7 +492,7 @@ def get_audio_stream_via_jiosaavn(artist: str, title: str):
             logger.warning(f"JioSaavn: decryption yielded invalid URL: '{direct_url[:80]}'")
             return None
 
-        logger.info(f"JioSaavn audio stream for '{query}': {direct_url[:80]}")
+        logger.info(f"JioSaavn audio stream for '{query}' (best score={best_score}): {direct_url[:80]}")
         http_headers = {
             "User-Agent": "Mozilla/5.0",
             "Referer": "https://www.jiosaavn.com",
@@ -651,7 +692,11 @@ def download_task(song_id, artist, title):
         query = f"{artist} - {title} audio"
 
         # 1. Try JioSaavn first (no cookies, no auth needed)
-        saavn_result = get_audio_stream_via_jiosaavn(artist, title)
+        expected_duration = None
+        song_info = get_song_by_id(song_id)
+        if song_info:
+            expected_duration = song_info.get("duration")
+        saavn_result = get_audio_stream_via_jiosaavn(artist, title, expected_duration=expected_duration)
         if saavn_result:
             direct_url, saavn_headers, _ = saavn_result
             try:
@@ -944,7 +989,14 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
 
     # 3. Try JioSaavn first (no cookies, no auth, works everywhere globally)
     base_url = get_base_url(request)
-    saavn_result = get_audio_stream_via_jiosaavn(artist, title)
+    expected_duration = None
+    song_info = get_song_by_id(song_id)
+    if not song_info:
+        song_info = lookup_song_on_itunes(song_id)
+    if song_info:
+        expected_duration = song_info.get("duration")
+
+    saavn_result = get_audio_stream_via_jiosaavn(artist, title, expected_duration=expected_duration)
     if saavn_result:
         direct_url, http_headers, expire_at = saavn_result
         STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
