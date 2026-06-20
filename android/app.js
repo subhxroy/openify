@@ -455,6 +455,8 @@ async function loadSong(index, shouldPlay = true) {
     cleanupAudio(audio);
   }
   setupAudioListeners();
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   if (isIOS || isSafari) {
     audio.removeAttribute('crossorigin');
   } else {
@@ -463,8 +465,6 @@ async function loadSong(index, shouldPlay = true) {
 
   // Bless the audio element synchronously during the user gesture callback
   // to bypass iOS Safari's asynchronous playback restriction.
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   if (shouldPlay && audio && (isIOS || isSafari)) {
     try {
       audio.play().then(() => {
