@@ -372,25 +372,70 @@ def get_chart():
 
 
 def fetch_lyrics(artist, title):
+    """
+    Fetch lyrics with multiple fallback sources for reliability:
+    1. lrclib.net (preferred — synced LRC lyrics)
+    2. lyrics.ovh (plain text fallback)
+    3. chartlyrics.com (plain text last resort)
+    """
+    # --- Source 1: lrclib.net (synced + plain) ---
     try:
         resp = requests.get(
             "https://lrclib.net/api/search",
             params={"artist_name": artist, "track_name": title},
-            headers={"User-Agent": "Bitsongs/1.0"},
-            timeout=5,
+            headers={"User-Agent": "Openify/1.0"},
+            timeout=6,
         )
         data = resp.json()
         if isinstance(data, list) and data:
             for item in data:
                 if item.get("syncedLyrics"):
+                    logger.info("Lyrics found on lrclib.net (synced) for %s - %s", artist, title)
                     return {"type": "synced", "text": item["syncedLyrics"]}
             for item in data:
                 if item.get("plainLyrics"):
+                    logger.info("Lyrics found on lrclib.net (plain) for %s - %s", artist, title)
                     return {"type": "plain", "text": item["plainLyrics"]}
-        return {"type": "error", "text": "No lyrics found."}
     except Exception as e:
-        logger.exception("Fetch lyrics error for artist: %s, title: %s", artist, title)
-        return {"type": "error", "text": "Lyrics unavailable."}
+        logger.warning("lrclib.net failed for %s - %s: %s", artist, title, e)
+
+    # --- Source 2: lyrics.ovh ---
+    try:
+        from urllib.parse import quote as urlquote
+        resp2 = requests.get(
+            f"https://api.lyrics.ovh/v1/{urlquote(artist)}/{urlquote(title)}",
+            timeout=6,
+        )
+        if resp2.status_code == 200:
+            data2 = resp2.json()
+            lyrics_text = data2.get("lyrics", "").strip()
+            if lyrics_text:
+                logger.info("Lyrics found on lyrics.ovh for %s - %s", artist, title)
+                return {"type": "plain", "text": lyrics_text}
+    except Exception as e:
+        logger.warning("lyrics.ovh failed for %s - %s: %s", artist, title, e)
+
+    # --- Source 3: chartlyrics.com ---
+    try:
+        import xml.etree.ElementTree as ET
+        from urllib.parse import quote as urlquote
+        resp3 = requests.get(
+            "http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect",
+            params={"artist": artist, "song": title},
+            timeout=6,
+        )
+        if resp3.status_code == 200:
+            root = ET.fromstring(resp3.text)
+            ns = {"cl": "http://api.chartlyrics.com/"}
+            lyric_el = root.find(".//cl:Lyric", ns)
+            if lyric_el is not None and lyric_el.text and lyric_el.text.strip():
+                logger.info("Lyrics found on chartlyrics.com for %s - %s", artist, title)
+                return {"type": "plain", "text": lyric_el.text.strip()}
+    except Exception as e:
+        logger.warning("chartlyrics.com failed for %s - %s: %s", artist, title, e)
+
+    logger.info("No lyrics found from any source for %s - %s", artist, title)
+    return {"type": "error", "text": "No lyrics found."}
 
 
 def fetch_artist_tracks(artist_id, limit=20):
@@ -753,6 +798,8 @@ def mobile_stream_cache(filename: str):
 
 @app.get("/api/mobile/debug_cookies")
 def debug_cookies():
+    if os.getenv('OPENIFY_DEBUG') != '1':
+        return PlainTextResponse('Not Found', status_code=404)
     import os
     from pathlib import Path
     
@@ -918,6 +965,8 @@ def search_youtube_via_ytdlp(query: str) -> str | None:
 
 @app.get("/api/mobile/test_extract")
 def test_extract(video_id: str = "EBXHe2mHDI0", query: str = "Shibu - TAUBA audio"):
+    if os.getenv('OPENIFY_DEBUG') != '1':
+        return PlainTextResponse('Not Found', status_code=404)
     import yt_dlp
     
     results = {}
