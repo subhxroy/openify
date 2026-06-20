@@ -45,6 +45,7 @@ let state = {
   searchResults: [],
   playbackHistory: [],
   upNextRecommendations: [],
+  lyricsAbortController: null,
   
   // Tab/Navigation
   activeTab: 'home', // 'home' | 'search' | 'library' | 'profile'
@@ -900,6 +901,10 @@ function onAudioError(e) {
   setPlayingState(false);
 }
 
+function onAudioSeeked() {
+  updateLyricsHighlight();
+}
+
 function setupAudioListeners() {
   audio.addEventListener('timeupdate', onAudioTimeUpdate);
   audio.addEventListener('durationchange', onAudioDurationChange);
@@ -909,6 +914,7 @@ function setupAudioListeners() {
   audio.addEventListener('stalled', onAudioStalled);
   audio.addEventListener('canplay', onAudioCanPlay);
   audio.addEventListener('error', onAudioError);
+  audio.addEventListener('seeked', onAudioSeeked);
 }
 
 function cleanupAudio(oldAudio) {
@@ -1041,9 +1047,6 @@ function renderHomeScrollRecommendations() {
   });
 }
 
-function renderForYouTab() {
-  // Stub function to prevent ReferenceError since there is no "For You" tab in the current mobile layout
-}
 
 // Render general songs lists (Search, Recommendations, Playlist details)
 function renderSongsList(songsList, container, queueSource, playlistId = null) {
@@ -1221,7 +1224,7 @@ function renderLibraryPlaylists() {
   if (pulseMixCount) {
     const favPl = playlists.find(p => p.id === 'favorites');
     const favCount = favPl ? favPl.songs.length : 0;
-    pulseMixCount.textContent = `${favCount} track${favCount === 1 ? '' : 's'} • Updated just now`;
+    pulseMixCount.textContent = `${favCount} track${favCount === 1 ? '' : 's'} â€¢ Updated just now`;
   }
   
   // 1. Virtual Playlist "Downloaded Songs"
@@ -1662,7 +1665,14 @@ function setupUIEventListeners() {
   if (pulseMixPlayBtn) {
     pulseMixPlayBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      showPlaylistDetail('favorites');
+      const favPlaylist = PlaylistStore.getPlaylists().find(p => p.id === 'favorites');
+      if (favPlaylist && favPlaylist.songs.length > 0) {
+        state.queue = [...favPlaylist.songs];
+        state.currentQueueSource = 'playlist';
+        loadSong(0, true);
+      } else {
+        showToast('No favorites yet. Add some songs first!');
+      }
     });
   }
   if (pulseMixCard) {
@@ -1997,8 +2007,8 @@ function extractDominantColors(imgUrl) {
   const currentTheme = localStorage.getItem('openify_app_theme') || 'dynamic';
   if (currentTheme !== 'dynamic') {
     const coverUrl = imgUrl;
-    if (vinylCenterImage) {
-      vinylCenterImage.style.backgroundImage = `url('${coverUrl}')`;
+    if (mobileVinylArt) {
+      mobileVinylArt.style.backgroundImage = `url('${coverUrl}')`;
     }
     return;
   }
@@ -2211,20 +2221,19 @@ function parseLrc(lrcText) {
   if (!lrcText) return [];
   const lines = lrcText.split('\n');
   const result = [];
-  const timeRegex = /\[(\d+):(\d+)(?:\.(\d+))?\]/;
+  const timeRegex = /\[(\d+):(\d+)(?:\.(\d+))?\]/g;
 
   lines.forEach(line => {
-    const match = timeRegex.exec(line);
-    if (match) {
+    const matches = [...line.matchAll(timeRegex)];
+    if (matches.length === 0) return;
+    const text = line.replace(timeRegex, '').trim();
+    matches.forEach(match => {
       const minutes = parseInt(match[1], 10);
       const seconds = parseInt(match[2], 10);
       const milliseconds = match[3] ? parseInt(match[3].padEnd(3, '0').substring(0, 3), 10) : 0;
-      
       const time = minutes * 60 + seconds + milliseconds / 1000;
-      const text = line.replace(timeRegex, '').trim();
-      
       result.push({ time, text });
-    }
+    });
   });
 
   result.sort((a, b) => a.time - b.time);
@@ -2273,7 +2282,11 @@ async function fetchLyricsForSong(artist, title, songId = null) {
   }
 
   try {
-    const res = await fetch(`${BASE_URL}/api/mobile/lyrics?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`);
+    if (state.lyricsAbortController) {
+      state.lyricsAbortController.abort();
+    }
+    state.lyricsAbortController = new AbortController();
+    const res = await fetch(`${BASE_URL}/api/mobile/lyrics?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`, { signal: state.lyricsAbortController.signal });
     if (!res.ok) throw new Error("Lyrics request failed");
     const data = await res.json();
     
