@@ -383,9 +383,8 @@ def _decrypt_jiosaavn_url(encrypted_url: str) -> str:
         import base64
 
         key = b"38346591"
-        iv = b"\x00" * 8
         enc = base64.b64decode(encrypted_url.strip())
-        cipher = DES.new(key, DES.MODE_CBC, iv)
+        cipher = DES.new(key, DES.MODE_ECB)
         decrypted = cipher.decrypt(enc)
         # Remove padding and fix URL quality
         url = decrypted.decode("utf-8", errors="ignore").rstrip("\x00\x01\x02\x03\x04\x05\x06\x07\x08\t")
