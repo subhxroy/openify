@@ -1,4 +1,4 @@
-# === macOS ===
+﻿# === macOS ===
 .DS_Store
 *.swp
 *~
@@ -14,6 +14,8 @@ DerivedData/
 *.dSYM
 
 # === Python Server ===
+Server/cookies.txt
+www_youtube_com_cookies.json
 Server/venv/
 Server/__pycache__/
 Server/*.pyc
