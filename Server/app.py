@@ -483,6 +483,17 @@ def get_audio_stream_via_jiosaavn(artist: str, title: str, expected_duration: in
             logger.warning(f"JioSaavn: no suitable match found for '{query}'")
             return None
 
+        # Bypass JioSaavn for international/English tracks (to avoid covers/tributes)
+        song_language = (best_song.get("language", "") or "").lower()
+        indian_languages = {
+            "hindi", "punjabi", "tamil", "telugu", "bengali", "marathi", 
+            "kannada", "malayalam", "gujarati", "rajasthani", "bhojpuri", 
+            "odia", "urdu", "assamese", "haryanvi"
+        }
+        if song_language and song_language not in indian_languages:
+            logger.info(f"Skipping JioSaavn for international song '{query}' (language: {song_language})")
+            return None
+
         more_info = best_song.get("more_info", {})
         encrypted_url = more_info.get("encrypted_media_url", "")
 
