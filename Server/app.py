@@ -65,6 +65,18 @@ CACHE_LIMIT_BYTES = 600 * 1024 * 1024
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
+# One-time purge of old audio cache files and stream URL cache to remove cover tracks
+for entry in CACHE_DIR.iterdir():
+    if entry.is_file():
+        try:
+            entry.unlink()
+        except OSError:
+            pass
+try:
+    (DATA_DIR / "stream_url_cache.json").unlink(missing_ok=True)
+except OSError:
+    pass
+
 TEMP_COOKIE_FILE = None
 
 def write_cookies_to_temp(cookie_content: str):
