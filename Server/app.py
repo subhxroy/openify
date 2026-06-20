@@ -738,17 +738,56 @@ def download_task(song_id, artist, title):
                 if filepath.exists():
                     filepath.unlink(missing_ok=True)
 
-        # 2. Resolve YouTube video ID
-        video_id = search_youtube_via_invidious(query)
+        # 2. Resolve YouTube video ID (prioritize yt-dlp as it uses the working android player client)
+        video_id = search_youtube_via_ytdlp(query)
+        if not video_id:
+            video_id = search_youtube_via_invidious(query)
         if not video_id:
             video_id = search_youtube_via_piped(query)
-        if not video_id:
-            video_id = search_youtube_via_ytdlp(query)
         if not video_id:
             logger.warning(f"Could not resolve video_id for download: {artist} - {title}")
             return
 
-        # 3. Try Piped/Invidious stream for download (no yt-dlp, no cookies)
+        # 3. Try yt-dlp download first (fastest and most stable with android client)
+        target = f"https://www.youtube.com/watch?v={video_id}"
+        ydl_opts = {
+            "format": "bestaudio[ext=m4a]/bestaudio/best",
+            "outtmpl": str(filepath),
+            "noplaylist": True,
+            "quiet": True,
+            "extractor_args": {"youtube": {"player_client": ["android"]}},
+        }
+        proxy_env = os.getenv("YOUTUBE_PROXY")
+        if proxy_env:
+            ydl_opts["proxy"] = proxy_env
+        if TEMP_COOKIE_FILE:
+            ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
+
+        download_success = False
+        try:
+            logger.info(f"Downloading via yt-dlp for target: {target} (query: {query})")
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([target])
+            download_success = True
+        except Exception as download_exc:
+            logger.warning(f"yt-dlp download failed: {download_exc}. Trying without cookies...")
+            try:
+                ydl_opts_fallback = dict(ydl_opts)
+                ydl_opts_fallback.pop("cookiefile", None)
+                with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
+                    ydl.download([target])
+                download_success = True
+            except Exception as fallback_exc:
+                logger.warning(f"yt-dlp fallback download failed: {fallback_exc}")
+                if filepath.exists():
+                    filepath.unlink(missing_ok=True)
+
+        if download_success:
+            clear_cache_if_needed()
+            logger.info(f"Successfully downloaded and cached song {song_id} via yt-dlp")
+            return
+
+        # 4. Fallback: Try Piped/Invidious stream download (if yt-dlp failed)
         piped_result = get_audio_stream_via_piped(video_id)
         if not piped_result:
             piped_result = get_audio_stream_via_invidious(video_id)
@@ -768,38 +807,8 @@ def download_task(song_id, artist, title):
                     return
             except Exception as dl_exc:
                 logger.warning(f"Piped/Invidious download failed for {song_id}: {dl_exc}")
-                # Clean up partial file
                 if filepath.exists():
                     filepath.unlink(missing_ok=True)
-
-        # Fallback: yt-dlp download
-        target = f"https://www.youtube.com/watch?v={video_id}"
-        logger.info(f"Downloading via yt-dlp for target: {target} (query: {query})")
-        ydl_opts = {
-            "format": "bestaudio[ext=m4a]/bestaudio/best",
-            "outtmpl": str(filepath),
-            "noplaylist": True,
-            "quiet": True,
-            "extractor_args": {"youtube": {"client": ["android", "ios"]}},
-        }
-        proxy_env = os.getenv("YOUTUBE_PROXY")
-        if proxy_env:
-            ydl_opts["proxy"] = proxy_env
-        if TEMP_COOKIE_FILE:
-            ydl_opts["cookiefile"] = TEMP_COOKIE_FILE
-
-        try:
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([target])
-        except Exception as download_exc:
-            logger.warning(f"yt-dlp download failed: {download_exc}. Trying without cookies...")
-            ydl_opts_fallback = dict(ydl_opts)
-            ydl_opts_fallback.pop("cookiefile", None)
-            with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
-                ydl.download([target])
-
-        clear_cache_if_needed()
-        logger.info(f"Successfully downloaded and cached song {song_id} via yt-dlp")
     except Exception as e:
         logger.exception("Download task exception for song: %s (%s - %s)", song_id, artist, title)
     finally:
@@ -1030,45 +1039,25 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
 
     # 4. Resolve YouTube video ID via unblocked search helpers
     query = f"{artist} - {title} audio"
-    video_id = search_youtube_via_invidious(query)
+    video_id = search_youtube_via_ytdlp(query)
+    if not video_id:
+        video_id = search_youtube_via_invidious(query)
     if not video_id:
         video_id = search_youtube_via_piped(query)
-    if not video_id:
-        video_id = search_youtube_via_ytdlp(query)
 
     if not video_id:
         return JSONResponse({"error": "Could not find song on YouTube"}, status_code=404)
 
     logger.info(f"Resolved video_id={video_id} for query: {query}")
 
-    # ── 5. Cookie-free extraction: try Piped ────────────────────────────────
-    piped_result = get_audio_stream_via_piped(video_id)
-    if piped_result:
-        direct_url, http_headers, expire_at = piped_result
-        STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
-        save_stream_url_cache()
-        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
-        executor.submit(download_task, song_id, artist, title)
-        return JSONResponse({"source": "piped", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
-
-    # ── 6. Cookie-free extraction: try Invidious ────────────────────────────
-    inv_result = get_audio_stream_via_invidious(video_id)
-    if inv_result:
-        direct_url, http_headers, expire_at = inv_result
-        STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
-        save_stream_url_cache()
-        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
-        executor.submit(download_task, song_id, artist, title)
-        return JSONResponse({"source": "invidious", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
-
-    # ── 6. Last resort: yt-dlp (with and without cookies) ───────────────────
+    # ── 5. Primary extraction: try yt-dlp (with and without cookies, using android player client) ──
     target = f"https://www.youtube.com/watch?v={video_id}"
-    logger.info(f"Falling back to yt-dlp for target: {target}")
+    logger.info(f"Extracting stream via yt-dlp for target: {target}")
     ydl_opts = {
         "format": "bestaudio[ext=m4a]/bestaudio/best",
         "noplaylist": True,
         "quiet": True,
-        "extractor_args": {"youtube": {"client": ["android", "ios"]}},
+        "extractor_args": {"youtube": {"player_client": ["android"]}},
     }
     proxy_env = os.getenv("YOUTUBE_PROXY")
     if proxy_env:
@@ -1088,8 +1077,7 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             with yt_dlp.YoutubeDL(ydl_opts_fallback) as ydl:
                 extracted_info = ydl.extract_info(target, download=False)
         except Exception as fallback_exc:
-            logger.exception("yt-dlp fallback also failed for target: %s", target)
-            return JSONResponse({"error": f"Song not found: {fallback_exc}"}, status_code=404)
+            logger.warning(f"yt-dlp fallback extraction also failed: {fallback_exc}")
 
     if extracted_info:
         try:
@@ -1105,7 +1093,28 @@ def render_play_response(request: Request, song_id: str, artist: str, title: str
             return JSONResponse({"source": "youtube", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
         except Exception as parse_exc:
             logger.error(f"Failed to parse yt-dlp video info: {parse_exc}")
-            return JSONResponse({"error": f"Failed to parse video metadata: {parse_exc}"}, status_code=500)
+
+    # ── 6. Fallback extraction: try Piped ────────────────────────────────
+    piped_result = get_audio_stream_via_piped(video_id)
+    if piped_result:
+        direct_url, http_headers, expire_at = piped_result
+        STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
+        save_stream_url_cache()
+        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
+        executor.submit(download_task, song_id, artist, title)
+        return JSONResponse({"source": "piped", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
+
+    # ── 7. Fallback extraction: try Invidious ────────────────────────────
+    inv_result = get_audio_stream_via_invidious(video_id)
+    if inv_result:
+        direct_url, http_headers, expire_at = inv_result
+        STREAM_URL_CACHE[song_id] = {"direct_url": direct_url, "headers": http_headers, "expire_at": expire_at}
+        save_stream_url_cache()
+        proxy_url = f"{base_url}/api/mobile/stream_proxy?url={quote(direct_url)}&headers={quote(json.dumps(http_headers))}"
+        executor.submit(download_task, song_id, artist, title)
+        return JSONResponse({"source": "invidious", "url": proxy_url, "direct_url": direct_url, "headers": http_headers})
+
+    return JSONResponse({"error": "Failed to extract audio stream from all sources"}, status_code=500)
 
 
 @app.get("/")
@@ -1279,7 +1288,7 @@ def search_youtube_via_ytdlp(query: str) -> str | None:
         "quiet": True,
         "extractor_args": {
             "youtube": {
-                "client": ["android", "ios"],
+                "player_client": ["android"],
             }
         },
     }
